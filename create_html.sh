@@ -1,0 +1,60 @@
+#!/bin/zsh
+
+# Use single quotes around the heredoc delimiter to prevent history expansion
+cat << 'EOF' > index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smith Clove LLC — Build Bold</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
+header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
+h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
+@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
+p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
+section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
+section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
+.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
+.card:hover{transform:translateY(-6px)}
+footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<header>
+  <h1>Smith&nbsp;Clove</h1>
+  <p class="tag">Tech acceleration meets brutal honesty.</p>
+  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
+</header>
+<section id="work">
+  <h2>Selected Shenanigans</h2>
+  <div class="cards">
+    <div class="card"><h3>ARGOS Smart Trailer</h3><p>Electrified axles, AI telematics, and a vendetta against wasted diesel.</p></div>
+    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Cameras that scream "Fire!" even when the grid ghosts you.</p></div>
+    <div class="card"><h3>Data Viz Therapy</h3><p>Turning your messy stacks into crystal-clear narratives—no couch required.</p></div>
+  </div>
+</section>
+<section id="about">
+  <h2>The Anti-About Page</h2>
+  <p>We're allergic to buzzwords but obsessed with impact. From directed self-assembly to LoRaWAN goat trackers, we deploy whatever gets you from "idea" to "oh damn, that works."</p>
+</section>
+<section id="contact">
+  <h2>Summon Us</h2>
+  <p>Shoot a signal to <a href="mailto:hello@smithclove.xyz">hello@smithclove.xyz</a> or ping <a href="https://linkedin.com/in/your-handle">David</a> on LinkedIn. Carrier pigeons welcome.</p>
+</section>
+<footer>&copy; <span id="year"></span> Smith Clove LLC. Built with coffee &amp; sarcasm.</footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+</body>
+</html>
+EOF
+
+echo "HTML file with proper DOCTYPE created successfully!"
+
