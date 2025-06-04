@@ -1,24 +1,3 @@
-<search>1|<search>1|<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-</search>
-<search>61|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,1322 +5,408 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Smith Clove LLC — Build Bold</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
+:root {
+  --bg: #000000;
+  --fg: #00ff00;
+  --accent: #ff0040;
+  --accent2: #00ffff;
+  --glass: rgba(0, 255, 0, 0.02);
+  --error: #ff0000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Courier Prime', monospace;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.4;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 255, 0, 0.03) 2px,
+    rgba(0, 255, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 1000;
+  animation: scanlines 0.1s linear infinite;
+}
+
+@keyframes scanlines {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(4px); }
+}
+
+header {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+}
+
+h1 {
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: 'Inter', sans-serif;
+  animation: nightmare-glitch 3s infinite;
+  text-shadow: 
+    0 0 5px var(--fg),
+    0 0 10px var(--fg),
+    0 0 15px var(--fg),
+    0 0 20px var(--accent);
+}
+
+@keyframes nightmare-glitch {
+  0%, 90%, 100% { 
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+  10% { 
+    transform: translate(-2px, 2px);
+    text-shadow: 2px 0 var(--accent), -2px 0 var(--accent2);
+  }
+  20% { 
+    transform: translate(-1px, -1px);
+    text-shadow: -1px 0 var(--error), 1px 0 var(--accent2);
+  }
+  30% { 
+    transform: translate(1px, 1px);
+    filter: hue-rotate(90deg);
+  }
+  40% { 
+    transform: translate(1px, -1px);
+    text-shadow: 1px 0 var(--accent), -1px 0 var(--error);
+  }
+  50% { 
+    transform: translate(-1px, 2px);
+    filter: hue-rotate(180deg);
+  }
+  60% { 
+    transform: translate(-3px, 1px);
+    text-shadow: 3px 0 var(--error), -3px 0 var(--accent2);
+  }
+  70% { 
+    transform: translate(2px, 1px);
+    filter: hue-rotate(270deg);
+  }
+  80% { 
+    transform: translate(-1px, -1px);
+    text-shadow: -2px 0 var(--accent), 2px 0 var(--error);
+  }
+}
+
+.tag {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  opacity: 0.7;
+  font-family: 'Courier Prime', monospace;
+  animation: flicker 2s infinite alternate;
+  color: var(--accent);
+}
+
+@keyframes flicker {
+  0%, 50% { opacity: 0.7; }
+  51%, 100% { opacity: 0.3; }
+}
+
+.cta-button {
+  margin-top: 3rem;
+  display: inline-block;
+  padding: 1rem 2rem;
+  border: 2px solid var(--accent);
+  border-radius: 0;
+  color: var(--accent);
+  text-decoration: none;
+  font-family: 'Courier Prime', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.cta-button:hover::before {
+  left: 0;
+}
+
+.cta-button:hover {
+  color: var(--bg);
+  box-shadow: 0 0 20px var(--accent);
+}
+
+section {
+  padding: 6rem 8vw;
+  background: var(--glass);
+  backdrop-filter: blur(2px);
+  border-top: 1px solid rgba(0, 255, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+  position: relative;
+}
+
+section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 100px,
+    rgba(255, 0, 64, 0.03) 100px,
+    rgba(255, 0, 64, 0.03) 102px
+  );
+  pointer-events: none;
+}
+
+section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--accent);
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-glow {
+  from { 
+    text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent);
+  }
+  to { 
+    text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent), 0 0 30px var(--accent);
+  }
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+}
+
+.card {
+  padding: 2.5rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(0, 255, 0, 0.2);
+  border-radius: 0;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--accent), var(--accent2), var(--error), var(--accent));
+  background-size: 400% 400%;
+  animation: gradient-border 3s ease infinite;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+@keyframes gradient-border {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 
+    0 10px 30px rgba(255, 0, 64, 0.3),
+    0 0 50px rgba(0, 255, 255, 0.1);
+}
+
+.card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--fg);
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card p {
+  color: rgba(0, 255, 0, 0.8);
+  line-height: 1.6;
+}
+
+footer {
+  padding: 3rem 8vw;
+  text-align: center;
+  font-size: 0.9rem;
+  color: rgba(0, 255, 0, 0.5);
+  border-top: 1px solid rgba(0, 255, 0, 0.1);
+  font-family: 'Courier Prime', monospace;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--accent2);
+  text-shadow: 0 0 5px currentColor;
+}
+
+#about {
+  text-align: center;
+  font-size: 1.1rem;
+  color: rgba(0, 255, 0, 0.7);
+}
+
+#contact p {
+  font-size: 1.1rem;
+  line-height: 2;
+}
+
+.error-text {
+  color: var(--error);
+  animation: error-pulse 1s ease-in-out infinite alternate;
+}
+
+@keyframes error-pulse {
+  from { opacity: 0.5; }
+  to { opacity: 1; }
+}
+
+/* Random glitch effects */
+.glitch-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent);
+  animation: glitch-sweep 4s linear infinite;
+  opacity: 0;
+}
+
+@keyframes glitch-sweep {
+  0%, 95%, 100% { opacity: 0; }
+  2%, 8% { opacity: 0.8; transform: translateX(0); }
+  3%, 7% { opacity: 0.8; transform: translateX(100px); }
+  4%, 6% { opacity: 0.8; transform: translateX(-50px); }
+}
 </style>
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
 </head>
 <body>
+<div class="glitch-line" style="top: 20%; animation-delay: 0s;"></div>
+<div class="glitch-line" style="top: 60%; animation-delay: 2s;"></div>
+<div class="glitch-line" style="top: 80%; animation-delay: 1s;"></div>
+
 <header>
   <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
+  <p class="tag">[SYSTEM_BREACHED] — Reconstruction in progress...</p>
+  <a href="#work" class="cta-button">Initialize Sequence</a>
 </header>
+
 <section id="work">
-  <h2>Selected Shenanigans</h2>
+  <h2>Active Protocols</h2>
   <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity from messy data.</p></div>
+    <div class="card">
+      <h3>Edge-AI Surveillance</h3>
+      <p>Autonomous detection systems that operate beyond conventional networks. Self-sustaining. Always watching. Built for scenarios where traditional infrastructure has... failed.</p>
+    </div>
+    <div class="card">
+      <h3>Data Reconstruction</h3>
+      <p>From corrupted fragments to complete intelligence. We extract patterns from the digital void and reconstruct what others thought was lost forever.</p>
+    </div>
   </div>
 </section>
+
 <section id="about">
-  <h2>The Not-About Page</h2>
+  <h2>Classification: Unknown</h2>
+  <p>Some entities transcend conventional documentation. We exist in the spaces between systems, in the glitches that others ignore. Our methods are unconventional. Our results are <span class="error-text">undeniable</span>.</p>
 </section>
+
 <section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/-david">LinkedIn</a><br>📞 +1 541 210 3100</p>
+  <h2>Establish Connection</h2>
+  <p>
+    📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>
+    🔗 <a href="https://linkedin.com/in/-david">LinkedIn Protocol</a><br>
+    📞 +1 541 210 3100
+  </p>
 </section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC.</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</body>
-</html></search>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-<link rel="stylesheet" href="css/noise.css">
-<link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>What We're Building</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 ************</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-<script src="js/starfield.js"></script>
-<script src="js/scroll-effects.js"></script>
-</body>
-</html>
 
-<search>1|<search>1|<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
+<footer>
+  &copy; <span id="year"></span> Smith Clove LLC — [END TRANSMISSION]
+</footer>
 
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
 
-</search>
-<search>61|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
+// Add random glitch effects
+setInterval(() => {
+  if (Math.random() > 0.95) {
+    document.body.style.filter = 'hue-rotate(' + Math.random() * 360 + 'deg)';
+    setTimeout(() => {
+      document.body.style.filter = 'none';
+    }, 100);
+  }
+}, 500);
 
-<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>Selected Shenanigans</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 541 210 3100</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC. Built with coffee &amp; sarcasm.</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</body>
-</html></search>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-<link rel="stylesheet" href="css/noise.css">
-<link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>What We're Building</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 ************</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-<script src="js/starfield.js"></script>
-<script src="js/scroll-effects.js"></script>
-</body>
-</html>
-
-<search>1|<search>1|<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-</search>
-<search>61|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>Selected Shenanigans</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 541 210 3100</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC. Built with coffee &amp; sarcasm.</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</body>
-</html>
-
-</search>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-<link rel="stylesheet" href="css/noise.css">
-<link rel="stylesheet" href="css/glitch.css">
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>What We're Building</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 541 210 3100</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-<script src="js/starfield.js"></script>
-<script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</body>
-</html>
-
-<search>1|<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-</search>
-<search>61|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>Selected Shenanigans</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 541 210 3100</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC. Built with coffee &amp; sarcasm.</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</body>
-</html>
-
-</search>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-<link rel="stylesheet" href="css/noise.css">
-<link rel="stylesheet" href="css/glitch.css">
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>What We're Building</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 541 210 3100</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-<script src="js/starfield.js"></script>
-<script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</body>
-</html>
-
-<search>1|<search>1|<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-</search>
-<search>61|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>Selected Shenanigans</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 541 210 3100</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC. Built with coffee &amp; sarcasm.</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</body>
-</html>
-
-</search>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-<link rel="stylesheet" href="css/noise.css">
-<link rel="stylesheet" href="css/glitch.css">
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>What We're Building</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 541 210 3100</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-<script src="js/starfield.js"></script>
-<script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</body>
-</html>
-
-<search>1|<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-</search>
-<search>61|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>Selected Shenanigans</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 541 210 3100</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC. Built with coffee &amp; sarcasm.</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</body>
-</html>
-
-</search>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-<link rel="stylesheet" href="css/noise.css">
-<link rel="stylesheet" href="css/glitch.css">
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>What We're Building</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 541 210 3100</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-<script src="js/starfield.js"></script>
-<script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</body>
-</html>
-
-<search>1|<search>1|<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-</search>
-<search>61|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>Selected Shenanigans</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 541 210 3100</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC. Built with coffee &amp; sarcasm.</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</body>
-</html>
-
-</search>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-<link rel="stylesheet" href="css/noise.css">
-<link rel="stylesheet" href="css/glitch.css">
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>What We're Building</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 541 210 3100</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-<script src="js/starfield.js"></script>
-<script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</body>
-</html>
-
-<search>1|<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-</search>
-<search>61|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>Selected Shenanigans</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 541 210 3100</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC. Built with coffee &amp; sarcasm.</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</body>
-</html>
-
-</search>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-<link rel="stylesheet" href="css/noise.css">
-<link rel="stylesheet" href="css/glitch.css">
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>What We're Building</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 541 210 3100</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-<script src="js/starfield.js"></script>
-<script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</body>
-</html>
-
-<search>1|<search>1|<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-</search>
-<search>61|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>Selected Shenanigans</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 541 210 3100</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC. Built with coffee &amp; sarcasm.</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</body>
-</html>
-
-</search>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-<link rel="stylesheet" href="css/noise.css">
-<link rel="stylesheet" href="css/glitch.css">
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>What We're Building</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 541 210 3100</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-<script src="js/starfield.js"></script>
-<script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</body>
-</html>
-
-<search>1|<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-</search>
-<search>61|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>57|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<search>54|  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-</search>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0f0f0f;--fg:#f3f3f3;--accent:#ff007c;--glass:rgba(255,255,255,0.05)}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
-header{height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center}
-h1{font-size:clamp(2.5rem,8vw,6rem);font-weight:700;text-transform:uppercase;letter-spacing:.05em;animation:glitch 2s infinite}
-@keyframes glitch{0%{text-shadow:2px 0 var(--accent)}20%{text-shadow:-2px 0 cyan}40%{text-shadow:2px 0 var(--accent)}60%{text-shadow:-2px 0 cyan}80%{text-shadow:2px 0 var(--accent)}100%{text-shadow:none}}
-p.tag{margin-top:1rem;font-size:1.25rem;opacity:.8}
-section{padding:5rem 8vw;background:var(--glass);backdrop-filter:blur(10px);border-block:1px solid #ffffff11}
-section h2{font-size:2rem;margin-bottom:1rem;color:var(--accent)}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem}
-.card{padding:2rem;background:#ffffff06;border:1px solid #ffffff0f;border-radius:16px;box-shadow:0 2px 10px #000;transition:transform .3s}
-.card:hover{transform:translateY(-6px)}
-footer{padding:2rem 8vw;text-align:center;font-size:.9rem;color:#999}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-</style>
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-  <link rel="stylesheet" href="css/noise.css">
-  <link rel="stylesheet" href="css/glitch.css">
-</head>
-<body>
-<header>
-  <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">Tech acceleration meets brutal honesty.</p>
-  <a href="#work" style="margin-top:2rem;display:inline-block;padding:.75rem 1.5rem;border:1px solid var(--accent);border-radius:9999px;">See what we build</a>
-</header>
-<section id="work">
-  <h2>Selected Shenanigans</h2>
-  <div class="cards">
-    <div class="card"><h3>Edge-AI Fire Watch</h3><p>Wildfire detection that works without the grid. Local, fast, and built to endure.</p></div>
-    <div class="card"><h3>Data Viz Therapy</h3><p>From chaos to clarity—actionable visuals from messy data.</p></div>
-  </div>
-</section>
-<section id="about">
-  <h2>The Not-About Page</h2>
-</section>
-<section id="contact">
-  <h2>Reach Out</h2>
-  <p>📧 <a href="mailto:david@smithclove.xyz">david@smithclove.xyz</a><br>🔗 <a href="https://linkedin.com/in/your-handle">LinkedIn</a><br>📞 +1 541 210 3100</p>
-</section>
-<footer>&copy; <span id="year"></span> Smith Clove LLC. Built with coffee &amp; sarcasm.</footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
-  <script src="js/starfield.js"></script>
-  <script src="js/scroll-effects.js"></script>
+// Random text corruption effect
+const corruptableElements = document.querySelectorAll('p, h3');
+setInterval(() => {
+  if (Math.random() > 0.98) {
+    const element = corruptableElements[Math.floor(Math.random() * corruptableElements.length)];
+    const originalText = element.textContent;
+    const corruptedText = originalText.split('').map(char => 
+      Math.random() > 0.7 ? String.fromCharCode(33 + Math.floor(Math.random() * 94)) : char
+    ).join('');
+    
+    element.textContent = corruptedText;
+    setTimeout(() => {
+      element.textContent = originalText;
+    }, 200);
+  }
+}, 1000);
+</script>
 </body>
 </html>
