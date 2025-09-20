@@ -91,6 +91,9 @@ a { color: var(--accent); text-decoration: none; transition: all 0.3s ease; }
 a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 
 #contact { text-align: left; max-width: 1200px; margin: 0 auto; }
+/* Use the same cards grid rhythm inside contact for perfect parity */
+#contact .cards { margin-top: 0; }
+#contact .card p { margin: 0; }
 #contact .contact-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; }
 @media (min-width: 900px) {
   #contact .contact-grid { grid-template-columns: minmax(300px, 700px) 1fr; align-items: start; }
@@ -184,8 +187,9 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 
 <section id="contact">
   <h2>Establish Connection</h2>
-  <div class="contact-grid">
-    <div class="contact-block">
+  <div class="cards">
+    <!-- Form column as a card -->
+    <div class="card">
       <div class="email-capture">
         <form id="contact-form" action="https://formspree.io/f/mwpngrlw" method="POST" novalidate target="_self">
           <label>Your email</label>
@@ -197,10 +201,12 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
         <p class="smallprint">We’ll email only when there’s real progress. No automation, no spam.</p>
       </div>
     </div>
-    <div class=\"contact-block card\">
+
+    <!-- Info column as a matching card -->
+    <div class="card">
       <p>
-        📧 <a href=\"mailto:info@smithclove.xyz\">info@smithclove.xyz</a><br>
-        🔗 <a href=\"https://linkedin.com/in/-david\">Social Protocol</a><br>
+        📧 <a href="mailto:info@smithclove.xyz">info@smithclove.xyz</a><br>
+        🔗 <a href="https://linkedin.com/in/-david">Social Protocol</a><br>
         📞 +1 541 210 3100
       </p>
     </div>
