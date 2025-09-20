@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove LLC — Build Bold</title>
+<title>Smith Clove ⚒</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -99,7 +99,7 @@ a { color: var(--accent); text-decoration: none; transition: all 0.3s ease; }
 a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 
 #about { text-align: left; font-size: 1.1rem; color: rgba(0, 255, 0, 0.7); max-width: 600px; margin: 0 auto; }
-#contact { text-align: left; max-width: 600px; margin: 0 auto; }
+#contact { text-align: left; max-width: 1200px; margin: 0 auto; }
 #contact p { font-size: 1.1rem; line-height: 2; }
 
 .error-text { color: var(--error); animation: error-pulse 1s ease-in-out infinite alternate; }
@@ -110,7 +110,7 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 
 .email-capture { margin-top: 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
 .email-capture input[type="email"],
-.email-capture textarea { padding: 0.8rem 1rem; border: 2px solid var(--accent); background: transparent; color: var(--fg); font-family: 'Courier Prime', monospace; width: 100%; max-width: 100%; text-align: left; transition: all 0.3s ease; }
+.email-capture textarea { padding: 0.8rem 1rem; border: 2px solid var(--accent); background: transparent; color: var(--fg); font-family: 'Courier Prime', monospace; width: clamp(300px, 60vw, 700px); max-width: 100%; text-align: left; transition: all 0.3s ease; }
 .email-capture textarea { resize: vertical; min-height: 100px; }
 .email-capture input[type="email"]:focus,
 .email-capture textarea:focus { outline: none; box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent2); border-color: var(--accent2); }
@@ -159,7 +159,7 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
   <h2>Establish Connection</h2>
 
   <div class="email-capture">
-    <form id="contact-form" action="https://formspree.io/f/mwpngrlw" method="POST" novalidate>
+    <form id="contact-form" action="https://formspree.io/f/mwpngrlw" method="POST" novalidate target="_self">
       <label>Your email</label>
       <input type="email" name="email" required inputmode="email" autocomplete="email" />
 
@@ -180,7 +180,7 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 </section>
 
 <footer>
-  &copy; <span id="year"></span> Smith Clove LLC — [END TRANSMISSION]
+  &copy; <span id="year"></span> Smith Clove ⚒ — [END TRANSMISSION]
 </footer>
 
 <script>
@@ -227,4 +227,27 @@ function showStatus(msg, { error = false, autohide = false } = {}) {
 form?.addEventListener('submit', async (e) => {
   e.preventDefault();
   showStatus('Transmitting…');
+  const btn = e.submitter;
+  btn?.setAttribute('disabled', 'true');
   try {
+    const data = new FormData(form);
+    const res = await fetch(form.action, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: data
+    });
+    if (res.ok) {
+      form.reset();
+      showStatus('✅ Message sent. We\'ll be in touch soon.', { autohide: true });
+    } else {
+      showStatus('⚠️ Error — try again or email info@smithclove.xyz directly.', { error: true });
+    }
+  } catch (err) {
+    showStatus('⚡ Network glitch. Please retry.', { error: true });
+  } finally {
+    btn?.removeAttribute('disabled');
+  }
+});
+</script>
+</body>
+</html>
