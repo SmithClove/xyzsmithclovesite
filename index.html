@@ -16,8 +16,10 @@
   --error: #ff0000;
 }
 
+/* Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+/* Base */
 body {
   font-family: 'Courier Prime', monospace;
   background: var(--bg);
@@ -27,25 +29,30 @@ body {
   position: relative;
 }
 
+/* CRT scanline overlay */
 body::before {
   content: '';
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 0, 0.03) 2px, rgba(0, 255, 0, 0.03) 4px);
-  pointer-events: none; z-index: 1000; animation: scanlines 0.1s linear infinite;
+  position: fixed; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,0,0.03) 2px, rgba(0,255,0,0.03) 4px);
+  pointer-events: none;
+  z-index: 1000;
+  animation: scanlines 0.1s linear infinite;
 }
-
 @keyframes scanlines { 0% { transform: translateY(0); } 100% { transform: translateY(4px); } }
 
+/* Header */
 header {
-  height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative;
+  height: 100vh;
+  display: flex; align-items: center; justify-content: center; flex-direction: column;
+  text-align: center; position: relative;
 }
-
 h1 {
-  font-size: clamp(3rem, 10vw, 8rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
-  font-family: 'Inter', sans-serif; animation: nightmare-glitch 3s infinite;
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  font-family: 'Inter', sans-serif;
+  animation: nightmare-glitch 3s infinite;
   text-shadow: 0 0 5px var(--fg), 0 0 10px var(--fg), 0 0 15px var(--fg), 0 0 20px var(--accent);
 }
-
 @keyframes nightmare-glitch {
   0%, 90%, 100% { transform: translate(0); filter: hue-rotate(0deg); }
   10% { transform: translate(-2px, 2px); text-shadow: 2px 0 var(--accent), -2px 0 var(--accent2); }
@@ -57,75 +64,154 @@ h1 {
   70% { transform: translate(2px, 1px); filter: hue-rotate(270deg); }
   80% { transform: translate(-1px, -1px); text-shadow: -2px 0 var(--accent), 2px 0 var(--error); }
 }
-
-.tag { margin-top: 2rem; font-size: 1.2rem; opacity: 0.7; font-family: 'Courier Prime', monospace; animation: flicker 2s infinite alternate; color: var(--accent); }
+.tag {
+  margin-top: 2rem; font-size: 1.2rem; opacity: 0.7;
+  animation: flicker 2s infinite alternate; color: var(--accent);
+}
 @keyframes flicker { 0%, 50% { opacity: 0.7; } 51%, 100% { opacity: 0.3; } }
 
 .cta-button {
-  margin-top: 3rem; display: inline-block; padding: 1rem 2rem; border: 2px solid var(--accent); border-radius: 0; color: var(--accent);
-  text-decoration: none; font-family: 'Courier Prime', monospace; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s ease; position: relative; overflow: hidden;
+  margin-top: 3rem; display: inline-block; padding: 1rem 2rem;
+  border: 2px solid var(--accent); border-radius: 0; color: var(--accent);
+  text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em;
+  transition: all 0.3s ease; position: relative; overflow: hidden;
 }
-.cta-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--accent); transition: left 0.3s ease; z-index: -1; }
+.cta-button::before {
+  content: ''; position: absolute; inset: 0; left: -100%;
+  background: var(--accent); transition: left 0.3s ease; z-index: -1;
+}
 .cta-button:hover::before { left: 0; }
 .cta-button:hover { color: var(--bg); box-shadow: 0 0 20px var(--accent); }
 
+/* Section shell */
 section {
-  padding: 6rem 8vw; background: var(--glass); backdrop-filter: blur(2px);
-  border-top: 1px solid rgba(0, 255, 0, 0.1); border-bottom: 1px solid rgba(0, 255, 0, 0.1); position: relative;
+  padding: 6rem 8vw;
+  background: var(--glass);
+  backdrop-filter: blur(2px);
+  border-top: 1px solid rgba(0, 255, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+  position: relative;
 }
 section::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  content: ''; position: absolute; inset: 0;
   background: repeating-linear-gradient(90deg, transparent, transparent 100px, rgba(255, 0, 64, 0.03) 100px, rgba(255, 0, 64, 0.03) 102px);
   pointer-events: none;
 }
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Section headings */
 section h2 {
   font-size: 2.5rem; margin-bottom: 2rem; color: var(--accent);
-  font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; animation: pulse-glow 2s ease-in-out infinite alternate;
+  font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em;
+  animation: pulse-glow 2s ease-in-out infinite alternate;
 }
-@keyframes pulse-glow { from { text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent); } to { text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent), 0 0 30px var(--accent); } }
+@keyframes pulse-glow {
+  from { text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent); }
+  to   { text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent), 0 0 30px var(--accent); }
+}
 
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
-.card { padding: 2.5rem; background: rgba(0, 0, 0, 0.8); border: 1px solid rgba(0, 255, 0, 0.2); border-radius: 0; transition: all 0.3s ease; position: relative; overflow: hidden; }
-.card::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: linear-gradient(45deg, var(--accent), var(--accent2), var(--error), var(--accent)); background-size: 400% 400%; animation: gradient-border 3s ease infinite; z-index: -1; opacity: 0; transition: opacity 0.3s ease; }
+/* Cards grid */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+}
+.card {
+  padding: 2.5rem; background: rgba(0,0,0,0.8);
+  border: 1px solid rgba(0,255,0,0.2); border-radius: 0;
+  transition: all 0.3s ease; position: relative; overflow: hidden;
+}
+.card::before {
+  content: ''; position: absolute; top:-2px; left:-2px; right:-2px; bottom:-2px;
+  background: linear-gradient(45deg, var(--accent), var(--accent2), var(--error), var(--accent));
+  background-size: 400% 400%;
+  animation: gradient-border 3s ease infinite;
+  z-index: -1; opacity: 0; transition: opacity 0.3s ease;
+}
 .card:hover::before { opacity: 1; }
-@keyframes gradient-border { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-.card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 10px 30px rgba(255, 0, 64, 0.3), 0 0 50px rgba(0, 255, 255, 0.1); }
-.card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--fg); font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
-.card p { color: rgba(0, 255, 0, 0.8); line-height: 1.6; }
+@keyframes gradient-border { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+.card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 10px 30px rgba(255,0,64,0.3), 0 0 50px rgba(0,255,255,0.1); }
+.card h3 {
+  font-size: 1.4rem; margin-bottom: 1rem; color: var(--fg);
+  font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em;
+}
+.card p { color: rgba(0,255,0,0.8); line-height: 1.6; }
 
-footer { padding: 3rem 8vw; text-align: center; font-size: 0.9rem; color: rgba(0, 255, 0, 0.5); border-top: 1px solid rgba(0, 255, 0, 0.1); font-family: 'Courier Prime', monospace; }
+/* Footer */
+footer {
+  padding: 3rem 8vw; text-align: center; font-size: 0.9rem;
+  color: rgba(0,255,0,0.5); border-top: 1px solid rgba(0,255,0,0.1);
+}
 
+/* Links */
 a { color: var(--accent); text-decoration: none; transition: all 0.3s ease; }
 a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 
-#about { text-align: left; font-size: 1.1rem; color: rgba(0, 255, 0, 0.7); max-width: 600px; margin: 0 auto; }
-#contact { text-align: left; max-width: 1200px; margin: 0 auto; }
-#contact p { font-size: 1.1rem; line-height: 2; }
+/* About + Contact text */
+#about p, #contact p { font-size: 1.1rem; color: rgba(0,255,0,0.8); }
 
+/* Error text pulse */
 .error-text { color: var(--error); animation: error-pulse 1s ease-in-out infinite alternate; }
-@keyframes error-pulse { from { opacity: 0.5; } to { opacity: 1; } }
+@keyframes error-pulse { from { opacity: .5; } to { opacity: 1; } }
 
+/* Random glitch lines */
 .glitch-line { position: absolute; left: 0; right: 0; height: 2px; background: var(--accent); animation: glitch-sweep 4s linear infinite; opacity: 0; }
-@keyframes glitch-sweep { 0%, 95%, 100% { opacity: 0; } 2%, 8% { opacity: 0.8; transform: translateX(0); } 3%, 7% { opacity: 0.8; transform: translateX(100px); } 4%, 6% { opacity: 0.8; transform: translateX(-50px); } }
+@keyframes glitch-sweep { 0%,95%,100%{opacity:0;} 2%,8%{opacity:.8; transform:translateX(0);} 3%,7%{opacity:.8; transform:translateX(100px);} 4%,6%{opacity:.8; transform:translateX(-50px);} }
 
-.email-capture { margin-top: 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
+/* Email capture */
+.email-capture {
+  margin-top: 2rem;
+  display: flex; flex-direction: column; align-items: flex-start;
+  gap: 1rem;
+}
+.email-capture label { font-size: 0.95rem; opacity: .85; }
 .email-capture input[type="email"],
-.email-capture textarea { padding: 0.8rem 1rem; border: 2px solid var(--accent); background: transparent; color: var(--fg); font-family: 'Courier Prime', monospace; width: clamp(300px, 60vw, 700px); max-width: 100%; text-align: left; transition: all 0.3s ease; }
+.email-capture textarea {
+  padding: 0.8rem 1rem;
+  border: 2px solid var(--accent);
+  background: transparent; color: var(--fg);
+  font-family: 'Courier Prime', monospace;
+  width: clamp(300px, 60vw, 700px);
+  max-width: 100%;
+  text-align: left;
+  transition: all 0.3s ease;
+}
 .email-capture textarea { resize: vertical; min-height: 100px; }
 .email-capture input[type="email"]:focus,
-.email-capture textarea:focus { outline: none; box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent2); border-color: var(--accent2); }
-.email-capture button { padding: 0.8rem 1.5rem; border: 2px solid var(--accent); background: transparent; color: var(--accent); text-transform: uppercase; font-family: 'Courier Prime', monospace; cursor: pointer; transition: all 0.3s ease; align-self: flex-start; }
+.email-capture textarea:focus {
+  outline: none;
+  box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent2);
+  border-color: var(--accent2);
+}
+.email-capture button {
+  padding: 0.8rem 1.5rem;
+  border: 2px solid var(--accent); background: transparent; color: var(--accent);
+  text-transform: uppercase; font-family: 'Courier Prime', monospace;
+  cursor: pointer; transition: all 0.3s ease; align-self: flex-start;
+}
 .email-capture button:hover { background: var(--accent); color: var(--bg); box-shadow: 0 0 15px var(--accent); }
 .smallprint { font-size: .9rem; opacity: .7; }
 
+/* Status/confirmation animations */
 #form-status { opacity: 0; transition: opacity .25s ease; }
-#form-status.show { opacity: 1; animation: status-glitch 1s steps(8, end) 1; }
-@keyframes status-glitch { 0% { text-shadow: 2px 0 var(--accent), -2px 0 var(--accent2); transform: translate(0); } 20% { transform: translate(1px, -1px); } 40% { transform: translate(-1px, 1px); } 60% { text-shadow: -2px 0 var(--error), 2px 0 var(--accent2); } 80% { transform: translate(1px, 0); } 100% { text-shadow: none; transform: translate(0); } }
-#form-status.shake { animation: shake 300ms linear 1, status-glitch 1s steps(8, end) 1; }
-@keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
+#form-status.show { opacity: 1; animation: status-glitch 1s steps(8,end) 1; }
+@keyframes status-glitch {
+  0% { text-shadow: 2px 0 var(--accent), -2px 0 var(--accent2); transform: translate(0); }
+  20% { transform: translate(1px, -1px); }
+  40% { transform: translate(-1px, 1px); }
+  60% { text-shadow: -2px 0 var(--error), 2px 0 var(--accent2); }
+  80% { transform: translate(1px, 0); }
+  100% { text-shadow: none; transform: translate(0); }
+}
+#form-status.shake { animation: shake 300ms linear 1, status-glitch 1s steps(8,end) 1; }
+@keyframes shake { 0%,100%{transform:translateX(0);} 20%{transform:translateX(-6px);} 40%{transform:translateX(6px);} 60%{transform:translateX(-4px);} 80%{transform:translateX(4px);} }
 </style>
 </head>
 <body>
+<!-- glitch lines -->
 <div class="glitch-line" style="top: 20%; animation-delay: 0s;"></div>
 <div class="glitch-line" style="top: 60%; animation-delay: 2s;"></div>
 <div class="glitch-line" style="top: 80%; animation-delay: 1s;"></div>
@@ -137,46 +223,81 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 </header>
 
 <section id="work">
-  <h2>Active Protocols</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>Edge-AI Surveillance</h3>
-      <p>Autonomous monitoring platforms delivering secure, real-time intelligence without reliance on central networks.</p>
-    </div>
-    <div class="card">
-      <h3>Data Reconstruction</h3>
-      <p>Transforming incomplete or corrupted data into actionable insights—extracting clarity where others see noise.</p>
+  <div class="section-inner">
+    <h2>Active Protocols</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Edge-AI Surveillance</h3>
+        <p>Autonomous monitoring platforms delivering secure, real-time intelligence without reliance on central networks.</p>
+      </div>
+      <div class="card">
+        <h3>Data Reconstruction</h3>
+        <p>Transforming incomplete or corrupted data into actionable insights—extracting clarity where others see noise.</p>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- Optional: Featured Work (YouTube). Replace VIDEO_IDs or remove this whole section. -->
+<section id="featured">
+  <div class="section-inner">
+    <h2>Featured Work</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Prototype Demo</h3>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="card">
+        <h3>System Walkthrough</h3>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+/* Responsive 16:9 wrappers for embeds */
+.video-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+.video-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+</style>
+
 <section id="about">
-  <h2>Classification: Emerging</h2>
-  <p>We specialize in the unseen and overlooked. By operating at the edge of conventional frameworks, our methods deliver unconventional breakthroughs and <span class="error-text">undeniable</span> outcomes.</p>
+  <div class="section-inner">
+    <h2>Classification: Emerging</h2>
+    <p>We specialize in the unseen and overlooked. Operating at the edge of conventional frameworks, we deliver unconventional breakthroughs and <span class="error-text">undeniable</span> outcomes.</p>
+  </div>
 </section>
 
 <section id="contact">
-  <h2>Establish Connection</h2>
+  <div class="section-inner">
+    <h2>Establish Connection</h2>
 
-  <div class="email-capture">
-    <form id="contact-form" action="https://formspree.io/f/mwpngrlw" method="POST" novalidate target="_self">
-      <label>Your email</label>
-      <input type="email" name="email" required inputmode="email" autocomplete="email" />
+    <div class="email-capture">
+      <form id="contact-form" action="https://formspree.io/f/mwpngrlw" method="POST" novalidate target="_self">
+        <label>Your email</label>
+        <input type="email" name="email" required inputmode="email" autocomplete="email" />
 
-      <label>Your message (optional)</label>
-      <textarea name="message" rows="3"></textarea>
+        <label>Your message (optional)</label>
+        <textarea name="message" rows="3"></textarea>
 
-      <button type="submit">Send</button>
-    </form>
-    <p id="form-status" aria-live="polite"></p>
-    <p class="smallprint">We’ll email only when there’s real progress. No automation, no spam.</p>
+        <!-- Honeypot (spam trap) -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;">
+
+        <button type="submit">Send</button>
+      </form>
+      <p id="form-status" aria-live="polite"></p>
+      <p class="smallprint">We’ll email only when there’s real progress. No automation, no spam.</p>
+    </div>
+
+    <p style="margin-top:2rem;">
+      📧 <a href="mailto:info@smithclove.xyz">info@smithclove.xyz</a><br>
+      🔗 <a href="https://linkedin.com/in/-david">Social Protocol</a><br>
+      📞 +1 541 210 3100
+    </p>
   </div>
-
-  <p>
-    📧 <a href="mailto:info@smithclove.xyz">info@smithclove.xyz</a><br>
-    🔗 <a href="https://linkedin.com/in/-david">Social Protocol</a><br>
-    📞 +1 541 210 3100
-  </p>
 </section>
 
 <footer>
@@ -186,6 +307,7 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// Ambient hue glitches
 setInterval(() => {
   if (Math.random() > 0.95) {
     document.body.style.filter = 'hue-rotate(' + Math.random() * 360 + 'deg)';
@@ -193,17 +315,19 @@ setInterval(() => {
   }
 }, 500);
 
+// Random text corruption
 const corruptableElements = document.querySelectorAll('p, h3');
 setInterval(() => {
   if (Math.random() > 0.98) {
-    const element = corruptableElements[Math.floor(Math.random() * corruptableElements.length)];
-    const originalText = element.textContent;
-    const corruptedText = originalText.split('').map(char => Math.random() > 0.7 ? String.fromCharCode(33 + Math.floor(Math.random() * 94)) : char).join('');
-    element.textContent = corruptedText;
-    setTimeout(() => { element.textContent = originalText; }, 200);
+    const el = corruptableElements[Math.floor(Math.random() * corruptableElements.length)];
+    const original = el.textContent;
+    const corrupted = original.split('').map(c => Math.random() > 0.7 ? String.fromCharCode(33 + Math.floor(Math.random() * 94)) : c).join('');
+    el.textContent = corrupted;
+    setTimeout(() => { el.textContent = original; }, 200);
   }
 }, 1000);
 
+// Formspree fetch submit (no redirect) + status
 const form = document.getElementById('contact-form');
 const statusEl = document.getElementById('form-status');
 let hideTimer;
@@ -242,7 +366,7 @@ form?.addEventListener('submit', async (e) => {
     } else {
       showStatus('⚠️ Error — try again or email info@smithclove.xyz directly.', { error: true });
     }
-  } catch (err) {
+  } catch {
     showStatus('⚡ Network glitch. Please retry.', { error: true });
   } finally {
     btn?.removeAttribute('disabled');
