@@ -85,14 +85,8 @@ section h2 {
 @keyframes pulse-glow { from { text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent); } to { text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent), 0 0 30px var(--accent); } }
 
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
-.card {
-  padding: 2.5rem; background: rgba(0, 0, 0, 0.8); border: 1px solid rgba(0, 255, 0, 0.2); border-radius: 0; transition: all 0.3s ease; position: relative; overflow: hidden;
-}
-.card::before {
-  content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
-  background: linear-gradient(45deg, var(--accent), var(--accent2), var(--error), var(--accent));
-  background-size: 400% 400%; animation: gradient-border 3s ease infinite; z-index: -1; opacity: 0; transition: opacity 0.3s ease;
-}
+.card { padding: 2.5rem; background: rgba(0, 0, 0, 0.8); border: 1px solid rgba(0, 255, 0, 0.2); border-radius: 0; transition: all 0.3s ease; position: relative; overflow: hidden; }
+.card::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: linear-gradient(45deg, var(--accent), var(--accent2), var(--error), var(--accent)); background-size: 400% 400%; animation: gradient-border 3s ease infinite; z-index: -1; opacity: 0; transition: opacity 0.3s ease; }
 .card:hover::before { opacity: 1; }
 @keyframes gradient-border { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 .card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 10px 30px rgba(255, 0, 64, 0.3), 0 0 50px rgba(0, 255, 255, 0.1); }
@@ -104,66 +98,31 @@ footer { padding: 3rem 8vw; text-align: center; font-size: 0.9rem; color: rgba(0
 a { color: var(--accent); text-decoration: none; transition: all 0.3s ease; }
 a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 
-#about { text-align: center; font-size: 1.1rem; color: rgba(0, 255, 0, 0.7); }
+#about { text-align: left; font-size: 1.1rem; color: rgba(0, 255, 0, 0.7); max-width: 600px; margin: 0 auto; }
+#contact { text-align: left; max-width: 600px; margin: 0 auto; }
 #contact p { font-size: 1.1rem; line-height: 2; }
 
 .error-text { color: var(--error); animation: error-pulse 1s ease-in-out infinite alternate; }
 @keyframes error-pulse { from { opacity: 0.5; } to { opacity: 1; } }
 
-/* Random glitch effects */
 .glitch-line { position: absolute; left: 0; right: 0; height: 2px; background: var(--accent); animation: glitch-sweep 4s linear infinite; opacity: 0; }
-@keyframes glitch-sweep {
-  0%, 95%, 100% { opacity: 0; }
-  2%, 8% { opacity: 0.8; transform: translateX(0); }
-  3%, 7% { opacity: 0.8; transform: translateX(100px); }
-  4%, 6% { opacity: 0.8; transform: translateX(-50px); }
-}
+@keyframes glitch-sweep { 0%, 95%, 100% { opacity: 0; } 2%, 8% { opacity: 0.8; transform: translateX(0); } 3%, 7% { opacity: 0.8; transform: translateX(100px); } 4%, 6% { opacity: 0.8; transform: translateX(-50px); } }
 
-/* Email capture styles */
-.email-capture { margin-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.email-capture { margin-top: 2rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; }
 .email-capture input[type="email"],
-.email-capture textarea {
-  padding: 0.8rem 1rem; border: 2px solid var(--accent); background: transparent; color: var(--fg);
-  font-family: 'Courier Prime', monospace; width: 320px; max-width: 90%; text-align: left;
-}
+.email-capture textarea { padding: 0.8rem 1rem; border: 2px solid var(--accent); background: transparent; color: var(--fg); font-family: 'Courier Prime', monospace; width: 100%; max-width: 100%; text-align: left; transition: all 0.3s ease; }
 .email-capture textarea { resize: vertical; min-height: 100px; }
-.email-capture button {
-  padding: 0.8rem 1.5rem; border: 2px solid var(--accent); background: transparent; color: var(--accent);
-  text-transform: uppercase; font-family: 'Courier Prime', monospace; cursor: pointer; transition: all 0.3s ease;
-}
+.email-capture input[type="email"]:focus,
+.email-capture textarea:focus { outline: none; box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent2); border-color: var(--accent2); }
+.email-capture button { padding: 0.8rem 1.5rem; border: 2px solid var(--accent); background: transparent; color: var(--accent); text-transform: uppercase; font-family: 'Courier Prime', monospace; cursor: pointer; transition: all 0.3s ease; align-self: flex-start; }
 .email-capture button:hover { background: var(--accent); color: var(--bg); box-shadow: 0 0 15px var(--accent); }
 .smallprint { font-size: .9rem; opacity: .7; }
 
-/* Confirmation glitch-in */
 #form-status { opacity: 0; transition: opacity .25s ease; }
 #form-status.show { opacity: 1; animation: status-glitch 1s steps(8, end) 1; }
-@keyframes status-glitch {
-  0% { text-shadow: 2px 0 var(--accent), -2px 0 var(--accent2); transform: translate(0); }
-  20% { transform: translate(1px, -1px); }
-  40% { transform: translate(-1px, 1px); }
-  60% { text-shadow: -2px 0 var(--error), 2px 0 var(--accent2); }
-  80% { transform: translate(1px, 0); }
-  100% { text-shadow: none; transform: translate(0); }
-}
-/* Error shake and enhanced confirmation */
-#form-status { opacity: 0; transition: opacity .25s ease; }
-#form-status.show { opacity: 1; animation: status-glitch 1s steps(8, end) 1; }
-@keyframes status-glitch {
-  0% { text-shadow: 2px 0 var(--accent), -2px 0 var(--accent2); transform: translate(0); }
-  20% { transform: translate(1px, -1px); }
-  40% { transform: translate(-1px, 1px); }
-  60% { text-shadow: -2px 0 var(--error), 2px 0 var(--accent2); }
-  80% { transform: translate(1px, 0); }
-  100% { text-shadow: none; transform: translate(0); }
-}
+@keyframes status-glitch { 0% { text-shadow: 2px 0 var(--accent), -2px 0 var(--accent2); transform: translate(0); } 20% { transform: translate(1px, -1px); } 40% { transform: translate(-1px, 1px); } 60% { text-shadow: -2px 0 var(--error), 2px 0 var(--accent2); } 80% { transform: translate(1px, 0); } 100% { text-shadow: none; transform: translate(0); } }
 #form-status.shake { animation: shake 300ms linear 1, status-glitch 1s steps(8, end) 1; }
-@keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20% { transform: translateX(-6px); }
-  40% { transform: translateX(6px); }
-  60% { transform: translateX(-4px); }
-  80% { transform: translateX(4px); }
-}
+@keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
 </style>
 </head>
 <body>
@@ -173,7 +132,7 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 
 <header>
   <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">[COMING_SOON] — Systems under construction...</p>
+  <p class="tag">[COMING_SOON] Systems under construction...</p>
   <a href="#work" class="cta-button">Explore Initiatives</a>
 </header>
 
@@ -193,19 +152,20 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 
 <section id="about">
   <h2>Classification: Emerging</h2>
-  <p>We specialize in the unseen and overlooked. By operating at the edge of conventional frameworks, our methods deliver unconventional breakthroughs—and <span class="error-text">undeniable</span> outcomes.</p>
+  <p>We specialize in the unseen and overlooked. By operating at the edge of conventional frameworks, our methods deliver unconventional breakthroughs and <span class="error-text">undeniable</span> outcomes.</p>
 </section>
 
 <section id="contact">
   <h2>Establish Connection</h2>
 
-  <!-- Simple email + optional message form (Formspree -> Proton inbox) -->
   <div class="email-capture">
     <form id="contact-form" action="https://formspree.io/f/mwpngrlw" method="POST" novalidate>
-      <input type="email" name="email" placeholder="Your email" required inputmode="email" autocomplete="email" />
-      <textarea name="message" placeholder="Your message (optional)" rows="3"></textarea>
-      <!-- Spam trap -->
-      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;">
+      <label>Your email</label>
+      <input type="email" name="email" required inputmode="email" autocomplete="email" />
+
+      <label>Your message (optional)</label>
+      <textarea name="message" rows="3"></textarea>
+
       <button type="submit">Send</button>
     </form>
     <p id="form-status" aria-live="polite"></p>
@@ -226,7 +186,6 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Add random glitch effects
 setInterval(() => {
   if (Math.random() > 0.95) {
     document.body.style.filter = 'hue-rotate(' + Math.random() * 360 + 'deg)';
@@ -234,21 +193,17 @@ setInterval(() => {
   }
 }, 500);
 
-// Random text corruption effect
 const corruptableElements = document.querySelectorAll('p, h3');
 setInterval(() => {
   if (Math.random() > 0.98) {
     const element = corruptableElements[Math.floor(Math.random() * corruptableElements.length)];
     const originalText = element.textContent;
-    const corruptedText = originalText.split('').map(char =>
-      Math.random() > 0.7 ? String.fromCharCode(33 + Math.floor(Math.random() * 94)) : char
-    ).join('');
+    const corruptedText = originalText.split('').map(char => Math.random() > 0.7 ? String.fromCharCode(33 + Math.floor(Math.random() * 94)) : char).join('');
     element.textContent = corruptedText;
     setTimeout(() => { element.textContent = originalText; }, 200);
   }
 }, 1000);
 
-// Minimal JS handling for Formspree status with glitch-in
 const form = document.getElementById('contact-form');
 const statusEl = document.getElementById('form-status');
 let hideTimer;
@@ -271,24 +226,5 @@ function showStatus(msg, { error = false, autohide = false } = {}) {
 
 form?.addEventListener('submit', async (e) => {
   e.preventDefault();
-  showStatus('Transmitting…', { autohide: false });
+  showStatus('Transmitting…');
   try {
-    const data = new FormData(form);
-    const res = await fetch(form.action, {
-      method: 'POST',
-      headers: { 'Accept': 'application/json' },
-      body: data
-    });
-    if (res.ok) {
-      form.reset();
-      showStatus('✅ Message sent. We\'ll be in touch soon.', { autohide: true });
-    } else {
-      showStatus('⚠️ Error — try again or email info@smithclove.xyz directly.', { error: true });
-    }
-  } catch {
-    showStatus('⚡ Network glitch. Please retry.', { error: true });
-  }
-});
-</script>
-</body>
-</html>
