@@ -16,11 +16,7 @@
   --error: #ff0000;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   font-family: 'Courier Prime', monospace;
@@ -33,305 +29,140 @@ body {
 
 body::before {
   content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0, 255, 0, 0.03) 2px,
-    rgba(0, 255, 0, 0.03) 4px
-  );
-  pointer-events: none;
-  z-index: 1000;
-  animation: scanlines 0.1s linear infinite;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 0, 0.03) 2px, rgba(0, 255, 0, 0.03) 4px);
+  pointer-events: none; z-index: 1000; animation: scanlines 0.1s linear infinite;
 }
 
-@keyframes scanlines {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(4px); }
-}
+@keyframes scanlines { 0% { transform: translateY(0); } 100% { transform: translateY(4px); } }
 
 header {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
-  position: relative;
+  height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative;
 }
 
 h1 {
-  font-size: clamp(3rem, 10vw, 8rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-family: 'Inter', sans-serif;
-  animation: nightmare-glitch 3s infinite;
-  text-shadow: 
-    0 0 5px var(--fg),
-    0 0 10px var(--fg),
-    0 0 15px var(--fg),
-    0 0 20px var(--accent);
+  font-size: clamp(3rem, 10vw, 8rem); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  font-family: 'Inter', sans-serif; animation: nightmare-glitch 3s infinite;
+  text-shadow: 0 0 5px var(--fg), 0 0 10px var(--fg), 0 0 15px var(--fg), 0 0 20px var(--accent);
 }
 
 @keyframes nightmare-glitch {
-  0%, 90%, 100% { 
-    transform: translate(0);
-    filter: hue-rotate(0deg);
-  }
-  10% { 
-    transform: translate(-2px, 2px);
-    text-shadow: 2px 0 var(--accent), -2px 0 var(--accent2);
-  }
-  20% { 
-    transform: translate(-1px, -1px);
-    text-shadow: -1px 0 var(--error), 1px 0 var(--accent2);
-  }
-  30% { 
-    transform: translate(1px, 1px);
-    filter: hue-rotate(90deg);
-  }
-  40% { 
-    transform: translate(1px, -1px);
-    text-shadow: 1px 0 var(--accent), -1px 0 var(--error);
-  }
-  50% { 
-    transform: translate(-1px, 2px);
-    filter: hue-rotate(180deg);
-  }
-  60% { 
-    transform: translate(-3px, 1px);
-    text-shadow: 3px 0 var(--error), -3px 0 var(--accent2);
-  }
-  70% { 
-    transform: translate(2px, 1px);
-    filter: hue-rotate(270deg);
-  }
-  80% { 
-    transform: translate(-1px, -1px);
-    text-shadow: -2px 0 var(--accent), 2px 0 var(--error);
-  }
+  0%, 90%, 100% { transform: translate(0); filter: hue-rotate(0deg); }
+  10% { transform: translate(-2px, 2px); text-shadow: 2px 0 var(--accent), -2px 0 var(--accent2); }
+  20% { transform: translate(-1px, -1px); text-shadow: -1px 0 var(--error), 1px 0 var(--accent2); }
+  30% { transform: translate(1px, 1px); filter: hue-rotate(90deg); }
+  40% { transform: translate(1px, -1px); text-shadow: 1px 0 var(--accent), -1px 0 var(--error); }
+  50% { transform: translate(-1px, 2px); filter: hue-rotate(180deg); }
+  60% { transform: translate(-3px, 1px); text-shadow: 3px 0 var(--error), -3px 0 var(--accent2); }
+  70% { transform: translate(2px, 1px); filter: hue-rotate(270deg); }
+  80% { transform: translate(-1px, -1px); text-shadow: -2px 0 var(--accent), 2px 0 var(--error); }
 }
 
-.tag {
-  margin-top: 2rem;
-  font-size: 1.2rem;
-  opacity: 0.7;
-  font-family: 'Courier Prime', monospace;
-  animation: flicker 2s infinite alternate;
-  color: var(--accent);
-}
-
-@keyframes flicker {
-  0%, 50% { opacity: 0.7; }
-  51%, 100% { opacity: 0.3; }
-}
+.tag { margin-top: 2rem; font-size: 1.2rem; opacity: 0.7; font-family: 'Courier Prime', monospace; animation: flicker 2s infinite alternate; color: var(--accent); }
+@keyframes flicker { 0%, 50% { opacity: 0.7; } 51%, 100% { opacity: 0.3; } }
 
 .cta-button {
-  margin-top: 3rem;
-  display: inline-block;
-  padding: 1rem 2rem;
-  border: 2px solid var(--accent);
-  border-radius: 0;
-  color: var(--accent);
-  text-decoration: none;
-  font-family: 'Courier Prime', monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  margin-top: 3rem; display: inline-block; padding: 1rem 2rem; border: 2px solid var(--accent); border-radius: 0; color: var(--accent);
+  text-decoration: none; font-family: 'Courier Prime', monospace; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s ease; position: relative; overflow: hidden;
 }
-
-.cta-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: var(--accent);
-  transition: left 0.3s ease;
-  z-index: -1;
-}
-
-.cta-button:hover::before {
-  left: 0;
-}
-
-.cta-button:hover {
-  color: var(--bg);
-  box-shadow: 0 0 20px var(--accent);
-}
+.cta-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--accent); transition: left 0.3s ease; z-index: -1; }
+.cta-button:hover::before { left: 0; }
+.cta-button:hover { color: var(--bg); box-shadow: 0 0 20px var(--accent); }
 
 section {
-  padding: 6rem 8vw;
-  background: var(--glass);
-  backdrop-filter: blur(2px);
-  border-top: 1px solid rgba(0, 255, 0, 0.1);
-  border-bottom: 1px solid rgba(0, 255, 0, 0.1);
-  position: relative;
+  padding: 6rem 8vw; background: var(--glass); backdrop-filter: blur(2px);
+  border-top: 1px solid rgba(0, 255, 0, 0.1); border-bottom: 1px solid rgba(0, 255, 0, 0.1); position: relative;
 }
-
 section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent,
-    transparent 100px,
-    rgba(255, 0, 64, 0.03) 100px,
-    rgba(255, 0, 64, 0.03) 102px
-  );
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 100px, rgba(255, 0, 64, 0.03) 100px, rgba(255, 0, 64, 0.03) 102px);
   pointer-events: none;
 }
-
 section h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: var(--accent);
-  font-family: 'Inter', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  animation: pulse-glow 2s ease-in-out infinite alternate;
+  font-size: 2.5rem; margin-bottom: 2rem; color: var(--accent);
+  font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; animation: pulse-glow 2s ease-in-out infinite alternate;
 }
+@keyframes pulse-glow { from { text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent); } to { text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent), 0 0 30px var(--accent); } }
 
-@keyframes pulse-glow {
-  from { 
-    text-shadow: 0 0 5px var(--accent), 0 0 10px var(--accent);
-  }
-  to { 
-    text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent), 0 0 30px var(--accent);
-  }
-}
-
-.cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 3rem;
-}
-
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
 .card {
-  padding: 2.5rem;
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(0, 255, 0, 0.2);
-  border-radius: 0;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  padding: 2.5rem; background: rgba(0, 0, 0, 0.8); border: 1px solid rgba(0, 255, 0, 0.2); border-radius: 0; transition: all 0.3s ease; position: relative; overflow: hidden;
 }
-
 .card::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
+  content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
   background: linear-gradient(45deg, var(--accent), var(--accent2), var(--error), var(--accent));
-  background-size: 400% 400%;
-  animation: gradient-border 3s ease infinite;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  background-size: 400% 400%; animation: gradient-border 3s ease infinite; z-index: -1; opacity: 0; transition: opacity 0.3s ease;
 }
+.card:hover::before { opacity: 1; }
+@keyframes gradient-border { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+.card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 10px 30px rgba(255, 0, 64, 0.3), 0 0 50px rgba(0, 255, 255, 0.1); }
+.card h3 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--fg); font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
+.card p { color: rgba(0, 255, 0, 0.8); line-height: 1.6; }
 
-.card:hover::before {
-  opacity: 1;
-}
+footer { padding: 3rem 8vw; text-align: center; font-size: 0.9rem; color: rgba(0, 255, 0, 0.5); border-top: 1px solid rgba(0, 255, 0, 0.1); font-family: 'Courier Prime', monospace; }
 
-@keyframes gradient-border {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
+a { color: var(--accent); text-decoration: none; transition: all 0.3s ease; }
+a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 
-.card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 
-    0 10px 30px rgba(255, 0, 64, 0.3),
-    0 0 50px rgba(0, 255, 255, 0.1);
-}
+#about { text-align: center; font-size: 1.1rem; color: rgba(0, 255, 0, 0.7); }
+#contact p { font-size: 1.1rem; line-height: 2; }
 
-.card h3 {
-  font-size: 1.4rem;
-  margin-bottom: 1rem;
-  color: var(--fg);
-  font-family: 'Inter', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.card p {
-  color: rgba(0, 255, 0, 0.8);
-  line-height: 1.6;
-}
-
-footer {
-  padding: 3rem 8vw;
-  text-align: center;
-  font-size: 0.9rem;
-  color: rgba(0, 255, 0, 0.5);
-  border-top: 1px solid rgba(0, 255, 0, 0.1);
-  font-family: 'Courier Prime', monospace;
-}
-
-a {
-  color: var(--accent);
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-a:hover {
-  color: var(--accent2);
-  text-shadow: 0 0 5px currentColor;
-}
-
-#about {
-  text-align: center;
-  font-size: 1.1rem;
-  color: rgba(0, 255, 0, 0.7);
-}
-
-#contact p {
-  font-size: 1.1rem;
-  line-height: 2;
-}
-
-.error-text {
-  color: var(--error);
-  animation: error-pulse 1s ease-in-out infinite alternate;
-}
-
-@keyframes error-pulse {
-  from { opacity: 0.5; }
-  to { opacity: 1; }
-}
+.error-text { color: var(--error); animation: error-pulse 1s ease-in-out infinite alternate; }
+@keyframes error-pulse { from { opacity: 0.5; } to { opacity: 1; } }
 
 /* Random glitch effects */
-.glitch-line {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: var(--accent);
-  animation: glitch-sweep 4s linear infinite;
-  opacity: 0;
-}
-
+.glitch-line { position: absolute; left: 0; right: 0; height: 2px; background: var(--accent); animation: glitch-sweep 4s linear infinite; opacity: 0; }
 @keyframes glitch-sweep {
   0%, 95%, 100% { opacity: 0; }
   2%, 8% { opacity: 0.8; transform: translateX(0); }
   3%, 7% { opacity: 0.8; transform: translateX(100px); }
   4%, 6% { opacity: 0.8; transform: translateX(-50px); }
+}
+
+/* Email capture styles */
+.email-capture { margin-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.email-capture input[type="email"],
+.email-capture textarea {
+  padding: 0.8rem 1rem; border: 2px solid var(--accent); background: transparent; color: var(--fg);
+  font-family: 'Courier Prime', monospace; width: 320px; max-width: 90%; text-align: left;
+}
+.email-capture textarea { resize: vertical; min-height: 100px; }
+.email-capture button {
+  padding: 0.8rem 1.5rem; border: 2px solid var(--accent); background: transparent; color: var(--accent);
+  text-transform: uppercase; font-family: 'Courier Prime', monospace; cursor: pointer; transition: all 0.3s ease;
+}
+.email-capture button:hover { background: var(--accent); color: var(--bg); box-shadow: 0 0 15px var(--accent); }
+.smallprint { font-size: .9rem; opacity: .7; }
+
+/* Confirmation glitch-in */
+#form-status { opacity: 0; transition: opacity .25s ease; }
+#form-status.show { opacity: 1; animation: status-glitch 1s steps(8, end) 1; }
+@keyframes status-glitch {
+  0% { text-shadow: 2px 0 var(--accent), -2px 0 var(--accent2); transform: translate(0); }
+  20% { transform: translate(1px, -1px); }
+  40% { transform: translate(-1px, 1px); }
+  60% { text-shadow: -2px 0 var(--error), 2px 0 var(--accent2); }
+  80% { transform: translate(1px, 0); }
+  100% { text-shadow: none; transform: translate(0); }
+}
+/* Error shake and enhanced confirmation */
+#form-status { opacity: 0; transition: opacity .25s ease; }
+#form-status.show { opacity: 1; animation: status-glitch 1s steps(8, end) 1; }
+@keyframes status-glitch {
+  0% { text-shadow: 2px 0 var(--accent), -2px 0 var(--accent2); transform: translate(0); }
+  20% { transform: translate(1px, -1px); }
+  40% { transform: translate(-1px, 1px); }
+  60% { text-shadow: -2px 0 var(--error), 2px 0 var(--accent2); }
+  80% { transform: translate(1px, 0); }
+  100% { text-shadow: none; transform: translate(0); }
+}
+#form-status.shake { animation: shake 300ms linear 1, status-glitch 1s steps(8, end) 1; }
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
 }
 </style>
 </head>
@@ -342,8 +173,8 @@ a:hover {
 
 <header>
   <h1>Smith&nbsp;Clove</h1>
-  <p class="tag">[SYSTEM_BREACHED] — Reconstruction in progress...</p>
-  <a href="#work" class="cta-button">Initialize Sequence</a>
+  <p class="tag">[COMING_SOON] — Systems under construction...</p>
+  <a href="#work" class="cta-button">Explore Initiatives</a>
 </header>
 
 <section id="work">
@@ -351,24 +182,38 @@ a:hover {
   <div class="cards">
     <div class="card">
       <h3>Edge-AI Surveillance</h3>
-      <p>Autonomous detection systems that operate beyond conventional networks. Self-sustaining. Always watching. Built for scenarios where traditional infrastructure has... failed.</p>
+      <p>Autonomous monitoring platforms delivering secure, real-time intelligence without reliance on central networks.</p>
     </div>
     <div class="card">
       <h3>Data Reconstruction</h3>
-      <p>From corrupted fragments to complete intelligence. We extract patterns from the digital void and reconstruct what others thought was lost forever.</p>
+      <p>Transforming incomplete or corrupted data into actionable insights—extracting clarity where others see noise.</p>
     </div>
   </div>
 </section>
 
 <section id="about">
-  <h2>Classification: Unknown</h2>
-  <p>Some entities transcend conventional documentation. We exist in the spaces between systems, in the glitches that others ignore. Our methods are unconventional. Our results are <span class="error-text">undeniable</span>.</p>
+  <h2>Classification: Emerging</h2>
+  <p>We specialize in the unseen and overlooked. By operating at the edge of conventional frameworks, our methods deliver unconventional breakthroughs—and <span class="error-text">undeniable</span> outcomes.</p>
 </section>
 
 <section id="contact">
   <h2>Establish Connection</h2>
+
+  <!-- Simple email + optional message form (Formspree -> Proton inbox) -->
+  <div class="email-capture">
+    <form id="contact-form" action="https://formspree.io/f/mwpngrlw" method="POST" novalidate>
+      <input type="email" name="email" placeholder="Your email" required inputmode="email" autocomplete="email" />
+      <textarea name="message" placeholder="Your message (optional)" rows="3"></textarea>
+      <!-- Spam trap -->
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;">
+      <button type="submit">Send</button>
+    </form>
+    <p id="form-status" aria-live="polite"></p>
+    <p class="smallprint">We’ll email only when there’s real progress. No automation, no spam.</p>
+  </div>
+
   <p>
-    📧 <a href="mailto:help@smithclove.xyz">yell@smithclove.xyz</a><br>
+    📧 <a href="mailto:info@smithclove.xyz">info@smithclove.xyz</a><br>
     🔗 <a href="https://linkedin.com/in/-david">Social Protocol</a><br>
     📞 +1 541 210 3100
   </p>
@@ -385,9 +230,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 setInterval(() => {
   if (Math.random() > 0.95) {
     document.body.style.filter = 'hue-rotate(' + Math.random() * 360 + 'deg)';
-    setTimeout(() => {
-      document.body.style.filter = 'none';
-    }, 100);
+    setTimeout(() => { document.body.style.filter = 'none'; }, 100);
   }
 }, 500);
 
@@ -397,16 +240,55 @@ setInterval(() => {
   if (Math.random() > 0.98) {
     const element = corruptableElements[Math.floor(Math.random() * corruptableElements.length)];
     const originalText = element.textContent;
-    const corruptedText = originalText.split('').map(char => 
+    const corruptedText = originalText.split('').map(char =>
       Math.random() > 0.7 ? String.fromCharCode(33 + Math.floor(Math.random() * 94)) : char
     ).join('');
-    
     element.textContent = corruptedText;
-    setTimeout(() => {
-      element.textContent = originalText;
-    }, 200);
+    setTimeout(() => { element.textContent = originalText; }, 200);
   }
 }, 1000);
+
+// Minimal JS handling for Formspree status with glitch-in
+const form = document.getElementById('contact-form');
+const statusEl = document.getElementById('form-status');
+let hideTimer;
+
+function showStatus(msg, { error = false, autohide = false } = {}) {
+  clearTimeout(hideTimer);
+  statusEl.textContent = msg;
+  statusEl.classList.add('show');
+  if (error) {
+    statusEl.classList.add('shake');
+    setTimeout(() => statusEl.classList.remove('shake'), 400);
+  }
+  if (autohide) {
+    hideTimer = setTimeout(() => {
+      statusEl.classList.remove('show');
+      setTimeout(() => { statusEl.textContent = ''; }, 300);
+    }, 4000);
+  }
+}
+
+form?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  showStatus('Transmitting…', { autohide: false });
+  try {
+    const data = new FormData(form);
+    const res = await fetch(form.action, {
+      method: 'POST',
+      headers: { 'Accept': 'application/json' },
+      body: data
+    });
+    if (res.ok) {
+      form.reset();
+      showStatus('✅ Message sent. We\'ll be in touch soon.', { autohide: true });
+    } else {
+      showStatus('⚠️ Error — try again or email info@smithclove.xyz directly.', { error: true });
+    }
+  } catch {
+    showStatus('⚡ Network glitch. Please retry.', { error: true });
+  }
+});
 </script>
 </body>
 </html>
