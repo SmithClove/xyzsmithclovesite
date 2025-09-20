@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>⚒🍀⚒</title>
+<title>Smith Clove ⚒</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -91,6 +91,11 @@ a { color: var(--accent); text-decoration: none; transition: all 0.3s ease; }
 a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 
 #contact { text-align: left; max-width: 1200px; margin: 0 auto; }
+#contact .contact-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+@media (min-width: 900px) {
+  #contact .contact-grid { grid-template-columns: minmax(300px, 700px) 1fr; align-items: start; }
+}
+#contact .contact-block { display: flex; flex-direction: column; gap: 1rem; }
 #contact p { font-size: 1.1rem; line-height: 2; }
 
 .error-text { color: var(--error); animation: error-pulse 1s ease-in-out infinite alternate; }
@@ -154,6 +159,11 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
   </div>
 </section>
 
+<section id="about">
+  <h2>Classification: Emerging</h2>
+  <p>We specialize in the unseen and overlooked. By operating at the edge of conventional frameworks, our methods deliver unconventional breakthroughs and <span class="error-text">undeniable</span> outcomes.</p>
+</section>
+
 <section id="featured">
   <h2>Featured Work</h2>
   <div class="cards">
@@ -174,25 +184,31 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 
 <section id="contact">
   <h2>Establish Connection</h2>
-  <div class="email-capture">
-    <form id="contact-form" action="https://formspree.io/f/mwpngrlw" method="POST" novalidate target="_self">
-      <label>Your email</label>
-      <input type="email" name="email" required inputmode="email" autocomplete="email" />
-      <textarea name="message" rows="3" placeholder="Your message (optional)"></textarea>
-      <button type="submit">Send</button>
-    </form>
-    <p id="form-status" aria-live="polite"></p>
-    <p class="smallprint">We’ll email only when there’s real progress. No automation, no spam.</p>
+  <div class="contact-grid">
+    <div class="contact-block">
+      <div class="email-capture">
+        <form id="contact-form" action="https://formspree.io/f/mwpngrlw" method="POST" novalidate target="_self">
+          <label>Your email</label>
+          <input type="email" name="email" required inputmode="email" autocomplete="email" />
+          <textarea name="message" rows="3" placeholder="Your message (optional)"></textarea>
+          <button type="submit">Send</button>
+        </form>
+        <p id="form-status" aria-live="polite"></p>
+        <p class="smallprint">We’ll email only when there’s real progress. No automation, no spam.</p>
+      </div>
+    </div>
+    <div class=\"contact-block card\">
+      <p>
+        📧 <a href=\"mailto:info@smithclove.xyz\">info@smithclove.xyz</a><br>
+        🔗 <a href=\"https://linkedin.com/in/-david\">Social Protocol</a><br>
+        📞 +1 541 210 3100
+      </p>
+    </div>
   </div>
-  <p>
-    📧 <a href="mailto:info@smithclove.xyz">info@smithclove.xyz</a><br>
-    🔗 <a href="https://linkedin.com/in/-david">Social Protocol</a><br>
-    📞 +1 541 210 3100
-  </p>
 </section>
 
 <footer>
-  &copy; <span id="year"></span> ⚒🍀⚒ — [END TRANSMISSION]
+  &copy; <span id="year"></span> Smith Clove ⚒ — [END TRANSMISSION]
 </footer>
 
 <script>
