@@ -3,48 +3,413 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smith Clove | Open Science for Remote Earth Observation</title>
+<meta name="description" content="Smith Clove - Founded in 2023, pioneering open science library for analyzing geographically hard to reach data. Deployed by NSF and NASA for remote fire detection.">
 <title>Smith Clove ⚒ | Vision Lab</title>
 <meta name="description" content="Smith Clove - Open science library for analyzing hard to reach data.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/* ===== PROFESSIONAL MODE (DEFAULT - NIGHT MODE) ===== */
 :root {
-  --bg: #000000;
-  --fg: #00ff00;
-  --accent: #ff0040;
-  --accent2: #00ffff;
-  --glass: rgba(0, 255, 0, 0.02);
-  --error: #ff0000;
-  --card-bg: rgba(0, 0, 0, 0.8);
-  --border-color: rgba(0, 255, 0, 0.2);
+  --pro-bg: #0f172a;
+  --pro-text: #e2e8f0;
+  --pro-accent: #3b82f6;
+  --pro-accent-hover: #2563eb;
+  --pro-border: #334155;
+  --pro-card-bg: #1e293b;
+  --pro-nav-bg: #1e293b;
+  --pro-hero-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
 }
 
-:root.light-mode {
-  --bg: #0a0a0a;
-  --fg: #ffffff;
-  --accent: #00ffff;
-  --accent2: #ff0040;
-  --glass: rgba(255, 255, 255, 0.02);
-  --error: #ff6b6b;
-  --card-bg: rgba(15, 15, 15, 0.9);
-  --border-color: rgba(255, 255, 255, 0.1);
+/* Professional Day Mode */
+body.pro-day-mode {
+  --pro-bg: #ffffff;
+  --pro-text: #1a1a1a;
+  --pro-accent: #2563eb;
+  --pro-accent-hover: #1d4ed8;
+  --pro-border: #e5e7eb;
+  --pro-card-bg: #f9fafb;
+  --pro-nav-bg: #ffffff;
+  --pro-hero-bg: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
+  font-family: 'Inter', sans-serif;
+  background: var(--pro-bg);
+  color: var(--pro-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Professional Navigation */
+nav.main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--pro-nav-bg);
+  border-bottom: 1px solid var(--pro-border);
+  z-index: 1000;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+nav.main-nav .nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+nav.main-nav .logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--pro-text);
+  text-decoration: none;
+}
+
+nav.main-nav .nav-tabs {
+  display: flex;
+  gap: 0;
+  list-style: none;
+}
+
+nav.main-nav .nav-tabs button {
+  background: none;
+  border: none;
+  padding: 1.5rem 1.5rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 2px solid transparent;
+}
+
+nav.main-nav .nav-tabs button:hover {
+  color: var(--pro-accent);
+}
+
+nav.main-nav .nav-tabs button.active {
+  color: var(--pro-accent);
+  border-bottom-color: var(--pro-accent);
+}
+
+/* Professional Content */
+.tab-content {
+  display: none;
+  padding-top: 70px;
+}
+
+.tab-content.active {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.pro-hero {
+  padding: 6rem 2rem;
+  text-align: center;
+  background: var(--pro-hero-bg);
+  border-bottom: 1px solid var(--pro-border);
+}
+
+.pro-hero h1 {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--pro-text);
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.pro-hero p {
+  font-size: 1.25rem;
+  color: #6b7280;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.pro-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+
+.pro-section h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 3rem;
+  text-align: center;
+  color: var(--pro-text);
+}
+
+.pro-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.pro-card {
+  background: var(--pro-card-bg);
+  border: 1px solid var(--pro-border);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.pro-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.pro-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--pro-text);
+}
+
+.pro-card p {
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+.pro-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.pro-card ul li {
+  padding: 0.5rem 0;
+  color: #4b5563;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.pro-card ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--pro-accent);
+  font-weight: bold;
+}
+
+.pro-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--pro-accent);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.pro-link:hover {
+  background: var(--pro-accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+}
+
+.highlight {
+  background: #eff6ff;
+  border-left: 3px solid var(--pro-accent);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: 4px;
+}
+
+body.pro-day-mode .highlight {
+  background: #eff6ff;
+}
+
+body:not(.pro-day-mode) .highlight {
+  background: #1e3a5f;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form label {
+  font-weight: 500;
+  color: var(--pro-text);
+  margin-bottom: 0.25rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem;
+  border: 1px solid var(--pro-border);
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--pro-accent);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.contact-form button {
+  padding: 0.75rem 1.5rem;
+  background: var(--pro-accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.contact-form button:hover {
+  background: var(--pro-accent-hover);
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+  border-top: 1px solid var(--pro-border);
+  font-size: 0.9rem;
+}
+
+/* Style Toggle Button (Upper Left) */
+.style-toggle {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--pro-card-bg);
+  border: 2px solid var(--pro-border);
+  border-radius: 6px;
+  color: var(--pro-text);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 10001;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.style-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-color: var(--pro-accent);
+}
+
+body.vision-mode .style-toggle {
+  display: none;
+}
+
+/* Day/Night Toggle Button (Upper Right - Professional Mode) */
+.pro-theme-toggle {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 30px;
+  background: transparent;
+  border: 2px solid var(--pro-border);
+  border-radius: 15px;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 10001;
+  transition: all 0.3s ease;
+}
+
+.pro-theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: var(--pro-accent);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 0 5px var(--pro-accent);
+}
+
+body.pro-day-mode .pro-theme-toggle::before {
+  transform: translateX(28px);
+  background: #f59e0b;
+  box-shadow: 0 0 5px #f59e0b;
+}
+
+.pro-theme-toggle .icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.pro-theme-toggle .moon-icon {
+  left: 8px;
+  color: var(--pro-text);
+}
+
+.pro-theme-toggle .sun-icon {
+  right: 8px;
+  color: var(--pro-text);
+  opacity: 0.3;
+}
+
+body.pro-day-mode .pro-theme-toggle .moon-icon {
+  opacity: 0.3;
+}
+
+body.pro-day-mode .pro-theme-toggle .sun-icon {
+  opacity: 1;
+}
+
+.pro-theme-toggle:hover {
+  box-shadow: 0 0 15px var(--pro-accent);
+  transform: scale(1.05);
+}
+
+body.vision-mode .pro-theme-toggle {
+  display: none;
+}
+
+/* ===== VISION MODE (CYBERPUNK) ===== */
+body.vision-mode {
   font-family: 'Courier Prime', monospace;
-  background: var(--bg);
-  color: var(--fg);
+  background: #000000;
+  color: #00ff00;
   line-height: 1.4;
   overflow-x: hidden;
   position: relative;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
 }
 
-body::before {
+body.vision-mode::before {
   content: '';
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 0, 0.03) 2px, rgba(0, 255, 0, 0.03) 4px);
@@ -53,217 +418,316 @@ body::before {
 
 @keyframes scanlines { 0% { transform: translateY(0); } 100% { transform: translateY(4px); } }
 
-header {
+body.vision-mode nav.main-nav {
+  display: none;
+}
+
+.vision-header {
   height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative;
 }
 
-h1 {
-  font-size: clamp(3rem, 10vw, 8rem); 
-  font-weight: 700; 
-  text-transform: uppercase; 
+.vision-header h1 {
+  font-size: clamp(3rem, 10vw, 8rem);
+  font-weight: 700;
+  text-transform: uppercase;
   letter-spacing: 0.08em;
-  font-family: 'Inter', sans-serif; 
+  font-family: 'Inter', sans-serif;
   animation: nightmare-glitch 3s infinite;
-  text-shadow: 0 0 5px var(--fg), 0 0 10px var(--fg), 0 0 15px var(--fg), 0 0 20px var(--accent);
-  -webkit-font-smoothing: subpixel-antialiased;
-  -moz-osx-font-smoothing: auto;
-  text-rendering: geometricPrecision;
-  font-feature-settings: "kern" 1;
-  font-kerning: normal;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  will-change: transform;
+  text-shadow: 0 0 3px #00ff00, 0 0 6px #00ff00, 0 0 9px #00ff00, 0 0 12px #ff0040;
+  color: #00ff00;
 }
 
 @keyframes nightmare-glitch {
   0%, 90%, 100% { transform: translate(0); filter: hue-rotate(0deg); }
-  10% { transform: translate(-2px, 2px); text-shadow: 2px 0 var(--accent), -2px 0 var(--accent2); }
-  20% { transform: translate(-1px, -1px); text-shadow: -1px 0 var(--error), 1px 0 var(--accent2); }
+  10% { transform: translate(-2px, 2px); text-shadow: 2px 0 #ff0040, -2px 0 #00ffff; }
+  20% { transform: translate(-1px, -1px); text-shadow: -1px 0 #ff0000, 1px 0 #00ffff; }
   30% { transform: translate(1px, 1px); filter: hue-rotate(90deg); }
-  40% { transform: translate(1px, -1px); text-shadow: 1px 0 var(--accent), -1px 0 var(--error); }
+  40% { transform: translate(1px, -1px); text-shadow: 1px 0 #ff0040, -1px 0 #ff0000; }
   50% { transform: translate(-1px, 2px); filter: hue-rotate(180deg); }
-  60% { transform: translate(-3px, 1px); text-shadow: 3px 0 var(--error), -3px 0 var(--accent2); }
+  60% { transform: translate(-3px, 1px); text-shadow: 3px 0 #ff0000, -3px 0 #00ffff; }
   70% { transform: translate(2px, 1px); filter: hue-rotate(270deg); }
-  80% { transform: translate(-1px, -1px); text-shadow: -2px 0 var(--accent), 2px 0 var(--error); }
+  80% { transform: translate(-1px, -1px); text-shadow: -2px 0 #ff0040, 2px 0 #ff0000; }
 }
 
-.tag { margin-top: 2rem; font-size: 1.2rem; opacity: 0.7; font-family: 'Courier Prime', monospace; animation: flicker 2s infinite alternate; color: var(--accent); }
+.vision-tag {
+  margin-top: 2rem; font-size: 1.2rem; opacity: 0.7; font-family: 'Courier Prime', monospace;
+  animation: flicker 2s infinite alternate; color: #ff0040;
+}
+
 @keyframes flicker { 0%, 50% { opacity: 0.7; } 51%, 100% { opacity: 0.3; } }
 
-.cta-button {
-  margin-top: 3rem; display: inline-block; padding: 1rem 2rem; border: 2px solid var(--accent); border-radius: 0; color: #ffffff;
-  text-decoration: none; font-family: 'Courier Prime', monospace; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s ease; position: relative; overflow: hidden;
-}
-.cta-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--accent); transition: left 0.3s ease; z-index: -1; }
-.cta-button:hover::before { left: 0; }
-.cta-button:hover { color: var(--bg); box-shadow: 0 0 20px var(--accent); }
-
-section { padding: 6rem 8vw; background: var(--glass); backdrop-filter: blur(2px); border-top: 1px solid rgba(0, 255, 0, 0.1); border-bottom: 1px solid rgba(0, 255, 0, 0.1); position: relative; }
-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(90deg, transparent, transparent 100px, rgba(255, 0, 64, 0.03) 100px, rgba(255, 0, 64, 0.03) 102px); pointer-events: none; }
-section h2 { 
-  font-size: 2.5rem; 
-  margin-bottom: 2rem; 
-  color: var(--accent); 
-  font-family: 'Inter', sans-serif; 
-  font-weight: 700;
-  text-transform: uppercase; 
-  letter-spacing: 0.05em; 
-  animation: pulse-glow 2s ease-in-out infinite alternate; 
-  text-align: center;
-  -webkit-font-smoothing: subpixel-antialiased;
-  text-rendering: geometricPrecision;
-  transform: translateZ(0);
-  backface-visibility: hidden;
+.vision-cta {
+  margin-top: 3rem; display: inline-block; padding: 1rem 2rem; border: 2px solid #ff0040;
+  border-radius: 0; color: #ffffff; text-decoration: none; font-family: 'Courier Prime', monospace;
+  text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s ease;
+  position: relative; overflow: hidden;
 }
 
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
-.card { 
-  padding: 2.5rem; 
-  background: var(--card-bg); 
-  border: 1px solid var(--border-color); 
-  border-radius: 0; 
-  transition: all 0.3s ease; 
-  position: relative; 
-  overflow: hidden; 
+.vision-cta::before {
+  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+  background: #ff0040; transition: left 0.3s ease; z-index: -1;
 }
-.card::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: linear-gradient(45deg, var(--accent), var(--accent2), var(--error), var(--accent)); background-size: 400% 400%; animation: gradient-border 3s ease infinite; z-index: -1; opacity: 0; transition: opacity 0.3s ease; }
-.card:hover::before { opacity: 1; }
-@keyframes gradient-border { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
-.card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 10px 30px rgba(255, 0, 64, 0.3), 0 0 50px rgba(0, 255, 255, 0.1); }
-.card h3 { 
-  font-size: 1.4rem; 
-  margin-bottom: 1rem; 
-  color: var(--fg); 
-  font-family: 'Inter', sans-serif; 
-  font-weight: 600;
-  text-transform: uppercase; 
-  letter-spacing: 0.05em;
-  -webkit-font-smoothing: subpixel-antialiased;
-  text-rendering: geometricPrecision;
+
+.vision-cta:hover::before { left: 0; }
+.vision-cta:hover { color: #000000; box-shadow: 0 0 20px #ff0040; }
+
+.vision-section {
+  padding: 6rem 8vw; background: rgba(0, 255, 0, 0.02); backdrop-filter: blur(2px);
+  border-top: 1px solid rgba(0, 255, 0, 0.1); border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+  position: relative;
 }
-.card p { color: rgba(0, 255, 0, 0.8); line-height: 1.6; }
-.light-mode .card p { color: rgba(255, 255, 255, 0.7); }
 
-/* Ensure Direct Links text is left-aligned */
-#contact .card p { text-align: left; }
+.vision-section::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 100px, rgba(255, 0, 64, 0.03) 100px, rgba(255, 0, 64, 0.03) 102px);
+  pointer-events: none;
+}
 
-footer { padding: 3rem 8vw; text-align: center; font-size: 0.9rem; color: rgba(0, 255, 0, 0.5); border-top: 1px solid rgba(0, 255, 0, 0.1); font-family: 'Courier Prime', monospace; }
+.vision-section h2 {
+  font-size: 2.5rem; margin-bottom: 2rem; color: #ff0040; font-family: 'Inter', sans-serif;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+  animation: pulse-glow 2s ease-in-out infinite alternate; text-align: center;
+}
 
-a { color: var(--accent); text-decoration: none; transition: all 0.3s ease; }
-a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
+@keyframes pulse-glow { from { opacity: 0.7; } to { opacity: 1; } }
 
-/* FIXED: Contact section uses consistent card grid */
-#contact .cards { margin-top: 0; }
+.vision-cards {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;
+}
 
-.error-text { color: var(--error); animation: error-pulse 1s ease-in-out infinite alternate; }
-@keyframes error-pulse { from { opacity: 0.5; } to { opacity: 1; } }
+.vision-card {
+  padding: 2.5rem; background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(0, 255, 0, 0.2); border-radius: 0;
+  transition: all 0.3s ease; position: relative; overflow: hidden;
+}
 
-.glitch-line { position: absolute; left: 0; right: 0; height: 2px; background: var(--accent); animation: glitch-sweep 4s linear infinite; opacity: 0; }
-@keyframes glitch-sweep { 0%, 95%, 100% { opacity: 0; } 2%, 8% { opacity: 0.8; transform: translateX(0); } 3%, 7% { opacity: 0.8; transform: translateX(100px); } 4%, 6% { opacity: 0.8; transform: translateX(-50px); } }
+.vision-card::before {
+  content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
+  background: linear-gradient(45deg, #ff0040, #00ffff, #ff0000, #ff0040);
+  background-size: 400% 400%; animation: gradient-border 3s ease infinite;
+  z-index: -1; opacity: 0; transition: opacity 0.3s ease;
+}
 
-/* FIXED: Form styling with consistent theming */
-.email-capture { display: flex; flex-direction: column; gap: 1.5rem; }
-.email-capture form { display: flex; flex-direction: column; gap: 1rem; }
-.email-capture label { 
-  color: var(--accent); 
-  text-transform: uppercase; 
-  letter-spacing: 0.1em; 
-  font-size: 0.9rem; 
+.vision-card:hover::before { opacity: 1; }
+
+@keyframes gradient-border {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.vision-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(255, 0, 64, 0.3), 0 0 50px rgba(0, 255, 255, 0.1);
+}
+
+.vision-card h3 {
+  font-size: 1.4rem; margin-bottom: 1rem; color: #00ff00;
+  font-family: 'Inter', sans-serif; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+
+.vision-card p { color: rgba(0, 255, 0, 0.8); line-height: 1.6; }
+
+.video-wrapper {
+  position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.video-wrapper iframe {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  border: 1px solid rgba(0, 255, 0, 0.2);
+}
+
+.glitch-line {
+  position: absolute; left: 0; right: 0; height: 2px; background: #ff0040;
+  animation: glitch-sweep 4s linear infinite; opacity: 0;
+}
+
+@keyframes glitch-sweep {
+  0%, 95%, 100% { opacity: 0; }
+  2%, 8% { opacity: 0.8; transform: translateX(0); }
+  3%, 7% { opacity: 0.8; transform: translateX(100px); }
+  4%, 6% { opacity: 0.8; transform: translateX(-50px); }
+}
+
+/* Theme toggle button - only in vision mode */
+.theme-toggle {
+  display: none;
+}
+
+body.vision-mode .theme-toggle {
+  display: block;
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 30px;
+  background: transparent;
+  border: 2px solid #ff0040;
+  border-radius: 0;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 10000;
+  transition: all 0.3s ease;
+}
+
+body.vision-mode .theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: #ff0040;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 0 10px #ff0040;
+}
+
+body.vision-mode .theme-toggle.active::before {
+  transform: translateX(28px);
+  background: #00ffff;
+  box-shadow: 0 0 10px #00ffff;
+}
+
+body.vision-mode .theme-toggle .icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+body.vision-mode .theme-toggle .dark-icon {
+  left: 8px;
+  color: #00ff00;
+}
+
+body.vision-mode .theme-toggle .light-icon {
+  right: 8px;
+  color: #00ff00;
+  opacity: 0.3;
+}
+
+body.vision-mode .theme-toggle.active .dark-icon {
+  opacity: 0.3;
+}
+
+body.vision-mode .theme-toggle.active .light-icon {
+  opacity: 1;
+}
+
+body.vision-mode .theme-toggle:hover {
+  box-shadow: 0 0 15px #ff0040;
+  transform: scale(1.05);
+}
+
+/* Vision mode light theme */
+body.vision-mode.light-mode {
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+body.vision-mode.light-mode::before {
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.02) 2px, rgba(255, 255, 255, 0.02) 4px);
+}
+
+body.vision-mode.light-mode .vision-card {
+  background: rgba(15, 15, 15, 0.9);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.vision-mode.light-mode .vision-card p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Contact form in vision mode */
+body.vision-mode .vision-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+body.vision-mode .vision-contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+body.vision-mode .vision-contact-form label {
+  color: #ff0040;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.9rem;
   font-weight: bold;
   animation: pulse-glow 3s ease-in-out infinite alternate;
 }
-@keyframes pulse-glow { from { opacity: 0.7; } to { opacity: 1; } }
 
-.email-capture input[type="email"],
-.email-capture textarea { 
-  padding: 0.8rem 1rem; 
-  border: 2px solid var(--border-color); 
-  background: rgba(0, 0, 0, 0.5); 
-  color: var(--fg); 
-  font-family: 'Courier Prime', monospace; 
-  width: 100%; 
-  transition: all 0.3s ease; 
+body.vision-mode .vision-contact-form input[type="email"],
+body.vision-mode .vision-contact-form textarea {
+  padding: 0.8rem 1rem;
+  border: 2px solid rgba(0, 255, 0, 0.2);
+  background: rgba(0, 0, 0, 0.5);
+  color: #00ff00;
+  font-family: 'Courier Prime', monospace;
+  width: 100%;
+  transition: all 0.3s ease;
 }
-.light-mode .email-capture input[type="email"],
-.light-mode .email-capture textarea { 
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  background: rgba(10, 10, 10, 0.7);
+
+body.vision-mode .vision-contact-form textarea {
+  resize: vertical;
+  min-height: 100px;
 }
-.email-capture textarea { resize: vertical; min-height: 100px; }
-.email-capture input[type="email"]:focus,
-.email-capture textarea:focus { 
-  outline: none; 
-  box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent2); 
-  border-color: var(--accent2); 
+
+body.vision-mode .vision-contact-form input[type="email"]:focus,
+body.vision-mode .vision-contact-form textarea:focus {
+  outline: none;
+  box-shadow: 0 0 10px #ff0040, 0 0 20px #00ffff;
+  border-color: #00ffff;
   background: rgba(0, 0, 0, 0.8);
 }
-.email-capture button { 
-  padding: 0.8rem 1.5rem; 
-  border: 2px solid var(--accent); 
-  background: transparent; 
-  color: var(--accent); 
-  text-transform: uppercase; 
-  font-family: 'Courier Prime', monospace; 
-  cursor: pointer; 
-  transition: all 0.3s ease; 
-  align-self: flex-start; 
+
+body.vision-mode .vision-contact-form button {
+  padding: 0.8rem 1.5rem;
+  border: 2px solid #ff0040;
+  background: transparent;
+  color: #ff0040;
+  text-transform: uppercase;
+  font-family: 'Courier Prime', monospace;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-start;
   letter-spacing: 0.1em;
   position: relative;
   overflow: hidden;
 }
-.email-capture button::before { 
-  content: ''; 
-  position: absolute; 
-  top: 0; 
-  left: -100%; 
-  width: 100%; 
-  height: 100%; 
-  background: var(--accent); 
-  transition: left 0.3s ease; 
-  z-index: -1; 
-}
-.email-capture button:hover::before { left: 0; }
-.email-capture button:hover { 
-  color: var(--bg); 
-  box-shadow: 0 0 15px var(--accent); 
-}
-.smallprint { font-size: .9rem; opacity: .7; }
 
-.email-capture textarea::placeholder,
-.email-capture input::placeholder { color: rgba(0,255,0,0.3); font-style: italic; }
-.light-mode .email-capture textarea::placeholder,
-.light-mode .email-capture input::placeholder { color: rgba(255,255,255,0.3); }
-
-#form-status { opacity: 0; transition: opacity .25s ease; }
-#form-status.show { opacity: 1; animation: status-glitch 1s steps(8, end) 1; }
-@keyframes status-glitch { 0% { text-shadow: 2px 0 var(--accent), -2px 0 var(--accent2); transform: translate(0); } 20% { transform: translate(1px, -1px); } 40% { transform: translate(-1px, 1px); } 60% { text-shadow: -2px 0 var(--error), 2px 0 var(--accent2); } 80% { transform: translate(1px, 0); } 100% { text-shadow: none; transform: translate(0); } }
-#form-status.shake { animation: shake 300ms linear 1, status-glitch 1s steps(8, end) 1; }
-@keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
-
-.video-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: rgba(0, 0, 0, 0.5); }
-.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 1px solid var(--border-color); }
-
-/* For YouTube Shorts (vertical videos) on smaller screens */
-@media (max-width: 768px) {
-  .video-wrapper { padding-bottom: 177.78%; /* 9:16 aspect ratio */ }
+body.vision-mode .vision-contact-form button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #ff0040;
+  transition: left 0.3s ease;
+  z-index: -1;
 }
 
-/* Adjust video wrapper for better display on desktop */
-@media (min-width: 769px) {
-  .video-wrapper { 
-    max-width: 400px; 
-    margin: 0 auto; 
-    padding-bottom: 56.25%; /* Keep 16:9 for desktop */
-  }
+body.vision-mode .vision-contact-form button:hover::before {
+  left: 0;
 }
 
-/* Phone number scramble effect */
+body.vision-mode .vision-contact-form button:hover {
+  color: #000000;
+  box-shadow: 0 0 15px #ff0040;
+}
+
 .phone-scrambled {
   position: relative;
   display: inline-block;
   cursor: pointer;
   text-decoration: none;
-  color: var(--accent);
+  color: #ff0040;
   transition: all 0.3s ease;
 }
 
@@ -279,7 +743,7 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
   top: 0;
   opacity: 0;
   transform: translateY(5px);
-  text-shadow: 0 0 5px var(--accent);
+  text-shadow: 0 0 5px #ff0040;
   white-space: nowrap;
 }
 
@@ -291,7 +755,7 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 
 @keyframes scramble-idle {
   0%, 95%, 100% { opacity: 1; }
-  96%, 99% { opacity: 0.8; text-shadow: 0 0 2px var(--accent); }
+  96%, 99% { opacity: 0.8; text-shadow: 0 0 2px #ff0040; }
 }
 
 .phone-scrambled:hover .scrambled {
@@ -303,159 +767,64 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 }
 
 @keyframes scramble-out {
-  0% { 
-    opacity: 1; 
-    transform: translateY(0);
-    filter: blur(0);
-  }
-  20% {
-    opacity: 0.8;
-    transform: translateY(-2px);
-    filter: blur(1px);
-    text-shadow: 2px 0 var(--error), -2px 0 var(--accent2);
-  }
-  40% {
-    opacity: 0.4;
-    transform: translateY(-3px);
-    filter: blur(2px);
-  }
-  60%, 100% {
-    opacity: 0;
-    transform: translateY(-5px);
-    filter: blur(3px);
-  }
+  0% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  20% { opacity: 0.8; transform: translateY(-2px); filter: blur(1px); text-shadow: 2px 0 #ff0000, -2px 0 #00ffff; }
+  40% { opacity: 0.4; transform: translateY(-3px); filter: blur(2px); }
+  60%, 100% { opacity: 0; transform: translateY(-5px); filter: blur(3px); }
 }
 
 @keyframes reveal-in {
-  0% {
-    opacity: 0;
-    transform: translateY(5px) scaleX(0.8);
-    filter: blur(3px);
-  }
-  20% {
-    opacity: 0.3;
-    transform: translateY(3px) scaleX(0.9);
-    filter: blur(2px);
-    text-shadow: -3px 0 var(--error), 3px 0 var(--accent2);
-  }
-  40% {
-    opacity: 0.6;
-    transform: translateY(1px) scaleX(0.95);
-    filter: blur(1px);
-    text-shadow: -2px 0 var(--accent2), 2px 0 var(--fg);
-  }
-  60% {
-    opacity: 0.9;
-    transform: translateY(-1px) scaleX(1.02);
-    filter: blur(0);
-    text-shadow: 1px 0 var(--accent), -1px 0 var(--error);
-  }
-  80% {
-    opacity: 1;
-    transform: translateY(0) scaleX(1);
-    text-shadow: 0 0 10px var(--accent2);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scaleX(1);
-    text-shadow: 0 0 5px var(--accent);
-  }
+  0% { opacity: 0; transform: translateY(5px) scaleX(0.8); filter: blur(3px); }
+  20% { opacity: 0.3; transform: translateY(3px) scaleX(0.9); filter: blur(2px); text-shadow: -3px 0 #ff0000, 3px 0 #00ffff; }
+  40% { opacity: 0.6; transform: translateY(1px) scaleX(0.95); filter: blur(1px); text-shadow: -2px 0 #00ffff, 2px 0 #00ff00; }
+  60% { opacity: 0.9; transform: translateY(-1px) scaleX(1.02); filter: blur(0); text-shadow: 1px 0 #ff0040, -1px 0 #ff0000; }
+  80% { opacity: 1; transform: translateY(0) scaleX(1); text-shadow: 0 0 10px #00ffff; }
+  100% { opacity: 1; transform: translateY(0) scaleX(1); text-shadow: 0 0 5px #ff0040; }
 }
 
-.phone-scrambled.glitching .scrambled {
-  animation: intense-glitch 0.3s steps(4, end) infinite;
+.smallprint {
+  font-size: .9rem;
+  opacity: .7;
 }
 
-@keyframes intense-glitch {
-  0%, 100% { 
-    transform: translateX(0); 
-    text-shadow: 2px 0 var(--error);
-  }
-  25% { 
-    transform: translateX(-2px);
-    text-shadow: -2px 0 var(--accent2);
-  }
-  50% { 
-    transform: translateX(2px);
-    text-shadow: 2px 0 var(--fg);
-  }
-  75% { 
-    transform: translateX(-1px);
-    text-shadow: -1px 0 var(--accent);
-  }
+#form-status {
+  opacity: 0;
+  transition: opacity .25s ease;
 }
 
-/* Theme toggle button */
-.theme-toggle {
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
-  width: 60px;
-  height: 30px;
-  background: transparent;
-  border: 2px solid var(--accent);
-  border-radius: 0;
-  cursor: pointer;
-  overflow: hidden;
-  z-index: 10000;
-  transition: all 0.3s ease;
-}
-
-.theme-toggle::before {
-  content: '';
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 20px;
-  height: 20px;
-  background: var(--accent);
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  box-shadow: 0 0 10px var(--accent);
-}
-
-.theme-toggle.active::before {
-  transform: translateX(28px);
-  background: var(--accent2);
-  box-shadow: 0 0 10px var(--accent2);
-}
-
-.theme-toggle .icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
-
-.theme-toggle .dark-icon {
-  left: 8px;
-  color: var(--fg);
-}
-
-.theme-toggle .light-icon {
-  right: 8px;
-  color: var(--fg);
-  opacity: 0.3;
-}
-
-.theme-toggle.active .dark-icon {
-  opacity: 0.3;
-}
-
-.theme-toggle.active .light-icon {
+#form-status.show {
   opacity: 1;
 }
 
-.theme-toggle:hover {
-  box-shadow: 0 0 15px var(--accent);
-  transform: scale(1.05);
-}
+/* Mobile responsive */
+@media (max-width: 768px) {
+  nav.main-nav .nav-container {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+  }
 
-/* Adjust scanlines for light mode */
-.light-mode body::before {
-  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.02) 2px, rgba(255, 255, 255, 0.02) 4px);
-}
+  nav.main-nav .nav-tabs {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
+  nav.main-nav .nav-tabs button {
+    padding: 1rem;
+  }
+
+  .tab-content {
+    padding-top: 120px;
+  }
+
+  .pro-section {
+    padding: 3rem 1rem;
+  }
+
+  .pro-cards {
+    grid-template-columns: 1fr;
+  }
 /* Tab Navigation */
 .tab-nav {
   position: fixed;
@@ -667,11 +1036,155 @@ header {
 </style>
 </head>
 <body>
-<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-  <span class="icon dark-icon">●</span>
-  <span class="icon light-icon">○</span>
+
+<!-- Style Toggle Button (Upper Left) -->
+<button class="style-toggle" id="styleToggle">⚡ Glitch Mode</button>
+
+<!-- Day/Night Toggle (Upper Right - Professional Mode) -->
+<button class="pro-theme-toggle" id="proThemeToggle" aria-label="Toggle day/night mode">
+  <span class="icon moon-icon">🌙</span>
+  <span class="icon sun-icon">☀️</span>
 </button>
 
+<!-- Professional Navigation -->
+<nav class="main-nav">
+  <div class="nav-container">
+    <a href="#" class="logo">Smith Clove</a>
+    <ul class="nav-tabs">
+      <li><button class="nav-tab active" data-tab="about">About</button></li>
+      <li><button class="nav-tab" data-tab="research">Research</button></li>
+      <li><button class="nav-tab" data-tab="vision">Vision</button></li>
+      <li><button class="nav-tab" data-tab="contact">Contact</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ABOUT TAB (Professional) -->
+<div id="about-tab" class="tab-content active">
+  <div class="pro-hero">
+    <h1>Smith Clove</h1>
+    <p>Open Science for Remote Earth Observation</p>
+  </div>
+
+  <div class="pro-section">
+    <h2>About</h2>
+    <div class="pro-cards">
+      <div class="pro-card">
+        <h3>Our Mission</h3>
+        <p>Founded in January 2023 and based in San Francisco, California, Smith Clove is pioneering the future of open science for geographically hard-to-reach data analysis.</p>
+        <div class="highlight">
+          <p><strong>Democratizing access to advanced Earth observation analytics through open-source frameworks and cutting-edge AI.</strong></p>
+        </div>
+      </div>
+
+      <div class="pro-card">
+        <h3>Impact & Deployments</h3>
+        <ul>
+          <li><strong>NSF Convergence Accelerator</strong> — Framework deployment for multi-institutional research collaboration</li>
+          <li><strong>NASA FireSense</strong> — Remote fire detection and monitoring system integration</li>
+          <li><strong>Global Research Community</strong> — Empowering scientists with accessible geospatial analysis tools</li>
+        </ul>
+      </div>
+
+      <div class="pro-card">
+        <h3>Leadership</h3>
+        <p><strong>David Smith</strong>, Founder & Principal Investigator</p>
+        <p style="margin-top: 0.5rem; opacity: 0.8;">January 2023 - Present · San Francisco, California</p>
+        <ul style="margin-top: 1rem;">
+          <li>Founded open science library to analyze geographically hard to reach data</li>
+          <li>Led framework deployment by NSF and NASA for remote fire detection</li>
+          <li>Published research cited in Springer Nature's <em>Modelling and Advanced Earth Observation Technologies</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RESEARCH TAB (Professional) -->
+<div id="research-tab" class="tab-content">
+  <div class="pro-hero">
+    <h1>Research & Publications</h1>
+    <p>Advancing the field of remote sensing and Earth observation</p>
+  </div>
+
+  <div class="pro-section">
+    <h2>Featured Publication</h2>
+    <div class="pro-cards">
+      <div class="pro-card">
+        <h3>Modelling and Advanced Earth Observation Technologies</h3>
+        <div class="highlight">
+          <p>Smith Clove's research on remote sensing analysis for geographically challenging environments has been cited in this comprehensive volume published by Springer Nature on cutting-edge Earth observation methodologies.</p>
+        </div>
+        <p style="margin-top: 1rem;">This work represents a significant contribution to the field of remote sensing, particularly in developing accessible frameworks for analyzing satellite data in hard-to-reach regions.</p>
+        <a href="https://link.springer.com/book/10.1007/978-3-031-78768-3" target="_blank" rel="noopener" class="pro-link">View Publication</a>
+      </div>
+    </div>
+
+    <h2 style="margin-top: 4rem;">Research Areas</h2>
+    <div class="pro-cards">
+      <div class="pro-card">
+        <h3>Remote Fire Detection</h3>
+        <p>AI-powered early warning systems for wildfire monitoring in remote regions using advanced satellite imagery analysis.</p>
+      </div>
+
+      <div class="pro-card">
+        <h3>Geospatial Data Analysis</h3>
+        <p>Open-source frameworks for processing satellite imagery and environmental data, making advanced analytics accessible to all researchers.</p>
+      </div>
+
+      <div class="pro-card">
+        <h3>Edge Computing</h3>
+        <p>Distributed intelligence systems for real-time environmental monitoring without reliance on centralized infrastructure.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top: 4rem;">Institutional Partnerships</h2>
+    <div class="pro-cards">
+      <div class="pro-card">
+        <h3>NSF Convergence Accelerator</h3>
+        <p>Framework deployment for accelerating convergence research across multiple scientific disciplines. Our tools enable researchers to collaborate on complex environmental challenges with shared, accessible data analysis infrastructure.</p>
+      </div>
+
+      <div class="pro-card">
+        <h3>NASA FireSense</h3>
+        <p>Integration with NASA's fire detection and monitoring initiatives, providing enhanced capabilities for identifying and tracking wildfires in remote and hard-to-access regions through advanced satellite data analysis.</p>
+      </div>
+
+      <div class="pro-card">
+        <h3>NARSS Collaboration</h3>
+        <p>Research partnership contributing to the advancement of Earth observation technologies and methodologies, with work featured in international publications and academic citations.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VISION TAB (Cyberpunk) -->
+<div id="vision-tab" class="tab-content">
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <span class="icon dark-icon">●</span>
+    <span class="icon light-icon">○</span>
+  </button>
+
+  <div class="glitch-line" style="top: 20%; animation-delay: 0s;"></div>
+  <div class="glitch-line" style="top: 60%; animation-delay: 2s;"></div>
+  <div class="glitch-line" style="top: 80%; animation-delay: 1s;"></div>
+
+  <header class="vision-header">
+    <h1>Smith&nbsp;Clove</h1>
+    <p class="vision-tag">[WELCOME_HOME]</p>
+    <a href="#vision-work" class="vision-cta">Explore Initiatives</a>
+  </header>
+
+  <section id="vision-work" class="vision-section">
+    <h2>Active Protocols</h2>
+    <div class="vision-cards">
+      <div class="vision-card">
+        <h3>Edge-AI Surveillance</h3>
+        <p>Autonomous monitoring platforms delivering secure intelligence without reliance on central networks.</p>
+      </div>
+      <div class="vision-card">
+        <h3>Data Reconstruction</h3>
+        <p>Transforming incomplete or corrupted data into actionable clarity where others see noise.</p>
 <div class="glitch-line" style="top: 20%; animation-delay: 0s;"></div>
 <div class="glitch-line" style="top: 60%; animation-delay: 2s;"></div>
 <div class="glitch-line" style="top: 80%; animation-delay: 1s;"></div>
@@ -737,6 +1250,10 @@ header {
     </div>
   </section>
 
+  <section class="vision-section">
+    <h2>Featured Work</h2>
+    <div class="vision-cards">
+      <div class="vision-card">
   <section>
     <h2>Featured Work</h2>
     <div class="cards">
@@ -746,6 +1263,7 @@ header {
           <iframe src="https://www.youtube.com/embed/X2YYrSm93X4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
+      <div class="vision-card">
       <div class="card">
         <h3>Demo Two</h3>
         <div class="video-wrapper">
@@ -754,6 +1272,67 @@ header {
       </div>
     </div>
   </section>
+
+  <section class="vision-section">
+    <h2>Establish Connection</h2>
+    <div class="vision-cards">
+      <div class="vision-card">
+        <div class="vision-contact-form">
+          <form id="contact-form-vision" action="https://formspree.io/f/mwpngrlw" method="POST" novalidate target="_self">
+            <label>[EMAIL_IDENTIFIER]</label>
+            <input type="email" name="email" required inputmode="email" autocomplete="email" placeholder="user@domain.xyz" />
+            <label>[MESSAGE_BUFFER]</label>
+            <textarea name="message" rows="3" placeholder="Transmit data stream..."></textarea>
+            <button type="submit">[INITIATE_TRANSMISSION]</button>
+          </form>
+          <p id="form-status-vision" aria-live="polite"></p>
+          <p class="smallprint">Selective communication protocol active. No automated responses.</p>
+        </div>
+      </div>
+
+      <div class="vision-card">
+        <h3>Direct Links</h3>
+        <p>
+          📧 <a href="mailto:info@smithclove.xyz" style="color: #00ffff;">info@smithclove.xyz</a><br>
+          🔗 <a href="https://linkedin.com/in/-david" style="color: #00ffff;">Social Protocol</a><br>
+          📞 <a href="#" class="phone-scrambled" data-p="NTQx" data-m="MjEw" data-l="MzEwMA==" onclick="return false;">
+            <span class="scrambled">+1 XXX-XXX-XXXX</span>
+            <span class="revealed">+1 541-210-3100</span>
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT TAB (Professional) -->
+<div id="contact-tab" class="tab-content">
+  <div class="pro-hero">
+    <h1>Get In Touch</h1>
+    <p>Let's collaborate on advancing Earth observation science</p>
+  </div>
+
+  <div class="pro-section">
+    <div class="contact-grid">
+      <div class="pro-card">
+        <h3>Send a Message</h3>
+        <form id="contact-form-pro" action="https://formspree.io/f/mwpngrlw" method="POST" class="contact-form">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="your@email.com">
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..."></textarea>
+
+          <button type="submit">Send Message</button>
+        </form>
+        <p id="form-status-pro" style="margin-top: 1rem; opacity: 0; transition: opacity 0.3s;"></p>
+      </div>
+
+      <div class="pro-card">
+        <h3>Contact Information</h3>
+        <p style="margin-bottom: 1rem;"><strong>Email:</strong><br><a href="mailto:info@smithclove.xyz" style="color: var(--pro-accent);">info@smithclove.xyz</a></p>
+        <p style="margin-bottom: 1rem;"><strong>LinkedIn:</strong><br><a href="https://linkedin.com/in/-david" style="color: var(--pro-accent);">linkedin.com/in/-david</a></p>
+        <p><strong>Phone:</strong><br>+1 541-210-3100</p>
 </div>
 
 <!-- RESEARCH TAB -->
@@ -795,6 +1374,24 @@ header {
         <p>Framework deployment for accelerating convergence research across multiple scientific disciplines. Our tools enable researchers to collaborate on complex environmental challenges with shared, accessible data analysis infrastructure.</p>
       </div>
 
+    <h2 style="margin-top: 4rem;">Collaboration Opportunities</h2>
+    <div class="pro-cards">
+      <div class="pro-card">
+        <h3>Research Partnerships</h3>
+        <p>We collaborate with academic institutions, government agencies, and research organizations on projects involving remote sensing, environmental monitoring, and geospatial analysis.</p>
+      </div>
+
+      <div class="pro-card">
+        <h3>Open Source Contributions</h3>
+        <p>Join our community of developers and researchers contributing to open science. Our frameworks are designed to be accessible, extensible, and built for real-world applications.</p>
+      </div>
+
+      <div class="pro-card">
+        <h3>Consulting Services</h3>
+        <p>Expert consultation on satellite data analysis, fire detection systems, and custom Earth observation solutions for organizations tackling environmental challenges.</p>
+      </div>
+    </div>
+  </div>
       <div class="card">
         <h3>NASA FireSense</h3>
         <p>Integration with NASA's fire detection and monitoring initiatives, providing enhanced capabilities for identifying and tracking wildfires in remote and hard-to-access regions through advanced satellite data analysis.</p>
@@ -865,12 +1462,30 @@ header {
 </div>
 
 <footer>
-  &copy; <span id="year"></span> Smith Clove ⚒ — [END TRANSMISSION]
+  &copy; <span id="year"></span> Smith Clove — Advancing Open Science
 </footer>
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
+const body = document.body;
+
+// Style Toggle (Professional vs Glitch Mode)
+const styleToggle = document.getElementById('styleToggle');
+styleToggle.addEventListener('click', () => {
+  const visionTab = document.querySelector('[data-tab="vision"]');
+  if (body.classList.contains('vision-mode')) {
+    // Switch back to professional mode - go to About tab
+    const aboutTab = document.querySelector('[data-tab="about"]');
+    aboutTab.click();
+  } else {
+    // Switch to glitch mode - go to Vision tab
+    visionTab.click();
+  }
+});
+
+// Professional Theme Toggle (Day/Night)
+const proThemeToggle = document.getElementById('proThemeToggle');
 // Tab switching functionality
 const tabButtons = document.querySelectorAll('.tab-button');
 const tabContents = document.querySelectorAll('.tab-content');
@@ -911,164 +1526,197 @@ tabButtons.forEach(button => {
 const themeToggle = document.getElementById('themeToggle');
 const root = document.documentElement;
 
-// Check for saved theme preference or default to dark
-const savedTheme = localStorage.getItem('theme') || 'dark';
-if (savedTheme === 'light') {
-  root.classList.add('light-mode');
-  themeToggle.classList.add('active');
+// Check for saved preference, default to night mode
+const savedProTheme = localStorage.getItem('proTheme') || 'night';
+if (savedProTheme === 'day') {
+  body.classList.add('pro-day-mode');
 }
 
-themeToggle.addEventListener('click', () => {
-  root.classList.toggle('light-mode');
-  themeToggle.classList.toggle('active');
-  
+proThemeToggle.addEventListener('click', () => {
+  body.classList.toggle('pro-day-mode');
+
   // Save preference
-  const currentTheme = root.classList.contains('light-mode') ? 'light' : 'dark';
-  localStorage.setItem('theme', currentTheme);
-  
-  // Add a glitch effect on toggle
-  document.body.style.animation = 'theme-glitch 0.3s steps(4, end) 1';
-  setTimeout(() => {
-    document.body.style.animation = '';
-  }, 300);
+  const currentTheme = body.classList.contains('pro-day-mode') ? 'day' : 'night';
+  localStorage.setItem('proTheme', currentTheme);
 });
 
-// Add theme glitch animation
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes theme-glitch {
-    0%, 100% { filter: hue-rotate(0deg) brightness(1); }
-    25% { filter: hue-rotate(90deg) brightness(1.2); }
-    50% { filter: hue-rotate(180deg) brightness(0.8); }
-    75% { filter: hue-rotate(270deg) brightness(1.1); }
-  }
-`;
-document.head.appendChild(style);
+// Tab switching
+const navTabs = document.querySelectorAll('.nav-tab');
+const tabContents = document.querySelectorAll('.tab-content');
 
-// Glitch effect on random intervals
-setInterval(() => {
-  if (Math.random() > 0.95) {
-    document.body.style.filter = 'hue-rotate(' + Math.random() * 360 + 'deg)';
-    setTimeout(() => { document.body.style.filter = 'none'; }, 100);
-  }
-}, 500);
+navTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const tabName = tab.getAttribute('data-tab');
 
-// Text corruption effect
-const corruptableElements = document.querySelectorAll('p, h3');
-setInterval(() => {
-  if (Math.random() > 0.98) {
-    const el = corruptableElements[Math.floor(Math.random() * corruptableElements.length)];
-    const originalText = el.textContent;
-    const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
-    let corrupted = '';
-    for (let i = 0; i < originalText.length; i++) {
-      corrupted += Math.random() > 0.7 ? chars[Math.floor(Math.random() * chars.length)] : originalText[i];
-    }
-    el.textContent = corrupted;
-    setTimeout(() => { el.textContent = originalText; }, 150);
-  }
-}, 1000);
+    // Remove active class from all tabs and contents
+    navTabs.forEach(t => t.classList.remove('active'));
+    tabContents.forEach(content => content.classList.remove('active'));
 
-// Form handling
-const form = document.getElementById('contact-form');
-const status = document.getElementById('form-status');
+    // Add active class to clicked tab
+    tab.classList.add('active');
+    document.getElementById(tabName + '-tab').classList.add('active');
 
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  const data = new FormData(form);
-  status.textContent = 'TRANSMITTING...';
-  status.className = 'show';
-  
-  fetch(form.action, {
-    method: 'POST',
-    body: data,
-    headers: { 'Accept': 'application/json' }
-  }).then(response => {
-    if (response.ok) {
-      status.textContent = 'TRANSMISSION COMPLETE';
-      form.reset();
+    // Toggle vision mode
+    if (tabName === 'vision') {
+      body.classList.add('vision-mode');
+      styleToggle.textContent = '✨ Pro Mode';
     } else {
-      status.textContent = 'ERROR: TRANSMISSION FAILED';
-      status.className = 'show shake';
+      body.classList.remove('vision-mode');
+      body.classList.remove('light-mode');
+      styleToggle.textContent = '⚡ Glitch Mode';
     }
-  }).catch(error => {
-    status.textContent = 'ERROR: NETWORK UNREACHABLE';
-    status.className = 'show shake';
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
 
-// Phone number scramble effect
-const phoneLink = document.querySelector('.phone-scrambled');
-const scrambledSpan = phoneLink.querySelector('.scrambled');
-const revealedSpan = phoneLink.querySelector('.revealed');
-let isRevealed = false;
-let scrambleInterval;
+// Vision mode theme toggle
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    body.classList.toggle('light-mode');
+    themeToggle.classList.toggle('active');
 
-// Decode the phone number from data attributes (base64 obfuscation)
-const part1 = atob(phoneLink.dataset.p); // 541
-const part2 = atob(phoneLink.dataset.m); // 210
-const part3 = atob(phoneLink.dataset.l); // 3100
-const realPhone = `+1-${part1}-${part2}-${part3}`;
-const telLink = `tel:+1${part1}${part2}${part3}`;
+    // Save preference
+    const currentTheme = body.classList.contains('light-mode') ? 'light' : 'dark';
+    localStorage.setItem('visionTheme', currentTheme);
+  });
 
-// Generate random scrambled characters
-const scrambleChars = '0123456789ABCDEF#*@$%';
-function generateScrambled() {
-  let scrambled = '+1 ';
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-      scrambled += scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
-    }
-    if (i < 2) scrambled += '-';
+  // Check for saved theme preference
+  const savedTheme = localStorage.getItem('visionTheme');
+  if (savedTheme === 'light' && body.classList.contains('vision-mode')) {
+    body.classList.add('light-mode');
+    themeToggle.classList.add('active');
   }
-  scrambled += '-';
-  for (let i = 0; i < 4; i++) {
-    scrambled += scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
-  }
-  return scrambled;
 }
 
-// Scramble effect on hover
-phoneLink.addEventListener('mouseenter', function() {
-  if (!isRevealed) {
-    phoneLink.classList.add('glitching');
-    scrambleInterval = setInterval(() => {
-      scrambledSpan.textContent = generateScrambled();
-    }, 50);
-    
-    setTimeout(() => {
-      clearInterval(scrambleInterval);
-      phoneLink.classList.remove('glitching');
-      isRevealed = true;
-      // Update the revealed span with actual number
-      revealedSpan.textContent = realPhone;
-    }, 500);
-  }
-});
+// Vision form handling
+const visionForm = document.getElementById('contact-form-vision');
+const visionStatus = document.getElementById('form-status-vision');
 
-// Make clickable after reveal
-phoneLink.addEventListener('click', function(e) {
-  e.preventDefault();
-  if (isRevealed) {
-    window.location.href = telLink;
-  } else {
-    // Trigger reveal if clicked without hovering
-    phoneLink.dispatchEvent(new MouseEvent('mouseenter'));
-    setTimeout(() => {
-      window.location.href = telLink;
-    }, 600);
-  }
-});
+if (visionForm) {
+  visionForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = new FormData(visionForm);
+    visionStatus.textContent = 'TRANSMITTING...';
+    visionStatus.classList.add('show');
 
-// Reset on mouse leave (optional - remove if you want it to stay revealed)
-phoneLink.addEventListener('mouseleave', function() {
-  setTimeout(() => {
-    if (isRevealed) {
-      isRevealed = false;
-      scrambledSpan.textContent = '+1 XXX-XXX-XXXX';
+    fetch(visionForm.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        visionStatus.textContent = 'TRANSMISSION COMPLETE';
+        visionForm.reset();
+      } else {
+        visionStatus.textContent = 'ERROR: TRANSMISSION FAILED';
+      }
+    }).catch(error => {
+      visionStatus.textContent = 'ERROR: NETWORK UNREACHABLE';
+    });
+  });
+}
+
+// Professional form handling
+const proForm = document.getElementById('contact-form-pro');
+const proStatus = document.getElementById('form-status-pro');
+
+if (proForm) {
+  proForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = new FormData(proForm);
+    proStatus.textContent = 'Sending...';
+    proStatus.style.opacity = '1';
+
+    fetch(proForm.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        proStatus.textContent = 'Message sent successfully!';
+        proStatus.style.color = 'var(--pro-accent)';
+        proForm.reset();
+      } else {
+        proStatus.textContent = 'Failed to send message. Please try again.';
+        proStatus.style.color = '#dc2626';
+      }
+    }).catch(error => {
+      proStatus.textContent = 'Network error. Please try again.';
+      proStatus.style.color = '#dc2626';
+    });
+  });
+}
+
+// Phone number scramble effect (vision mode)
+const phoneLink = document.querySelector('.phone-scrambled');
+if (phoneLink) {
+  const scrambledSpan = phoneLink.querySelector('.scrambled');
+  const revealedSpan = phoneLink.querySelector('.revealed');
+  let isRevealed = false;
+  let scrambleInterval;
+
+  const part1 = atob(phoneLink.dataset.p);
+  const part2 = atob(phoneLink.dataset.m);
+  const part3 = atob(phoneLink.dataset.l);
+  const realPhone = `+1-${part1}-${part2}-${part3}`;
+  const telLink = `tel:+1${part1}${part2}${part3}`;
+
+  const scrambleChars = '0123456789ABCDEF#*@$%';
+  function generateScrambled() {
+    let scrambled = '+1 ';
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        scrambled += scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+      }
+      if (i < 2) scrambled += '-';
     }
-  }, 3000); // Reset after 3 seconds
-});
+    scrambled += '-';
+    for (let i = 0; i < 4; i++) {
+      scrambled += scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+    }
+    return scrambled;
+  }
+
+  phoneLink.addEventListener('mouseenter', function() {
+    if (!isRevealed) {
+      phoneLink.classList.add('glitching');
+      scrambleInterval = setInterval(() => {
+        scrambledSpan.textContent = generateScrambled();
+      }, 50);
+
+      setTimeout(() => {
+        clearInterval(scrambleInterval);
+        phoneLink.classList.remove('glitching');
+        isRevealed = true;
+        revealedSpan.textContent = realPhone;
+      }, 500);
+    }
+  });
+
+  phoneLink.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (isRevealed) {
+      window.location.href = telLink;
+    } else {
+      phoneLink.dispatchEvent(new MouseEvent('mouseenter'));
+      setTimeout(() => {
+        window.location.href = telLink;
+      }, 600);
+    }
+  });
+
+  phoneLink.addEventListener('mouseleave', function() {
+    setTimeout(() => {
+      if (isRevealed) {
+        isRevealed = false;
+        scrambledSpan.textContent = '+1 XXX-XXX-XXXX';
+      }
+    }, 3000);
+  });
+}
 </script>
 </body>
 </html>
