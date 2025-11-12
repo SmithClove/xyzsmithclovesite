@@ -3,20 +3,31 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Smith Clove | Open Science for Remote Earth Observation</title>
-<meta name="description" content="Smith Clove - Founded in 2023, pioneering open science library for analyzing geographically hard to reach data. Deployed by NSF and NASA for remote fire detection.">
+<title>Smith Clove ⚒ | Vision Lab</title>
+<meta name="description" content="Smith Clove - Computer Vision Lab and Library">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* ===== PROFESSIONAL MODE (DEFAULT) ===== */
 :root {
-  --pro-bg: #ffffff;
-  --pro-text: #1a1a1a;
-  --pro-accent: #2563eb;
-  --pro-accent-hover: #1d4ed8;
-  --pro-border: #e5e7eb;
-  --pro-card-bg: #f9fafb;
-  --pro-nav-bg: #ffffff;
+  --bg: #000000;
+  --fg: #00ff00;
+  --accent: #ff0040;
+  --accent2: #00ffff;
+  --glass: rgba(0, 255, 0, 0.02);
+  --error: #ff0000;
+  --card-bg: rgba(0, 0, 0, 0.8);
+  --border-color: rgba(0, 255, 0, 0.2);
+}
+
+:root.light-mode {
+  --bg: #0a0a0a;
+  --fg: #ffffff;
+  --accent: #00ffff;
+  --accent2: #ff0040;
+  --glass: rgba(255, 255, 255, 0.02);
+  --error: #ff6b6b;
+  --card-bg: rgba(15, 15, 15, 0.9);
+  --border-color: rgba(255, 255, 255, 0.1);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -276,17 +287,20 @@ footer {
   font-size: 0.9rem;
 }
 
-/* ===== VISION MODE (CYBERPUNK) ===== */
+/* ===== Novo Visio ===== */
 body.vision-mode {
   font-family: 'Courier Prime', monospace;
-  background: #000000;
-  color: #00ff00;
+  background: var(--bg);
+  color: var(--fg);
   line-height: 1.4;
   overflow-x: hidden;
   position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-body.vision-mode::before {
+body::before {
   content: '';
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 0, 0.03) 2px, rgba(0, 255, 0, 0.03) 4px);
@@ -295,316 +309,219 @@ body.vision-mode::before {
 
 @keyframes scanlines { 0% { transform: translateY(0); } 100% { transform: translateY(4px); } }
 
-body.vision-mode nav.main-nav {
-  display: none;
-}
-
-.vision-header {
+header {
   height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative;
 }
 
-.vision-header h1 {
-  font-size: clamp(3rem, 10vw, 8rem);
-  font-weight: 700;
-  text-transform: uppercase;
+h1 {
+  font-size: clamp(3rem, 10vw, 8rem); 
+  font-weight: 700; 
+  text-transform: uppercase; 
   letter-spacing: 0.08em;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif; 
   animation: nightmare-glitch 3s infinite;
   text-shadow: 0 0 3px #00ff00, 0 0 6px #00ff00, 0 0 9px #00ff00, 0 0 12px #ff0040;
   color: #00ff00;
+  text-shadow: 0 0 5px var(--fg), 0 0 10px var(--fg), 0 0 15px var(--fg), 0 0 20px var(--accent);
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: auto;
+  text-rendering: geometricPrecision;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
 }
 
 @keyframes nightmare-glitch {
   0%, 90%, 100% { transform: translate(0); filter: hue-rotate(0deg); }
-  10% { transform: translate(-2px, 2px); text-shadow: 2px 0 #ff0040, -2px 0 #00ffff; }
-  20% { transform: translate(-1px, -1px); text-shadow: -1px 0 #ff0000, 1px 0 #00ffff; }
+  10% { transform: translate(-2px, 2px); text-shadow: 2px 0 var(--accent), -2px 0 var(--accent2); }
+  20% { transform: translate(-1px, -1px); text-shadow: -1px 0 var(--error), 1px 0 var(--accent2); }
   30% { transform: translate(1px, 1px); filter: hue-rotate(90deg); }
-  40% { transform: translate(1px, -1px); text-shadow: 1px 0 #ff0040, -1px 0 #ff0000; }
+  40% { transform: translate(1px, -1px); text-shadow: 1px 0 var(--accent), -1px 0 var(--error); }
   50% { transform: translate(-1px, 2px); filter: hue-rotate(180deg); }
-  60% { transform: translate(-3px, 1px); text-shadow: 3px 0 #ff0000, -3px 0 #00ffff; }
+  60% { transform: translate(-3px, 1px); text-shadow: 3px 0 var(--error), -3px 0 var(--accent2); }
   70% { transform: translate(2px, 1px); filter: hue-rotate(270deg); }
-  80% { transform: translate(-1px, -1px); text-shadow: -2px 0 #ff0040, 2px 0 #ff0000; }
+  80% { transform: translate(-1px, -1px); text-shadow: -2px 0 var(--accent), 2px 0 var(--error); }
 }
 
-.vision-tag {
-  margin-top: 2rem; font-size: 1.2rem; opacity: 0.7; font-family: 'Courier Prime', monospace;
-  animation: flicker 2s infinite alternate; color: #ff0040;
-}
-
+.tag { margin-top: 2rem; font-size: 1.2rem; opacity: 0.7; font-family: 'Courier Prime', monospace; animation: flicker 2s infinite alternate; color: var(--accent); }
 @keyframes flicker { 0%, 50% { opacity: 0.7; } 51%, 100% { opacity: 0.3; } }
 
-.vision-cta {
-  margin-top: 3rem; display: inline-block; padding: 1rem 2rem; border: 2px solid #ff0040;
-  border-radius: 0; color: #ffffff; text-decoration: none; font-family: 'Courier Prime', monospace;
-  text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s ease;
-  position: relative; overflow: hidden;
+.cta-button {
+  margin-top: 3rem; display: inline-block; padding: 1rem 2rem; border: 2px solid var(--accent); border-radius: 0; color: #ffffff;
+  text-decoration: none; font-family: 'Courier Prime', monospace; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s ease; position: relative; overflow: hidden;
+}
+.cta-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--accent); transition: left 0.3s ease; z-index: -1; }
+.cta-button:hover::before { left: 0; }
+.cta-button:hover { color: var(--bg); box-shadow: 0 0 20px var(--accent); }
+
+section { padding: 6rem 8vw; background: var(--glass); backdrop-filter: blur(2px); border-top: 1px solid rgba(0, 255, 0, 0.1); border-bottom: 1px solid rgba(0, 255, 0, 0.1); position: relative; }
+section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(90deg, transparent, transparent 100px, rgba(255, 0, 64, 0.03) 100px, rgba(255, 0, 64, 0.03) 102px); pointer-events: none; }
+section h2 { 
+  font-size: 2.5rem; 
+  margin-bottom: 2rem; 
+  color: var(--accent); 
+  font-family: 'Inter', sans-serif; 
+  font-weight: 700;
+  text-transform: uppercase; 
+  letter-spacing: 0.05em; 
+  animation: pulse-glow 2s ease-in-out infinite alternate; 
+  text-align: center;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: geometricPrecision;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
-.vision-cta::before {
-  content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-  background: #ff0040; transition: left 0.3s ease; z-index: -1;
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
+.card { 
+  padding: 2.5rem; 
+  background: var(--card-bg); 
+  border: 1px solid var(--border-color); 
+  border-radius: 0; 
+  transition: all 0.3s ease; 
+  position: relative; 
+  overflow: hidden; 
 }
-
-.vision-cta:hover::before { left: 0; }
-.vision-cta:hover { color: #000000; box-shadow: 0 0 20px #ff0040; }
-
-.vision-section {
-  padding: 6rem 8vw; background: rgba(0, 255, 0, 0.02); backdrop-filter: blur(2px);
-  border-top: 1px solid rgba(0, 255, 0, 0.1); border-bottom: 1px solid rgba(0, 255, 0, 0.1);
-  position: relative;
+.card::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: linear-gradient(45deg, var(--accent), var(--accent2), var(--error), var(--accent)); background-size: 400% 400%; animation: gradient-border 3s ease infinite; z-index: -1; opacity: 0; transition: opacity 0.3s ease; }
+.card:hover::before { opacity: 1; }
+@keyframes gradient-border { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+.card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 10px 30px rgba(255, 0, 64, 0.3), 0 0 50px rgba(0, 255, 255, 0.1); }
+.card h3 { 
+  font-size: 1.4rem; 
+  margin-bottom: 1rem; 
+  color: var(--fg); 
+  font-family: 'Inter', sans-serif; 
+  font-weight: 600;
+  text-transform: uppercase; 
+  letter-spacing: 0.05em;
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-rendering: geometricPrecision;
 }
+.card p { color: rgba(0, 255, 0, 0.8); line-height: 1.6; }
+.light-mode .card p { color: rgba(255, 255, 255, 0.7); }
 
-.vision-section::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-  background: repeating-linear-gradient(90deg, transparent, transparent 100px, rgba(255, 0, 64, 0.03) 100px, rgba(255, 0, 64, 0.03) 102px);
-  pointer-events: none;
-}
+/* Ensure Direct Links text is left-aligned */
+#contact .card p { text-align: left; }
 
-.vision-section h2 {
-  font-size: 2.5rem; margin-bottom: 2rem; color: #ff0040; font-family: 'Inter', sans-serif;
-  font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
-  animation: pulse-glow 2s ease-in-out infinite alternate; text-align: center;
-}
+footer { padding: 3rem 8vw; text-align: center; font-size: 0.9rem; color: rgba(0, 255, 0, 0.5); border-top: 1px solid rgba(0, 255, 0, 0.1); font-family: 'Courier Prime', monospace; }
 
-@keyframes pulse-glow { from { opacity: 0.7; } to { opacity: 1; } }
+a { color: var(--accent); text-decoration: none; transition: all 0.3s ease; }
+a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 
-.vision-cards {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;
-}
+/* FIXED: Contact section uses consistent card grid */
+#contact .cards { margin-top: 0; }
 
-.vision-card {
-  padding: 2.5rem; background: rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(0, 255, 0, 0.2); border-radius: 0;
-  transition: all 0.3s ease; position: relative; overflow: hidden;
-}
+.error-text { color: var(--error); animation: error-pulse 1s ease-in-out infinite alternate; }
+@keyframes error-pulse { from { opacity: 0.5; } to { opacity: 1; } }
 
-.vision-card::before {
-  content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
-  background: linear-gradient(45deg, #ff0040, #00ffff, #ff0000, #ff0040);
-  background-size: 400% 400%; animation: gradient-border 3s ease infinite;
-  z-index: -1; opacity: 0; transition: opacity 0.3s ease;
-}
+.glitch-line { position: absolute; left: 0; right: 0; height: 2px; background: var(--accent); animation: glitch-sweep 4s linear infinite; opacity: 0; }
+@keyframes glitch-sweep { 0%, 95%, 100% { opacity: 0; } 2%, 8% { opacity: 0.8; transform: translateX(0); } 3%, 7% { opacity: 0.8; transform: translateX(100px); } 4%, 6% { opacity: 0.8; transform: translateX(-50px); } }
 
-.vision-card:hover::before { opacity: 1; }
-
-@keyframes gradient-border {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-.vision-card:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 10px 30px rgba(255, 0, 64, 0.3), 0 0 50px rgba(0, 255, 255, 0.1);
-}
-
-.vision-card h3 {
-  font-size: 1.4rem; margin-bottom: 1rem; color: #00ff00;
-  font-family: 'Inter', sans-serif; font-weight: 600;
-  text-transform: uppercase; letter-spacing: 0.05em;
-}
-
-.vision-card p { color: rgba(0, 255, 0, 0.8); line-height: 1.6; }
-
-.video-wrapper {
-  position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden;
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.video-wrapper iframe {
-  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-  border: 1px solid rgba(0, 255, 0, 0.2);
-}
-
-.glitch-line {
-  position: absolute; left: 0; right: 0; height: 2px; background: #ff0040;
-  animation: glitch-sweep 4s linear infinite; opacity: 0;
-}
-
-@keyframes glitch-sweep {
-  0%, 95%, 100% { opacity: 0; }
-  2%, 8% { opacity: 0.8; transform: translateX(0); }
-  3%, 7% { opacity: 0.8; transform: translateX(100px); }
-  4%, 6% { opacity: 0.8; transform: translateX(-50px); }
-}
-
-/* Theme toggle button - only in vision mode */
-.theme-toggle {
-  display: none;
-}
-
-body.vision-mode .theme-toggle {
-  display: block;
-  position: fixed;
-  top: 2rem;
-  right: 2rem;
-  width: 60px;
-  height: 30px;
-  background: transparent;
-  border: 2px solid #ff0040;
-  border-radius: 0;
-  cursor: pointer;
-  overflow: hidden;
-  z-index: 10000;
-  transition: all 0.3s ease;
-}
-
-body.vision-mode .theme-toggle::before {
-  content: '';
-  position: absolute;
-  top: 3px;
-  left: 3px;
-  width: 20px;
-  height: 20px;
-  background: #ff0040;
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  box-shadow: 0 0 10px #ff0040;
-}
-
-body.vision-mode .theme-toggle.active::before {
-  transform: translateX(28px);
-  background: #00ffff;
-  box-shadow: 0 0 10px #00ffff;
-}
-
-body.vision-mode .theme-toggle .icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 14px;
-  transition: all 0.3s ease;
-}
-
-body.vision-mode .theme-toggle .dark-icon {
-  left: 8px;
-  color: #00ff00;
-}
-
-body.vision-mode .theme-toggle .light-icon {
-  right: 8px;
-  color: #00ff00;
-  opacity: 0.3;
-}
-
-body.vision-mode .theme-toggle.active .dark-icon {
-  opacity: 0.3;
-}
-
-body.vision-mode .theme-toggle.active .light-icon {
-  opacity: 1;
-}
-
-body.vision-mode .theme-toggle:hover {
-  box-shadow: 0 0 15px #ff0040;
-  transform: scale(1.05);
-}
-
-/* Vision mode light theme */
-body.vision-mode.light-mode {
-  background: #0a0a0a;
-  color: #ffffff;
-}
-
-body.vision-mode.light-mode::before {
-  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.02) 2px, rgba(255, 255, 255, 0.02) 4px);
-}
-
-body.vision-mode.light-mode .vision-card {
-  background: rgba(15, 15, 15, 0.9);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
-body.vision-mode.light-mode .vision-card p {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Contact form in vision mode */
-body.vision-mode .vision-contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-body.vision-mode .vision-contact-form form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-body.vision-mode .vision-contact-form label {
-  color: #ff0040;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 0.9rem;
+/* Email Form styling */
+.email-capture { display: flex; flex-direction: column; gap: 1.5rem; }
+.email-capture form { display: flex; flex-direction: column; gap: 1rem; }
+.email-capture label { 
+  color: var(--accent); 
+  text-transform: uppercase; 
+  letter-spacing: 0.1em; 
+  font-size: 0.9rem; 
   font-weight: bold;
   animation: pulse-glow 3s ease-in-out infinite alternate;
 }
+@keyframes pulse-glow { from { opacity: 0.7; } to { opacity: 1; } }
 
-body.vision-mode .vision-contact-form input[type="email"],
-body.vision-mode .vision-contact-form textarea {
-  padding: 0.8rem 1rem;
-  border: 2px solid rgba(0, 255, 0, 0.2);
-  background: rgba(0, 0, 0, 0.5);
-  color: #00ff00;
-  font-family: 'Courier Prime', monospace;
-  width: 100%;
-  transition: all 0.3s ease;
+.email-capture input[type="email"],
+.email-capture textarea { 
+  padding: 0.8rem 1rem; 
+  border: 2px solid var(--border-color); 
+  background: rgba(0, 0, 0, 0.5); 
+  color: var(--fg); 
+  font-family: 'Courier Prime', monospace; 
+  width: 100%; 
+  transition: all 0.3s ease; 
 }
-
-body.vision-mode .vision-contact-form textarea {
-  resize: vertical;
-  min-height: 100px;
+.light-mode .email-capture input[type="email"],
+.light-mode .email-capture textarea { 
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(10, 10, 10, 0.7);
 }
-
-body.vision-mode .vision-contact-form input[type="email"]:focus,
-body.vision-mode .vision-contact-form textarea:focus {
-  outline: none;
-  box-shadow: 0 0 10px #ff0040, 0 0 20px #00ffff;
-  border-color: #00ffff;
+.email-capture textarea { resize: vertical; min-height: 100px; }
+.email-capture input[type="email"]:focus,
+.email-capture textarea:focus { 
+  outline: none; 
+  box-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent2); 
+  border-color: var(--accent2); 
   background: rgba(0, 0, 0, 0.8);
 }
-
-body.vision-mode .vision-contact-form button {
-  padding: 0.8rem 1.5rem;
-  border: 2px solid #ff0040;
-  background: transparent;
-  color: #ff0040;
-  text-transform: uppercase;
-  font-family: 'Courier Prime', monospace;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  align-self: flex-start;
+.email-capture button { 
+  padding: 0.8rem 1.5rem; 
+  border: 2px solid var(--accent); 
+  background: transparent; 
+  color: var(--accent); 
+  text-transform: uppercase; 
+  font-family: 'Courier Prime', monospace; 
+  cursor: pointer; 
+  transition: all 0.3s ease; 
+  align-self: flex-start; 
   letter-spacing: 0.1em;
   position: relative;
   overflow: hidden;
 }
+.email-capture button::before { 
+  content: ''; 
+  position: absolute; 
+  top: 0; 
+  left: -100%; 
+  width: 100%; 
+  height: 100%; 
+  background: var(--accent); 
+  transition: left 0.3s ease; 
+  z-index: -1; 
+}
+.email-capture button:hover::before { left: 0; }
+.email-capture button:hover { 
+  color: var(--bg); 
+  box-shadow: 0 0 15px var(--accent); 
+}
+.smallprint { font-size: .9rem; opacity: .7; }
 
-body.vision-mode .vision-contact-form button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: #ff0040;
-  transition: left 0.3s ease;
-  z-index: -1;
+.email-capture textarea::placeholder,
+.email-capture input::placeholder { color: rgba(0,255,0,0.3); font-style: italic; }
+.light-mode .email-capture textarea::placeholder,
+.light-mode .email-capture input::placeholder { color: rgba(255,255,255,0.3); }
+
+#form-status { opacity: 0; transition: opacity .25s ease; }
+#form-status.show { opacity: 1; animation: status-glitch 1s steps(8, end) 1; }
+@keyframes status-glitch { 0% { text-shadow: 2px 0 var(--accent), -2px 0 var(--accent2); transform: translate(0); } 20% { transform: translate(1px, -1px); } 40% { transform: translate(-1px, 1px); } 60% { text-shadow: -2px 0 var(--error), 2px 0 var(--accent2); } 80% { transform: translate(1px, 0); } 100% { text-shadow: none; transform: translate(0); } }
+#form-status.shake { animation: shake 300ms linear 1, status-glitch 1s steps(8, end) 1; }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
+
+.video-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: rgba(0, 0, 0, 0.5); }
+.video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 1px solid var(--border-color); }
+
+/* For YouTube Shorts (vertical videos) on smaller screens */
+@media (max-width: 768px) {
+  .video-wrapper { padding-bottom: 177.78%; /* 9:16 aspect ratio */ }
 }
 
-body.vision-mode .vision-contact-form button:hover::before {
-  left: 0;
+/* video wrapper */
+@media (min-width: 769px) {
+  .video-wrapper { 
+    max-width: 400px; 
+    margin: 0 auto; 
+    padding-bottom: 56.25%; /* Keep 16:9 for desktop */
+  }
 }
 
-body.vision-mode .vision-contact-form button:hover {
-  color: #000000;
-  box-shadow: 0 0 15px #ff0040;
-}
-
+/* Phone number scramble effect */
 .phone-scrambled {
   position: relative;
   display: inline-block;
   cursor: pointer;
   text-decoration: none;
-  color: #ff0040;
+  color: var(--accent);
   transition: all 0.3s ease;
 }
 
@@ -620,7 +537,7 @@ body.vision-mode .vision-contact-form button:hover {
   top: 0;
   opacity: 0;
   transform: translateY(5px);
-  text-shadow: 0 0 5px #ff0040;
+  text-shadow: 0 0 5px var(--accent);
   white-space: nowrap;
 }
 
@@ -632,7 +549,7 @@ body.vision-mode .vision-contact-form button:hover {
 
 @keyframes scramble-idle {
   0%, 95%, 100% { opacity: 1; }
-  96%, 99% { opacity: 0.8; text-shadow: 0 0 2px #ff0040; }
+  96%, 99% { opacity: 0.8; text-shadow: 0 0 2px var(--accent); }
 }
 
 .phone-scrambled:hover .scrambled {
@@ -644,222 +561,446 @@ body.vision-mode .vision-contact-form button:hover {
 }
 
 @keyframes scramble-out {
-  0% { opacity: 1; transform: translateY(0); filter: blur(0); }
-  20% { opacity: 0.8; transform: translateY(-2px); filter: blur(1px); text-shadow: 2px 0 #ff0000, -2px 0 #00ffff; }
-  40% { opacity: 0.4; transform: translateY(-3px); filter: blur(2px); }
-  60%, 100% { opacity: 0; transform: translateY(-5px); filter: blur(3px); }
+  0% { 
+    opacity: 1; 
+    transform: translateY(0);
+    filter: blur(0);
+  }
+  20% {
+    opacity: 0.8;
+    transform: translateY(-2px);
+    filter: blur(1px);
+    text-shadow: 2px 0 var(--error), -2px 0 var(--accent2);
+  }
+  40% {
+    opacity: 0.4;
+    transform: translateY(-3px);
+    filter: blur(2px);
+  }
+  60%, 100% {
+    opacity: 0;
+    transform: translateY(-5px);
+    filter: blur(3px);
+  }
 }
 
 @keyframes reveal-in {
-  0% { opacity: 0; transform: translateY(5px) scaleX(0.8); filter: blur(3px); }
-  20% { opacity: 0.3; transform: translateY(3px) scaleX(0.9); filter: blur(2px); text-shadow: -3px 0 #ff0000, 3px 0 #00ffff; }
-  40% { opacity: 0.6; transform: translateY(1px) scaleX(0.95); filter: blur(1px); text-shadow: -2px 0 #00ffff, 2px 0 #00ff00; }
-  60% { opacity: 0.9; transform: translateY(-1px) scaleX(1.02); filter: blur(0); text-shadow: 1px 0 #ff0040, -1px 0 #ff0000; }
-  80% { opacity: 1; transform: translateY(0) scaleX(1); text-shadow: 0 0 10px #00ffff; }
-  100% { opacity: 1; transform: translateY(0) scaleX(1); text-shadow: 0 0 5px #ff0040; }
+  0% {
+    opacity: 0;
+    transform: translateY(5px) scaleX(0.8);
+    filter: blur(3px);
+  }
+  20% {
+    opacity: 0.3;
+    transform: translateY(3px) scaleX(0.9);
+    filter: blur(2px);
+    text-shadow: -3px 0 var(--error), 3px 0 var(--accent2);
+  }
+  40% {
+    opacity: 0.6;
+    transform: translateY(1px) scaleX(0.95);
+    filter: blur(1px);
+    text-shadow: -2px 0 var(--accent2), 2px 0 var(--fg);
+  }
+  60% {
+    opacity: 0.9;
+    transform: translateY(-1px) scaleX(1.02);
+    filter: blur(0);
+    text-shadow: 1px 0 var(--accent), -1px 0 var(--error);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(0) scaleX(1);
+    text-shadow: 0 0 10px var(--accent2);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scaleX(1);
+    text-shadow: 0 0 5px var(--accent);
+  }
 }
 
-.smallprint {
-  font-size: .9rem;
-  opacity: .7;
+.phone-scrambled.glitching .scrambled {
+  animation: intense-glitch 0.3s steps(4, end) infinite;
 }
 
-#form-status {
-  opacity: 0;
-  transition: opacity .25s ease;
+@keyframes intense-glitch {
+  0%, 100% { 
+    transform: translateX(0); 
+    text-shadow: 2px 0 var(--error);
+  }
+  25% { 
+    transform: translateX(-2px);
+    text-shadow: -2px 0 var(--accent2);
+  }
+  50% { 
+    transform: translateX(2px);
+    text-shadow: 2px 0 var(--fg);
+  }
+  75% { 
+    transform: translateX(-1px);
+    text-shadow: -1px 0 var(--accent);
+  }
 }
 
-#form-status.show {
+/* Theme toggle button */
+.theme-toggle {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 30px;
+  background: transparent;
+  border: 2px solid var(--accent);
+  border-radius: 0;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 10000;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: var(--accent);
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.theme-toggle.active::before {
+  transform: translateX(28px);
+  background: var(--accent2);
+  box-shadow: 0 0 10px var(--accent2);
+}
+
+.theme-toggle .icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle .dark-icon {
+  left: 8px;
+  color: var(--fg);
+}
+
+.theme-toggle .light-icon {
+  right: 8px;
+  color: var(--fg);
+  opacity: 0.3;
+}
+
+.theme-toggle.active .dark-icon {
+  opacity: 0.3;
+}
+
+.theme-toggle.active .light-icon {
   opacity: 1;
 }
 
-/* Mobile responsive */
+.theme-toggle:hover {
+  box-shadow: 0 0 15px var(--accent);
+  transform: scale(1.05);
+}
+
+/* Adjust scanlines for light mode */
+.light-mode body::before {
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.02) 2px, rgba(255, 255, 255, 0.02) 4px);
+}
+
+/* Tab Navigation */
+.tab-nav {
+  position: fixed;
+  top: 6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  gap: 0;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  padding: 0;
+}
+
+.tab-button {
+  padding: 1rem 2rem;
+  background: transparent;
+  color: var(--fg);
+  border: none;
+  border-right: 1px solid var(--border-color);
+  font-family: 'Courier Prime', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  font-size: 0.9rem;
+}
+
+.tab-button:last-child {
+  border-right: none;
+}
+
+.tab-button::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.tab-button:hover::before,
+.tab-button.active::before {
+  transform: scaleX(1);
+}
+
+.tab-button.active {
+  background: rgba(255, 0, 64, 0.1);
+  color: var(--accent);
+  box-shadow: inset 0 0 20px rgba(255, 0, 64, 0.1);
+}
+
+.tab-button:hover {
+  background: rgba(0, 255, 0, 0.05);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* Tab Content */
+.tab-content {
+  display: none;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Adjust header for tabs */
+header {
+  height: auto;
+  padding: 12rem 8vw 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+}
+
+/* Mobile responsive tabs */
 @media (max-width: 768px) {
-  nav.main-nav .nav-container {
-    flex-direction: column;
-    height: auto;
-    padding: 1rem;
-  }
-
-  nav.main-nav .nav-tabs {
-    width: 100%;
+  .tab-nav {
+    top: 5rem;
     flex-wrap: wrap;
-    justify-content: center;
+    width: 90%;
+    max-width: 600px;
   }
 
-  nav.main-nav .nav-tabs button {
-    padding: 1rem;
+  .tab-button {
+    padding: 0.8rem 1rem;
+    font-size: 0.8rem;
+    flex: 1 1 calc(50% - 1px);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
   }
 
-  .tab-content {
-    padding-top: 120px;
+  .tab-button:nth-child(2n) {
+    border-right: none;
   }
 
-  .pro-section {
-    padding: 3rem 1rem;
+  .tab-button:nth-last-child(-n+2) {
+    border-bottom: none;
   }
 
-  .pro-cards {
-    grid-template-columns: 1fr;
+  header {
+    padding: 10rem 5vw 4rem;
   }
+
+  header h1 {
+    font-size: clamp(2rem, 8vw, 4rem);
+  }
+}
+
+/* Professional list styling */
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.info-list li {
+  padding: 0.8rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.6;
+  color: rgba(0, 255, 0, 0.9);
+}
+
+.light-mode .info-list li {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.info-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.achievement-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  border: 2px solid var(--accent2);
+  color: var(--accent2);
+  text-decoration: none;
+  font-family: 'Courier Prime', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.achievement-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--accent2);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.achievement-link:hover::before {
+  left: 0;
+}
+
+.achievement-link:hover {
+  color: var(--bg);
+  box-shadow: 0 0 20px var(--accent2);
+  transform: translateY(-2px);
+}
+
+.highlight-box {
+  background: rgba(0, 255, 255, 0.05);
+  border-left: 3px solid var(--accent2);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.highlight-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(0, 255, 255, 0.03) 10px, rgba(0, 255, 255, 0.03) 11px);
+  pointer-events: none;
 }
 </style>
 </head>
 <body>
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+  <span class="icon dark-icon">●</span>
+  <span class="icon light-icon">○</span>
+</button>
 
-<!-- Professional Navigation -->
-<nav class="main-nav">
-  <div class="nav-container">
-    <a href="#" class="logo">Smith Clove</a>
-    <ul class="nav-tabs">
-      <li><button class="nav-tab active" data-tab="about">About</button></li>
-      <li><button class="nav-tab" data-tab="research">Research</button></li>
-      <li><button class="nav-tab" data-tab="vision">Vision</button></li>
-      <li><button class="nav-tab" data-tab="contact">Contact</button></li>
-    </ul>
-  </div>
+<div class="glitch-line" style="top: 20%; animation-delay: 0s;"></div>
+<div class="glitch-line" style="top: 60%; animation-delay: 2s;"></div>
+<div class="glitch-line" style="top: 80%; animation-delay: 1s;"></div>
+
+<!-- Tab Navigation -->
+<nav class="tab-nav">
+  <button class="tab-button active" data-tab="about">[ABOUT]</button>
+  <button class="tab-button" data-tab="vision">[VISION]</button>
+  <button class="tab-button" data-tab="research">[RESEARCH]</button>
+  <button class="tab-button" data-tab="contact">[CONTACT]</button>
 </nav>
 
-<!-- ABOUT TAB (Professional) -->
+<header>
+  <h1>Smith&nbsp;Clove</h1>
+  <p class="tag">[Novo Visio]</p>
+</header>
+
+<!-- ABOUT TAB -->
 <div id="about-tab" class="tab-content active">
-  <div class="pro-hero">
-    <h1>Smith Clove</h1>
-    <p>Open Science for Remote Earth Observation</p>
-  </div>
+  <section>
+    <h2>About Smith Clove</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>The Company</h3>
+        <p style="margin-bottom: 1.5rem;">Founded in 2023, our open science library empowers researchers and organizations worldwide.</p>
 
-  <div class="pro-section">
-    <h2>About</h2>
-    <div class="pro-cards">
-      <div class="pro-card">
-        <h3>Our Mission</h3>
-        <p>Founded in January 2023 and based in San Francisco, California, Smith Clove is pioneering the future of open science for geographically hard-to-reach data analysis.</p>
-        <div class="highlight">
-          <p><strong>Democratizing access to advanced Earth observation analytics through open-source frameworks and cutting-edge AI.</strong></p>
-        </div>
+        <p style="margin-top: 1.5rem;">Contact us to learn more about edge analysis of data once thought inaccessible or too complex to process efficiently. </p>
       </div>
 
-      <div class="pro-card">
-        <h3>Impact & Deployments</h3>
-        <ul>
-          <li><strong>NSF Convergence Accelerator</strong> — Framework deployment for multi-institutional research collaboration</li>
-          <li><strong>NASA FireSense</strong> — Remote fire detection and monitoring system integration</li>
-          <li><strong>Global Research Community</strong> — Empowering scientists with accessible geospatial analysis tools</li>
+      <div class="card">
+        <h3>Deployments & Impact</h3>
+        <ul class="info-list">
+          <li><strong>NSF & NARSS</strong> — U.S. National Science Foundation project framework deployment for multi-institutional research collaboration with the Egyptian National Authority for Remote Sensing and Space Sciences</li>
+          <li><strong>NASA FireSense</strong> — Remote fire detection and edge monitoring system integration driven by Machine Learning</li>
+          <li><strong>Global Research Community</strong> — Open source community tools for accessible vision analysis</li>
         </ul>
-      </div>
 
-      <div class="pro-card">
-        <h3>Leadership</h3>
-        <p><strong>David Smith</strong>, Founder & Principal Investigator</p>
-        <p style="margin-top: 0.5rem; opacity: 0.8;">January 2023 - Present · San Francisco, California</p>
-        <ul style="margin-top: 1rem;">
-          <li>Founded open science library to analyze geographically hard to reach data</li>
-          <li>Led framework deployment by NSF and NASA for remote fire detection</li>
-          <li>Published research cited in Springer Nature's <em>Modelling and Advanced Earth Observation Technologies</em></li>
-        </ul>
+        <p style="margin-top: 1.5rem; color: rgba(0, 255, 255, 0.9);">Our technology bridges the gap between satellite data and actionable intelligence, making advanced Earth observation accessible to researchers without extensive computational resources.</p>
       </div>
     </div>
-  </div>
+  </section>
+    </div>
+  </section>
 </div>
 
-<!-- RESEARCH TAB (Professional) -->
-<div id="research-tab" class="tab-content">
-  <div class="pro-hero">
-    <h1>Research & Publications</h1>
-    <p>Advancing the field of remote sensing and Earth observation</p>
-  </div>
-
-  <div class="pro-section">
-    <h2>Featured Publication</h2>
-    <div class="pro-cards">
-      <div class="pro-card">
-        <h3>Modelling and Advanced Earth Observation Technologies</h3>
-        <div class="highlight">
-          <p>Smith Clove's research on remote sensing analysis for geographically challenging environments has been cited in this comprehensive volume published by Springer Nature on cutting-edge Earth observation methodologies.</p>
-        </div>
-        <p style="margin-top: 1rem;">This work represents a significant contribution to the field of remote sensing, particularly in developing accessible frameworks for analyzing satellite data in hard-to-reach regions.</p>
-        <a href="https://link.springer.com/book/10.1007/978-3-031-78768-3" target="_blank" rel="noopener" class="pro-link">View Publication</a>
-      </div>
-    </div>
-
-    <h2 style="margin-top: 4rem;">Research Areas</h2>
-    <div class="pro-cards">
-      <div class="pro-card">
-        <h3>Remote Fire Detection</h3>
-        <p>AI-powered early warning systems for wildfire monitoring in remote regions using advanced satellite imagery analysis.</p>
-      </div>
-
-      <div class="pro-card">
-        <h3>Geospatial Data Analysis</h3>
-        <p>Open-source frameworks for processing satellite imagery and environmental data, making advanced analytics accessible to all researchers.</p>
-      </div>
-
-      <div class="pro-card">
-        <h3>Edge Computing</h3>
-        <p>Distributed intelligence systems for real-time environmental monitoring without reliance on centralized infrastructure.</p>
-      </div>
-    </div>
-
-    <h2 style="margin-top: 4rem;">Institutional Partnerships</h2>
-    <div class="pro-cards">
-      <div class="pro-card">
-        <h3>NSF Convergence Accelerator</h3>
-        <p>Framework deployment for accelerating convergence research across multiple scientific disciplines. Our tools enable researchers to collaborate on complex environmental challenges with shared, accessible data analysis infrastructure.</p>
-      </div>
-
-      <div class="pro-card">
-        <h3>NASA FireSense</h3>
-        <p>Integration with NASA's fire detection and monitoring initiatives, providing enhanced capabilities for identifying and tracking wildfires in remote and hard-to-access regions through advanced satellite data analysis.</p>
-      </div>
-
-      <div class="pro-card">
-        <h3>NARSS Collaboration</h3>
-        <p>Research partnership contributing to the advancement of Earth observation technologies and methodologies, with work featured in international publications and academic citations.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- VISION TAB (Cyberpunk) -->
+<!-- VISION TAB -->
 <div id="vision-tab" class="tab-content">
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-    <span class="icon dark-icon">●</span>
-    <span class="icon light-icon">○</span>
-  </button>
-
-  <div class="glitch-line" style="top: 20%; animation-delay: 0s;"></div>
-  <div class="glitch-line" style="top: 60%; animation-delay: 2s;"></div>
-  <div class="glitch-line" style="top: 80%; animation-delay: 1s;"></div>
-
-  <header class="vision-header">
-    <h1>Smith&nbsp;Clove</h1>
-    <p class="vision-tag">[WELCOME_HOME]</p>
-    <a href="#vision-work" class="vision-cta">Explore Initiatives</a>
-  </header>
-
-  <section id="vision-work" class="vision-section">
+  <section>
     <h2>Active Protocols</h2>
-    <div class="vision-cards">
-      <div class="vision-card">
-        <h3>Edge-AI Surveillance</h3>
-        <p>Autonomous monitoring platforms delivering secure intelligence without reliance on central networks.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>Edge Surveillance</h3>
+        <p>Autonomous monitoring platforms delivering secure intelligence without reliance on traditional central networks.</p>
       </div>
-      <div class="vision-card">
+      <div class="card">
         <h3>Data Reconstruction</h3>
-        <p>Transforming incomplete or corrupted data into actionable clarity where others see noise.</p>
+        <p>Transforming incomplete data into actionable clarity where others see noise. See our Featured Work below: </p>
       </div>
     </div>
   </section>
 
-  <section class="vision-section">
+  <section>
     <h2>Featured Work</h2>
-    <div class="vision-cards">
-      <div class="vision-card">
+    <div class="cards">
+      <div class="card">
         <h3>Demo One</h3>
         <div class="video-wrapper">
           <iframe src="https://www.youtube.com/embed/X2YYrSm93X4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
-      <div class="vision-card">
+      <div class="card">
         <h3>Demo Two</h3>
         <div class="video-wrapper">
           <iframe src="https://www.youtube.com/embed/JKZJBHob9Kc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -867,29 +1008,86 @@ body.vision-mode .vision-contact-form button:hover {
       </div>
     </div>
   </section>
+</div>
 
-  <section class="vision-section">
+<!-- RESEARCH TAB -->
+<div id="research-tab" class="tab-content">
+  <section>
+    <h2>Publications & Recognition</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Springer Nature Publication</h3>
+        <div class="highlight-box">
+          <p style="font-size: 1.1rem; margin-bottom: 1rem;"><strong>🛰️ Modelling and Advanced Earth Observation Technologies</strong></p>
+          <p>Smith Clove's research on remote sensing analysis for geographically challenging environments has been cited in Springer's volume on the latest Earth observation methodologies.</p>
+        </div>
+
+        <p style="margin-top: 1.5rem; margin-bottom: 1rem;">This work represents a significant contribution to developing accessible frameworks for analyzing remote time series data.</p>
+
+        <a href="https://link.springer.com/book/10.1007/978-3-031-78768-3" target="_blank" rel="noopener" class="achievement-link">
+          <span>📖 View Publication</span>
+        </a>
+      </div>
+
+      <div class="card">
+        <h3>Key Research Areas</h3>
+        <ul class="info-list">
+          <li><strong>Remote Fire Detection</strong> — AI-powered early warning systems for wildfire monitoring in remote regions</li>
+          <li><strong>Geospatial Data Analysis</strong> — Open-source frameworks for processing satellite imagery and environmental data</li>
+          <li><strong>Edge Computing</strong> — Distributed intelligence systems for real-time environmental monitoring</li>
+          <li><strong>Data Reconstruction</strong> — Advanced algorithms for recovering actionable insights from incomplete datasets</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Institutional Partnerships</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>NSF Convergence Accelerator</h3>
+        <p>Framework deployment for accelerating convergence research across multiple scientific disciplines. Our tools enable researchers to collaborate on complex environmental challenges with shared, accessible data analysis infrastructure.</p>
+      </div>
+
+      <div class="card">
+        <h3>NASA FireSense</h3>
+        <p>Integration with NASA's fire detection and monitoring initiatives, providing enhanced capabilities for identifying and tracking wildfires in remote and hard-to-access regions through advanced satellite data analysis.</p>
+      </div>
+
+      <div class="card">
+        <h3>NARSS Collaboration</h3>
+        <p>Research partnership contributing to the advancement of Earth observation technologies and methodologies, with work featured in international publications and academic citations.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT TAB -->
+<div id="contact-tab" class="tab-content">
+  <section>
     <h2>Establish Connection</h2>
-    <div class="vision-cards">
-      <div class="vision-card">
-        <div class="vision-contact-form">
-          <form id="contact-form-vision" action="https://formspree.io/f/mwpngrlw" method="POST" novalidate target="_self">
+    <div class="cards">
+      <!-- Form column as a card -->
+      <div class="card">
+        <div class="email-capture">
+          <form id="contact-form" action="https://formspree.io/f/mwpngrlw" method="POST" novalidate target="_self">
             <label>[EMAIL_IDENTIFIER]</label>
             <input type="email" name="email" required inputmode="email" autocomplete="email" placeholder="user@domain.xyz" />
             <label>[MESSAGE_BUFFER]</label>
             <textarea name="message" rows="3" placeholder="Transmit data stream..."></textarea>
             <button type="submit">[INITIATE_TRANSMISSION]</button>
           </form>
-          <p id="form-status-vision" aria-live="polite"></p>
-          <p class="smallprint">Selective communication protocol active. No automated responses.</p>
+          <p id="form-status" aria-live="polite"></p>
+          <p class="smallprint">No automated responses.</p>
         </div>
       </div>
 
-      <div class="vision-card">
+      <!-- Info column as a matching card -->
+      <div class="card">
         <h3>Direct Links</h3>
         <p>
-          📧 <a href="mailto:info@smithclove.xyz" style="color: #00ffff;">info@smithclove.xyz</a><br>
-          🔗 <a href="https://linkedin.com/in/-david" style="color: #00ffff;">Social Protocol</a><br>
+          📧 <a href="mailto:info@smithclove.xyz">info@smithclove.xyz</a><br>
+          🔗 <a href="https://linkedin.com/in/-david">Social Protocol</a><br>
           📞 <a href="#" class="phone-scrambled" data-p="NTQx" data-m="MjEw" data-l="MzEwMA==" onclick="return false;">
             <span class="scrambled">+1 XXX-XXX-XXXX</span>
             <span class="revealed">+1 541-210-3100</span>
@@ -898,242 +1096,233 @@ body.vision-mode .vision-contact-form button:hover {
       </div>
     </div>
   </section>
-</div>
 
-<!-- CONTACT TAB (Professional) -->
-<div id="contact-tab" class="tab-content">
-  <div class="pro-hero">
-    <h1>Get In Touch</h1>
-    <p>Let's collaborate on advancing Earth observation science</p>
-  </div>
-
-  <div class="pro-section">
-    <div class="contact-grid">
-      <div class="pro-card">
-        <h3>Send a Message</h3>
-        <form id="contact-form-pro" action="https://formspree.io/f/mwpngrlw" method="POST" class="contact-form">
-          <label for="email">Email</label>
-          <input type="email" id="email" name="email" required placeholder="your@email.com">
-
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Tell us about your project..."></textarea>
-
-          <button type="submit">Send Message</button>
-        </form>
-        <p id="form-status-pro" style="margin-top: 1rem; opacity: 0; transition: opacity 0.3s;"></p>
-      </div>
-
-      <div class="pro-card">
-        <h3>Contact Information</h3>
-        <p style="margin-bottom: 1rem;"><strong>Email:</strong><br><a href="mailto:info@smithclove.xyz" style="color: var(--pro-accent);">info@smithclove.xyz</a></p>
-        <p style="margin-bottom: 1rem;"><strong>LinkedIn:</strong><br><a href="https://linkedin.com/in/-david" style="color: var(--pro-accent);">linkedin.com/in/-david</a></p>
-        <p><strong>Phone:</strong><br>+1 541-210-3100</p>
-      </div>
-    </div>
-
-    <h2 style="margin-top: 4rem;">Collaboration Opportunities</h2>
-    <div class="pro-cards">
-      <div class="pro-card">
+  <section>
+    <h2>Collaboration Opportunities</h2>
+    <div class="cards">
+      <div class="card">
         <h3>Research Partnerships</h3>
-        <p>We collaborate with academic institutions, government agencies, and research organizations on projects involving remote sensing, environmental monitoring, and geospatial analysis.</p>
+        <p>We collaborate with academic institutions, government agencies, and research organizations on advancing next-generation vision technologies.</p>
       </div>
 
-      <div class="pro-card">
+      <div class="card">
         <h3>Open Source Contributions</h3>
         <p>Join our community of developers and researchers contributing to open science. Our frameworks are designed to be accessible, extensible, and built for real-world applications.</p>
       </div>
 
-      <div class="pro-card">
+      <div class="card">
         <h3>Consulting Services</h3>
-        <p>Expert consultation on satellite data analysis, fire detection systems, and custom Earth observation solutions for organizations tackling environmental challenges.</p>
+        <p>Expert consultation on data analysis, remote detection systems, and custom engineered solutions for organizations in need of a new perspective.</p>
       </div>
     </div>
-  </div>
+  </section>
 </div>
 
 <footer>
-  &copy; <span id="year"></span> Smith Clove — Advancing Open Science
+  &copy; <span id="year"></span> Smith Clove ⚒ — [END TRANSMISSION]
 </footer>
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Tab switching
-const navTabs = document.querySelectorAll('.nav-tab');
+// Tab switching functionality
+const tabButtons = document.querySelectorAll('.tab-button');
 const tabContents = document.querySelectorAll('.tab-content');
-const body = document.body;
 
-navTabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    const tabName = tab.getAttribute('data-tab');
+function switchTab(tabName) {
+  // Remove active class from all buttons and contents
+  tabButtons.forEach(btn => btn.classList.remove('active'));
+  tabContents.forEach(content => content.classList.remove('active'));
 
-    // Remove active class from all tabs and contents
-    navTabs.forEach(t => t.classList.remove('active'));
-    tabContents.forEach(content => content.classList.remove('active'));
+  // Add active class to selected tab
+  const selectedButton = document.querySelector(`[data-tab="${tabName}"]`);
+  const selectedContent = document.getElementById(`${tabName}-tab`);
 
-    // Add active class to clicked tab
-    tab.classList.add('active');
-    document.getElementById(tabName + '-tab').classList.add('active');
+  if (selectedButton && selectedContent) {
+    selectedButton.classList.add('active');
+    selectedContent.classList.add('active');
 
-    // Toggle vision mode
-    if (tabName === 'vision') {
-      body.classList.add('vision-mode');
-    } else {
-      body.classList.remove('vision-mode');
-      body.classList.remove('light-mode');
-    }
+    // Add glitch effect on tab switch
+    document.body.style.animation = 'theme-glitch 0.2s steps(3, end) 1';
+    setTimeout(() => {
+      document.body.style.animation = '';
+    }, 200);
+  }
+}
 
-    // Scroll to top
+// Add click listeners to tab buttons
+tabButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const tabName = button.getAttribute('data-tab');
+    switchTab(tabName);
+
+    // Scroll to top smoothly
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
 
-// Vision mode theme toggle
+// Theme toggle functionality
 const themeToggle = document.getElementById('themeToggle');
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    body.classList.toggle('light-mode');
-    themeToggle.classList.toggle('active');
+const root = document.documentElement;
 
-    // Save preference
-    const currentTheme = body.classList.contains('light-mode') ? 'light' : 'dark';
-    localStorage.setItem('visionTheme', currentTheme);
-  });
+// Check for saved theme preference or default to dark
+const savedTheme = localStorage.getItem('theme') || 'dark';
+if (savedTheme === 'light') {
+  root.classList.add('light-mode');
+  themeToggle.classList.add('active');
+}
 
-  // Check for saved theme preference
-  const savedTheme = localStorage.getItem('visionTheme');
-  if (savedTheme === 'light' && body.classList.contains('vision-mode')) {
-    body.classList.add('light-mode');
-    themeToggle.classList.add('active');
+themeToggle.addEventListener('click', () => {
+  root.classList.toggle('light-mode');
+  themeToggle.classList.toggle('active');
+  
+  // Save preference
+  const currentTheme = root.classList.contains('light-mode') ? 'light' : 'dark';
+  localStorage.setItem('theme', currentTheme);
+  
+  // Add a glitch effect on toggle
+  document.body.style.animation = 'theme-glitch 0.3s steps(4, end) 1';
+  setTimeout(() => {
+    document.body.style.animation = '';
+  }, 300);
+});
+
+// Add theme glitch animation
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes theme-glitch {
+    0%, 100% { filter: hue-rotate(0deg) brightness(1); }
+    25% { filter: hue-rotate(90deg) brightness(1.2); }
+    50% { filter: hue-rotate(180deg) brightness(0.8); }
+    75% { filter: hue-rotate(270deg) brightness(1.1); }
   }
-}
+`;
+document.head.appendChild(style);
 
-// Vision form handling
-const visionForm = document.getElementById('contact-form-vision');
-const visionStatus = document.getElementById('form-status-vision');
+// Glitch effect on random intervals
+setInterval(() => {
+  if (Math.random() > 0.95) {
+    document.body.style.filter = 'hue-rotate(' + Math.random() * 360 + 'deg)';
+    setTimeout(() => { document.body.style.filter = 'none'; }, 100);
+  }
+}, 500);
 
-if (visionForm) {
-  visionForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const data = new FormData(visionForm);
-    visionStatus.textContent = 'TRANSMITTING...';
-    visionStatus.classList.add('show');
-
-    fetch(visionForm.action, {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    }).then(response => {
-      if (response.ok) {
-        visionStatus.textContent = 'TRANSMISSION COMPLETE';
-        visionForm.reset();
-      } else {
-        visionStatus.textContent = 'ERROR: TRANSMISSION FAILED';
-      }
-    }).catch(error => {
-      visionStatus.textContent = 'ERROR: NETWORK UNREACHABLE';
-    });
-  });
-}
-
-// Professional form handling
-const proForm = document.getElementById('contact-form-pro');
-const proStatus = document.getElementById('form-status-pro');
-
-if (proForm) {
-  proForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const data = new FormData(proForm);
-    proStatus.textContent = 'Sending...';
-    proStatus.style.opacity = '1';
-
-    fetch(proForm.action, {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    }).then(response => {
-      if (response.ok) {
-        proStatus.textContent = 'Message sent successfully!';
-        proStatus.style.color = 'var(--pro-accent)';
-        proForm.reset();
-      } else {
-        proStatus.textContent = 'Failed to send message. Please try again.';
-        proStatus.style.color = '#dc2626';
-      }
-    }).catch(error => {
-      proStatus.textContent = 'Network error. Please try again.';
-      proStatus.style.color = '#dc2626';
-    });
-  });
-}
-
-// Phone number scramble effect (vision mode)
-const phoneLink = document.querySelector('.phone-scrambled');
-if (phoneLink) {
-  const scrambledSpan = phoneLink.querySelector('.scrambled');
-  const revealedSpan = phoneLink.querySelector('.revealed');
-  let isRevealed = false;
-  let scrambleInterval;
-
-  const part1 = atob(phoneLink.dataset.p);
-  const part2 = atob(phoneLink.dataset.m);
-  const part3 = atob(phoneLink.dataset.l);
-  const realPhone = `+1-${part1}-${part2}-${part3}`;
-  const telLink = `tel:+1${part1}${part2}${part3}`;
-
-  const scrambleChars = '0123456789ABCDEF#*@$%';
-  function generateScrambled() {
-    let scrambled = '+1 ';
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < 3; j++) {
-        scrambled += scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
-      }
-      if (i < 2) scrambled += '-';
+// Text corruption effect
+const corruptableElements = document.querySelectorAll('p, h3');
+setInterval(() => {
+  if (Math.random() > 0.98) {
+    const el = corruptableElements[Math.floor(Math.random() * corruptableElements.length)];
+    const originalText = el.textContent;
+    const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
+    let corrupted = '';
+    for (let i = 0; i < originalText.length; i++) {
+      corrupted += Math.random() > 0.7 ? chars[Math.floor(Math.random() * chars.length)] : originalText[i];
     }
-    scrambled += '-';
-    for (let i = 0; i < 4; i++) {
+    el.textContent = corrupted;
+    setTimeout(() => { el.textContent = originalText; }, 150);
+  }
+}, 1000);
+
+// Form handling
+const form = document.getElementById('contact-form');
+const status = document.getElementById('form-status');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const data = new FormData(form);
+  status.textContent = 'TRANSMITTING...';
+  status.className = 'show';
+  
+  fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  }).then(response => {
+    if (response.ok) {
+      status.textContent = 'TRANSMISSION COMPLETE';
+      form.reset();
+    } else {
+      status.textContent = 'ERROR: TRANSMISSION FAILED';
+      status.className = 'show shake';
+    }
+  }).catch(error => {
+    status.textContent = 'ERROR: NETWORK UNREACHABLE';
+    status.className = 'show shake';
+  });
+});
+
+// Phone number scramble effect
+const phoneLink = document.querySelector('.phone-scrambled');
+const scrambledSpan = phoneLink.querySelector('.scrambled');
+const revealedSpan = phoneLink.querySelector('.revealed');
+let isRevealed = false;
+let scrambleInterval;
+
+// Decode the phone number from data attributes (base64 obfuscation)
+const part1 = atob(phoneLink.dataset.p); // 541
+const part2 = atob(phoneLink.dataset.m); // 210
+const part3 = atob(phoneLink.dataset.l); // 3100
+const realPhone = `+1-${part1}-${part2}-${part3}`;
+const telLink = `tel:+1${part1}${part2}${part3}`;
+
+// Generate random scrambled characters
+const scrambleChars = '0123456789ABCDEF#*@$%';
+function generateScrambled() {
+  let scrambled = '+1 ';
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
       scrambled += scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
     }
-    return scrambled;
+    if (i < 2) scrambled += '-';
   }
-
-  phoneLink.addEventListener('mouseenter', function() {
-    if (!isRevealed) {
-      phoneLink.classList.add('glitching');
-      scrambleInterval = setInterval(() => {
-        scrambledSpan.textContent = generateScrambled();
-      }, 50);
-
-      setTimeout(() => {
-        clearInterval(scrambleInterval);
-        phoneLink.classList.remove('glitching');
-        isRevealed = true;
-        revealedSpan.textContent = realPhone;
-      }, 500);
-    }
-  });
-
-  phoneLink.addEventListener('click', function(e) {
-    e.preventDefault();
-    if (isRevealed) {
-      window.location.href = telLink;
-    } else {
-      phoneLink.dispatchEvent(new MouseEvent('mouseenter'));
-      setTimeout(() => {
-        window.location.href = telLink;
-      }, 600);
-    }
-  });
-
-  phoneLink.addEventListener('mouseleave', function() {
-    setTimeout(() => {
-      if (isRevealed) {
-        isRevealed = false;
-        scrambledSpan.textContent = '+1 XXX-XXX-XXXX';
-      }
-    }, 3000);
-  });
+  scrambled += '-';
+  for (let i = 0; i < 4; i++) {
+    scrambled += scrambleChars[Math.floor(Math.random() * scrambleChars.length)];
+  }
+  return scrambled;
 }
+
+// Scramble effect on hover
+phoneLink.addEventListener('mouseenter', function() {
+  if (!isRevealed) {
+    phoneLink.classList.add('glitching');
+    scrambleInterval = setInterval(() => {
+      scrambledSpan.textContent = generateScrambled();
+    }, 50);
+    
+    setTimeout(() => {
+      clearInterval(scrambleInterval);
+      phoneLink.classList.remove('glitching');
+      isRevealed = true;
+      // Update the revealed span with actual number
+      revealedSpan.textContent = realPhone;
+    }, 500);
+  }
+});
+
+// Make clickable after reveal
+phoneLink.addEventListener('click', function(e) {
+  e.preventDefault();
+  if (isRevealed) {
+    window.location.href = telLink;
+  } else {
+    // Trigger reveal if clicked without hovering
+    phoneLink.dispatchEvent(new MouseEvent('mouseenter'));
+    setTimeout(() => {
+      window.location.href = telLink;
+    }, 600);
+  }
+});
+
+// Reset on mouse leave (optional - remove if you want it to stay revealed)
+phoneLink.addEventListener('mouseleave', function() {
+  setTimeout(() => {
+    if (isRevealed) {
+      isRevealed = false;
+      scrambledSpan.textContent = '+1 XXX-XXX-XXXX';
+    }
+  }, 3000); // Reset after 3 seconds
+});
 </script>
 </body>
 </html>
