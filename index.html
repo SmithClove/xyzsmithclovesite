@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Smith Clove | Open Science for Remote Earth Observation</title>
 <meta name="description" content="Smith Clove - Founded in 2023, pioneering open science library for analyzing geographically hard to reach data. Deployed by NSF and NASA for remote fire detection.">
+<title>Smith Clove ⚒ | Vision Lab</title>
+<meta name="description" content="Smith Clove - Open science library for analyzing hard to reach data.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -823,6 +825,213 @@ body.vision-mode .vision-contact-form button:hover {
   .pro-cards {
     grid-template-columns: 1fr;
   }
+/* Tab Navigation */
+.tab-nav {
+  position: fixed;
+  top: 6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  display: flex;
+  gap: 0;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid var(--border-color);
+  backdrop-filter: blur(10px);
+  padding: 0;
+}
+
+.tab-button {
+  padding: 1rem 2rem;
+  background: transparent;
+  color: var(--fg);
+  border: none;
+  border-right: 1px solid var(--border-color);
+  font-family: 'Courier Prime', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  font-size: 0.9rem;
+}
+
+.tab-button:last-child {
+  border-right: none;
+}
+
+.tab-button::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.tab-button:hover::before,
+.tab-button.active::before {
+  transform: scaleX(1);
+}
+
+.tab-button.active {
+  background: rgba(255, 0, 64, 0.1);
+  color: var(--accent);
+  box-shadow: inset 0 0 20px rgba(255, 0, 64, 0.1);
+}
+
+.tab-button:hover {
+  background: rgba(0, 255, 0, 0.05);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* Tab Content */
+.tab-content {
+  display: none;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Adjust header for tabs */
+header {
+  height: auto;
+  padding: 12rem 8vw 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+}
+
+/* Mobile responsive tabs */
+@media (max-width: 768px) {
+  .tab-nav {
+    top: 5rem;
+    flex-wrap: wrap;
+    width: 90%;
+    max-width: 600px;
+  }
+
+  .tab-button {
+    padding: 0.8rem 1rem;
+    font-size: 0.8rem;
+    flex: 1 1 calc(50% - 1px);
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .tab-button:nth-child(2n) {
+    border-right: none;
+  }
+
+  .tab-button:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+
+  header {
+    padding: 10rem 5vw 4rem;
+  }
+
+  header h1 {
+    font-size: clamp(2rem, 8vw, 4rem);
+  }
+}
+
+/* Professional list styling */
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.info-list li {
+  padding: 0.8rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  line-height: 1.6;
+  color: rgba(0, 255, 0, 0.9);
+}
+
+.light-mode .info-list li {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.info-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.achievement-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 0.8rem 1.5rem;
+  border: 2px solid var(--accent2);
+  color: var(--accent2);
+  text-decoration: none;
+  font-family: 'Courier Prime', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.achievement-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--accent2);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.achievement-link:hover::before {
+  left: 0;
+}
+
+.achievement-link:hover {
+  color: var(--bg);
+  box-shadow: 0 0 20px var(--accent2);
+  transform: translateY(-2px);
+}
+
+.highlight-box {
+  background: rgba(0, 255, 255, 0.05);
+  border-left: 3px solid var(--accent2);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  position: relative;
+}
+
+.highlight-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(0, 255, 255, 0.03) 10px, rgba(0, 255, 255, 0.03) 11px);
+  pointer-events: none;
 }
 </style>
 </head>
@@ -976,6 +1185,67 @@ body.vision-mode .vision-contact-form button:hover {
       <div class="vision-card">
         <h3>Data Reconstruction</h3>
         <p>Transforming incomplete or corrupted data into actionable clarity where others see noise.</p>
+<div class="glitch-line" style="top: 20%; animation-delay: 0s;"></div>
+<div class="glitch-line" style="top: 60%; animation-delay: 2s;"></div>
+<div class="glitch-line" style="top: 80%; animation-delay: 1s;"></div>
+
+<!-- Tab Navigation -->
+<nav class="tab-nav">
+  <button class="tab-button active" data-tab="about">[ABOUT]</button>
+  <button class="tab-button" data-tab="vision">[VISION]</button>
+  <button class="tab-button" data-tab="research">[RESEARCH]</button>
+  <button class="tab-button" data-tab="contact">[CONTACT]</button>
+</nav>
+
+<header>
+  <h1>Smith&nbsp;Clove</h1>
+  <p class="tag">[OPEN_SCIENCE_FOR_EARTH_OBSERVATION]</p>
+</header>
+
+<!-- ABOUT TAB -->
+<div id="about-tab" class="tab-content active">
+  <section>
+    <h2>About Smith Clove</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>The Company</h3>
+        <p style="margin-bottom: 1.5rem;">Founded in 2023, Smith Clove is pioneering the future of open science for remote analysis.</p>
+
+        <div class="highlight-box">
+          <p><strong>Mission:</strong> Democratizing access to advanced Earth Observation analytics through open source frameworks and cutting edge AI.</p>
+        </div>
+
+        <p style="margin-top: 1.5rem;">Our open science library enables researchers and organizations worldwide to analyze remote sensing data that was previously inaccessible or too complex to process effectively on edge devices.</p>
+      </div>
+
+      <div class="card">
+        <h3>Deployments & Impact</h3>
+        <ul class="info-list">
+          <li><strong>NSF & NARSS</strong> — U.S. National Science Foundation project framework deployment for multi-institutional research collaboration with the Egyptian National Authority for Remote Sensing and Space Sciences</li>
+          <li><strong>NASA FireSense</strong> — Remote fire detection and edge monitoring system integration driven by Machine Learning</li>
+          <li><strong>Global Research Community</strong> — Open source community tools for accessible vision analysis</li>
+        </ul>
+
+        <p style="margin-top: 1.5rem; color: rgba(0, 255, 255, 0.9);">Our technology bridges the gap between satellite data and actionable intelligence, making advanced Earth observation accessible to researchers without extensive computational resources.</p>
+      </div>
+    </div>
+  </section>
+    </div>
+  </section>
+</div>
+
+<!-- VISION TAB -->
+<div id="vision-tab" class="tab-content">
+  <section>
+    <h2>Active Protocols</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Edge Surveillance</h3>
+        <p>Autonomous monitoring platforms delivering secure intelligence without reliance on traditional central networks.</p>
+      </div>
+      <div class="card">
+        <h3>Data Reconstruction</h3>
+        <p>Transforming incomplete data into actionable clarity where others see noise. See our Featured Work below: </p>
       </div>
     </div>
   </section>
@@ -984,12 +1254,17 @@ body.vision-mode .vision-contact-form button:hover {
     <h2>Featured Work</h2>
     <div class="vision-cards">
       <div class="vision-card">
+  <section>
+    <h2>Featured Work</h2>
+    <div class="cards">
+      <div class="card">
         <h3>Demo One</h3>
         <div class="video-wrapper">
           <iframe src="https://www.youtube.com/embed/X2YYrSm93X4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
       </div>
       <div class="vision-card">
+      <div class="card">
         <h3>Demo Two</h3>
         <div class="video-wrapper">
           <iframe src="https://www.youtube.com/embed/JKZJBHob9Kc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -1058,8 +1333,46 @@ body.vision-mode .vision-contact-form button:hover {
         <p style="margin-bottom: 1rem;"><strong>Email:</strong><br><a href="mailto:info@smithclove.xyz" style="color: var(--pro-accent);">info@smithclove.xyz</a></p>
         <p style="margin-bottom: 1rem;"><strong>LinkedIn:</strong><br><a href="https://linkedin.com/in/-david" style="color: var(--pro-accent);">linkedin.com/in/-david</a></p>
         <p><strong>Phone:</strong><br>+1 541-210-3100</p>
+</div>
+
+<!-- RESEARCH TAB -->
+<div id="research-tab" class="tab-content">
+  <section>
+    <h2>Publications & Recognition</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Springer Nature Publication</h3>
+        <div class="highlight-box">
+          <p style="font-size: 1.1rem; margin-bottom: 1rem;"><strong>🛰️ Modelling and Advanced Earth Observation Technologies</strong></p>
+          <p>Smith Clove's research on remote sensing analysis for geographically challenging environments has been cited in Springer's volume on the latest Earth observation methodologies.</p>
+        </div>
+
+        <p style="margin-top: 1.5rem; margin-bottom: 1rem;">This work represents a significant contribution to developing accessible frameworks for analyzing remote time series data.</p>
+
+        <a href="https://link.springer.com/book/10.1007/978-3-031-78768-3" target="_blank" rel="noopener" class="achievement-link">
+          <span>📖 View Publication</span>
+        </a>
+      </div>
+
+      <div class="card">
+        <h3>Key Research Areas</h3>
+        <ul class="info-list">
+          <li><strong>Remote Fire Detection</strong> — AI-powered early warning systems for wildfire monitoring in remote regions</li>
+          <li><strong>Geospatial Data Analysis</strong> — Open-source frameworks for processing satellite imagery and environmental data</li>
+          <li><strong>Edge Computing</strong> — Distributed intelligence systems for real-time environmental monitoring</li>
+          <li><strong>Data Reconstruction</strong> — Advanced algorithms for recovering actionable insights from incomplete datasets</li>
+        </ul>
       </div>
     </div>
+  </section>
+
+  <section>
+    <h2>Institutional Partnerships</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>NSF Convergence Accelerator</h3>
+        <p>Framework deployment for accelerating convergence research across multiple scientific disciplines. Our tools enable researchers to collaborate on complex environmental challenges with shared, accessible data analysis infrastructure.</p>
+      </div>
 
     <h2 style="margin-top: 4rem;">Collaboration Opportunities</h2>
     <div class="pro-cards">
@@ -1079,6 +1392,73 @@ body.vision-mode .vision-contact-form button:hover {
       </div>
     </div>
   </div>
+      <div class="card">
+        <h3>NASA FireSense</h3>
+        <p>Integration with NASA's fire detection and monitoring initiatives, providing enhanced capabilities for identifying and tracking wildfires in remote and hard-to-access regions through advanced satellite data analysis.</p>
+      </div>
+
+      <div class="card">
+        <h3>NARSS Collaboration</h3>
+        <p>Research partnership contributing to the advancement of Earth observation technologies and methodologies, with work featured in international publications and academic citations.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CONTACT TAB -->
+<div id="contact-tab" class="tab-content">
+  <section>
+    <h2>Establish Connection</h2>
+    <div class="cards">
+      <!-- Form column as a card -->
+      <div class="card">
+        <div class="email-capture">
+          <form id="contact-form" action="https://formspree.io/f/mwpngrlw" method="POST" novalidate target="_self">
+            <label>[EMAIL_IDENTIFIER]</label>
+            <input type="email" name="email" required inputmode="email" autocomplete="email" placeholder="user@domain.xyz" />
+            <label>[MESSAGE_BUFFER]</label>
+            <textarea name="message" rows="3" placeholder="Transmit data stream..."></textarea>
+            <button type="submit">[INITIATE_TRANSMISSION]</button>
+          </form>
+          <p id="form-status" aria-live="polite"></p>
+          <p class="smallprint">No automated responses.</p>
+        </div>
+      </div>
+
+      <!-- Info column as a matching card -->
+      <div class="card">
+        <h3>Direct Links</h3>
+        <p>
+          📧 <a href="mailto:info@smithclove.xyz">info@smithclove.xyz</a><br>
+          🔗 <a href="https://linkedin.com/in/-david">Social Protocol</a><br>
+          📞 <a href="#" class="phone-scrambled" data-p="NTQx" data-m="MjEw" data-l="MzEwMA==" onclick="return false;">
+            <span class="scrambled">+1 XXX-XXX-XXXX</span>
+            <span class="revealed">+1 541-210-3100</span>
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Collaboration Opportunities</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Research Partnerships</h3>
+        <p>We collaborate with academic institutions, government agencies, and research organizations on advancing next-generation vision technologies.</p>
+      </div>
+
+      <div class="card">
+        <h3>Open Source Contributions</h3>
+        <p>Join our community of developers and researchers contributing to open science. Our frameworks are designed to be accessible, extensible, and built for real-world applications.</p>
+      </div>
+
+      <div class="card">
+        <h3>Consulting Services</h3>
+        <p>Expert consultation on data analysis, remote detection systems, and custom engineered solutions for organizations in need of a new perspective.</p>
+      </div>
+    </div>
+  </section>
 </div>
 
 <footer>
@@ -1106,6 +1486,45 @@ styleToggle.addEventListener('click', () => {
 
 // Professional Theme Toggle (Day/Night)
 const proThemeToggle = document.getElementById('proThemeToggle');
+// Tab switching functionality
+const tabButtons = document.querySelectorAll('.tab-button');
+const tabContents = document.querySelectorAll('.tab-content');
+
+function switchTab(tabName) {
+  // Remove active class from all buttons and contents
+  tabButtons.forEach(btn => btn.classList.remove('active'));
+  tabContents.forEach(content => content.classList.remove('active'));
+
+  // Add active class to selected tab
+  const selectedButton = document.querySelector(`[data-tab="${tabName}"]`);
+  const selectedContent = document.getElementById(`${tabName}-tab`);
+
+  if (selectedButton && selectedContent) {
+    selectedButton.classList.add('active');
+    selectedContent.classList.add('active');
+
+    // Add glitch effect on tab switch
+    document.body.style.animation = 'theme-glitch 0.2s steps(3, end) 1';
+    setTimeout(() => {
+      document.body.style.animation = '';
+    }, 200);
+  }
+}
+
+// Add click listeners to tab buttons
+tabButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const tabName = button.getAttribute('data-tab');
+    switchTab(tabName);
+
+    // Scroll to top smoothly
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+
+// Theme toggle functionality
+const themeToggle = document.getElementById('themeToggle');
+const root = document.documentElement;
 
 // Check for saved preference, default to night mode
 const savedProTheme = localStorage.getItem('proTheme') || 'night';
