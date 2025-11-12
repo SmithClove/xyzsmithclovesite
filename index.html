@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Smith Clove ⚒ | Vision Lab</title>
-<meta name="description" content="Smith Clove - Computer Vision Lab and Library">
+<meta name="description" content="Smith Clove - Open science library and Computer Vision Lab">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -33,260 +33,6 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-  font-family: 'Inter', sans-serif;
-  background: var(--pro-bg);
-  color: var(--pro-text);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Professional Navigation */
-nav.main-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: var(--pro-nav-bg);
-  border-bottom: 1px solid var(--pro-border);
-  z-index: 1000;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-nav.main-nav .nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 70px;
-}
-
-nav.main-nav .logo {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--pro-text);
-  text-decoration: none;
-}
-
-nav.main-nav .nav-tabs {
-  display: flex;
-  gap: 0;
-  list-style: none;
-}
-
-nav.main-nav .nav-tabs button {
-  background: none;
-  border: none;
-  padding: 1.5rem 1.5rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #6b7280;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  border-bottom: 2px solid transparent;
-}
-
-nav.main-nav .nav-tabs button:hover {
-  color: var(--pro-accent);
-}
-
-nav.main-nav .nav-tabs button.active {
-  color: var(--pro-accent);
-  border-bottom-color: var(--pro-accent);
-}
-
-/* Professional Content */
-.tab-content {
-  display: none;
-  padding-top: 70px;
-}
-
-.tab-content.active {
-  display: block;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.pro-hero {
-  padding: 6rem 2rem;
-  text-align: center;
-  background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
-  border-bottom: 1px solid var(--pro-border);
-}
-
-.pro-hero h1 {
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
-  font-weight: 700;
-  color: var(--pro-text);
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-
-.pro-hero p {
-  font-size: 1.25rem;
-  color: #6b7280;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.pro-section {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 5rem 2rem;
-}
-
-.pro-section h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 3rem;
-  text-align: center;
-  color: var(--pro-text);
-}
-
-.pro-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-bottom: 3rem;
-}
-
-.pro-card {
-  background: var(--pro-card-bg);
-  border: 1px solid var(--pro-border);
-  border-radius: 8px;
-  padding: 2rem;
-  transition: all 0.3s ease;
-}
-
-.pro-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
-}
-
-.pro-card h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--pro-text);
-}
-
-.pro-card p {
-  color: #4b5563;
-  line-height: 1.7;
-}
-
-.pro-card ul {
-  list-style: none;
-  padding: 0;
-}
-
-.pro-card ul li {
-  padding: 0.5rem 0;
-  color: #4b5563;
-  padding-left: 1.5rem;
-  position: relative;
-}
-
-.pro-card ul li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: var(--pro-accent);
-  font-weight: bold;
-}
-
-.pro-link {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.75rem 1.5rem;
-  background: var(--pro-accent);
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.pro-link:hover {
-  background: var(--pro-accent-hover);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
-}
-
-.highlight {
-  background: #eff6ff;
-  border-left: 3px solid var(--pro-accent);
-  padding: 1.5rem;
-  margin: 2rem 0;
-  border-radius: 4px;
-}
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.contact-form label {
-  font-weight: 500;
-  color: var(--pro-text);
-  margin-bottom: 0.25rem;
-}
-
-.contact-form input,
-.contact-form textarea {
-  padding: 0.75rem;
-  border: 1px solid var(--pro-border);
-  border-radius: 6px;
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: none;
-  border-color: var(--pro-accent);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-.contact-form button {
-  padding: 0.75rem 1.5rem;
-  background: var(--pro-accent);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.contact-form button:hover {
-  background: var(--pro-accent-hover);
-}
-
-footer {
-  text-align: center;
-  padding: 2rem;
-  color: #6b7280;
-  border-top: 1px solid var(--pro-border);
-  font-size: 0.9rem;
-}
-
-/* ===== Novo Visio ===== */
-body.vision-mode {
   font-family: 'Courier Prime', monospace;
   background: var(--bg);
   color: var(--fg);
@@ -417,7 +163,7 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 .glitch-line { position: absolute; left: 0; right: 0; height: 2px; background: var(--accent); animation: glitch-sweep 4s linear infinite; opacity: 0; }
 @keyframes glitch-sweep { 0%, 95%, 100% { opacity: 0; } 2%, 8% { opacity: 0.8; transform: translateX(0); } 3%, 7% { opacity: 0.8; transform: translateX(100px); } 4%, 6% { opacity: 0.8; transform: translateX(-50px); } }
 
-/* Email Form styling */
+/* FIXED: Form styling with consistent theming */
 .email-capture { display: flex; flex-direction: column; gap: 1.5rem; }
 .email-capture form { display: flex; flex-direction: column; gap: 1rem; }
 .email-capture label { 
@@ -504,7 +250,7 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
   .video-wrapper { padding-bottom: 177.78%; /* 9:16 aspect ratio */ }
 }
 
-/* video wrapper */
+/* Adjust video wrapper for better display on desktop */
 @media (min-width: 769px) {
   .video-wrapper { 
     max-width: 400px; 
@@ -710,61 +456,8 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 /* Adjust scanlines for light mode */
 .light-mode body::before {
   background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.02) 2px, rgba(255, 255, 255, 0.02) 4px);
-  animation: none; /* Disable scanlines animation in light mode */
 }
 
-/* Disable glitch animations in vision light mode for accessibility */
-body.vision-mode.light-mode .vision-header h1 {
-  animation: none;
-  text-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff;
-}
-
-body.vision-mode.light-mode .vision-tag {
-  animation: none;
-  opacity: 0.7;
-}
-
-body.vision-mode.light-mode .vision-section h2 {
-  animation: none;
-  opacity: 1;
-}
-
-body.vision-mode.light-mode .vision-card {
-  background: rgba(15, 15, 15, 0.9);
-  border-color: rgba(255, 255, 255, 0.1);
-  transition: box-shadow 0.3s ease;
-}
-
-body.vision-mode.light-mode .vision-card::before {
-  animation: none;
-}
-
-body.vision-mode.light-mode .vision-card:hover {
-  transform: none;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
-}
-
-body.vision-mode.light-mode .vision-card p {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-body.vision-mode.light-mode .vision-contact-form label {
-  animation: none;
-  opacity: 1;
-}
-
-body.vision-mode.light-mode .glitch-line {
-  display: none;
-}
-
-/* Contact form in vision mode */
-body.vision-mode .vision-contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-body.vision-mode .vision-contact-form form {
 /* Tab Navigation */
 .tab-nav {
   position: fixed;
@@ -1005,9 +698,9 @@ header {
     <div class="cards">
       <div class="card">
         <h3>The Company</h3>
-        <p style="margin-bottom: 1.5rem;">Founded in 2023, our open science library empowers researchers and organizations worldwide.</p>
+        <p style="margin-bottom: 1.5rem;">Founded in 2023, Smith Clove is pioneering the future of edge analytics.</p>
 
-        <p style="margin-top: 1.5rem;">Contact us to learn more about edge analysis of data once thought inaccessible or too complex to process efficiently. </p>
+        <p style="margin-top: 1.5rem;">Our open science library enables researchers and organizations worldwide to analyze remote sensing data that was previously inaccessible or too complex to process effectively on edge devices.</p>
       </div>
 
       <div class="card">
