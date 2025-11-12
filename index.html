@@ -95,10 +95,6 @@ nav.main-nav .nav-tabs button.active {
 
 .tab-content.active {
   display: block;
-}
-
-/* Only animate in vision mode */
-body.vision-mode .tab-content.active {
   animation: fadeIn 0.3s ease;
 }
 
@@ -155,11 +151,12 @@ body.vision-mode .tab-content.active {
   border: 1px solid var(--pro-border);
   border-radius: 8px;
   padding: 2rem;
-  transition: box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .pro-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
 .pro-card h3 {
@@ -203,11 +200,12 @@ body.vision-mode .tab-content.active {
   text-decoration: none;
   border-radius: 6px;
   font-weight: 500;
-  transition: background 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .pro-link:hover {
   background: var(--pro-accent-hover);
+  transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
 }
 
