@@ -8,8 +8,20 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* ===== PROFESSIONAL MODE (DEFAULT) ===== */
+/* ===== PROFESSIONAL MODE (DEFAULT - NIGHT MODE) ===== */
 :root {
+  --pro-bg: #0f172a;
+  --pro-text: #e2e8f0;
+  --pro-accent: #3b82f6;
+  --pro-accent-hover: #2563eb;
+  --pro-border: #334155;
+  --pro-card-bg: #1e293b;
+  --pro-nav-bg: #1e293b;
+  --pro-hero-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+}
+
+/* Professional Day Mode */
+body.pro-day-mode {
   --pro-bg: #ffffff;
   --pro-text: #1a1a1a;
   --pro-accent: #2563eb;
@@ -17,6 +29,7 @@
   --pro-border: #e5e7eb;
   --pro-card-bg: #f9fafb;
   --pro-nav-bg: #ffffff;
+  --pro-hero-bg: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -106,7 +119,7 @@ nav.main-nav .nav-tabs button.active {
 .pro-hero {
   padding: 6rem 2rem;
   text-align: center;
-  background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+  background: var(--pro-hero-bg);
   border-bottom: 1px solid var(--pro-border);
 }
 
@@ -217,6 +230,14 @@ nav.main-nav .nav-tabs button.active {
   border-radius: 4px;
 }
 
+body.pro-day-mode .highlight {
+  background: #eff6ff;
+}
+
+body:not(.pro-day-mode) .highlight {
+  background: #1e3a5f;
+}
+
 .contact-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -274,6 +295,108 @@ footer {
   font-size: 0.9rem;
 }
 
+/* Style Toggle Button (Upper Left) */
+.style-toggle {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--pro-card-bg);
+  border: 2px solid var(--pro-border);
+  border-radius: 6px;
+  color: var(--pro-text);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 10001;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.style-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border-color: var(--pro-accent);
+}
+
+body.vision-mode .style-toggle {
+  display: none;
+}
+
+/* Day/Night Toggle Button (Upper Right - Professional Mode) */
+.pro-theme-toggle {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 30px;
+  background: transparent;
+  border: 2px solid var(--pro-border);
+  border-radius: 15px;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 10001;
+  transition: all 0.3s ease;
+}
+
+.pro-theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  background: var(--pro-accent);
+  border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  box-shadow: 0 0 5px var(--pro-accent);
+}
+
+body.pro-day-mode .pro-theme-toggle::before {
+  transform: translateX(28px);
+  background: #f59e0b;
+  box-shadow: 0 0 5px #f59e0b;
+}
+
+.pro-theme-toggle .icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.pro-theme-toggle .moon-icon {
+  left: 8px;
+  color: var(--pro-text);
+}
+
+.pro-theme-toggle .sun-icon {
+  right: 8px;
+  color: var(--pro-text);
+  opacity: 0.3;
+}
+
+body.pro-day-mode .pro-theme-toggle .moon-icon {
+  opacity: 0.3;
+}
+
+body.pro-day-mode .pro-theme-toggle .sun-icon {
+  opacity: 1;
+}
+
+.pro-theme-toggle:hover {
+  box-shadow: 0 0 15px var(--pro-accent);
+  transform: scale(1.05);
+}
+
+body.vision-mode .pro-theme-toggle {
+  display: none;
+}
+
 /* ===== VISION MODE (CYBERPUNK) ===== */
 body.vision-mode {
   font-family: 'Courier Prime', monospace;
@@ -308,7 +431,7 @@ body.vision-mode nav.main-nav {
   letter-spacing: 0.08em;
   font-family: 'Inter', sans-serif;
   animation: nightmare-glitch 3s infinite;
-  text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #00ff00, 0 0 20px #ff0040;
+  text-shadow: 0 0 3px #00ff00, 0 0 6px #00ff00, 0 0 9px #00ff00, 0 0 12px #ff0040;
   color: #00ff00;
 }
 
@@ -705,6 +828,15 @@ body.vision-mode .vision-contact-form button:hover {
 </head>
 <body>
 
+<!-- Style Toggle Button (Upper Left) -->
+<button class="style-toggle" id="styleToggle">⚡ Glitch Mode</button>
+
+<!-- Day/Night Toggle (Upper Right - Professional Mode) -->
+<button class="pro-theme-toggle" id="proThemeToggle" aria-label="Toggle day/night mode">
+  <span class="icon moon-icon">🌙</span>
+  <span class="icon sun-icon">☀️</span>
+</button>
+
 <!-- Professional Navigation -->
 <nav class="main-nav">
   <div class="nav-container">
@@ -956,10 +1088,42 @@ body.vision-mode .vision-contact-form button:hover {
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
+const body = document.body;
+
+// Style Toggle (Professional vs Glitch Mode)
+const styleToggle = document.getElementById('styleToggle');
+styleToggle.addEventListener('click', () => {
+  const visionTab = document.querySelector('[data-tab="vision"]');
+  if (body.classList.contains('vision-mode')) {
+    // Switch back to professional mode - go to About tab
+    const aboutTab = document.querySelector('[data-tab="about"]');
+    aboutTab.click();
+  } else {
+    // Switch to glitch mode - go to Vision tab
+    visionTab.click();
+  }
+});
+
+// Professional Theme Toggle (Day/Night)
+const proThemeToggle = document.getElementById('proThemeToggle');
+
+// Check for saved preference, default to night mode
+const savedProTheme = localStorage.getItem('proTheme') || 'night';
+if (savedProTheme === 'day') {
+  body.classList.add('pro-day-mode');
+}
+
+proThemeToggle.addEventListener('click', () => {
+  body.classList.toggle('pro-day-mode');
+
+  // Save preference
+  const currentTheme = body.classList.contains('pro-day-mode') ? 'day' : 'night';
+  localStorage.setItem('proTheme', currentTheme);
+});
+
 // Tab switching
 const navTabs = document.querySelectorAll('.nav-tab');
 const tabContents = document.querySelectorAll('.tab-content');
-const body = document.body;
 
 navTabs.forEach(tab => {
   tab.addEventListener('click', () => {
@@ -976,9 +1140,11 @@ navTabs.forEach(tab => {
     // Toggle vision mode
     if (tabName === 'vision') {
       body.classList.add('vision-mode');
+      styleToggle.textContent = '✨ Pro Mode';
     } else {
       body.classList.remove('vision-mode');
       body.classList.remove('light-mode');
+      styleToggle.textContent = '⚡ Glitch Mode';
     }
 
     // Scroll to top
