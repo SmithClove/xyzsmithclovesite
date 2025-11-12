@@ -106,10 +106,6 @@ nav.main-nav .nav-tabs button.active {
 
 .tab-content.active {
   display: block;
-}
-
-/* Only animate in vision mode */
-body.vision-mode .tab-content.active {
   animation: fadeIn 0.3s ease;
 }
 
@@ -166,11 +162,12 @@ body.vision-mode .tab-content.active {
   border: 1px solid var(--pro-border);
   border-radius: 8px;
   padding: 2rem;
-  transition: box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .pro-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
 .pro-card h3 {
@@ -214,11 +211,12 @@ body.vision-mode .tab-content.active {
   text-decoration: none;
   border-radius: 6px;
   font-weight: 500;
-  transition: background 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .pro-link:hover {
   background: var(--pro-accent-hover);
+  transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
 }
 
@@ -712,8 +710,61 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 /* Adjust scanlines for light mode */
 .light-mode body::before {
   background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.02) 2px, rgba(255, 255, 255, 0.02) 4px);
+  animation: none; /* Disable scanlines animation in light mode */
 }
 
+/* Disable glitch animations in vision light mode for accessibility */
+body.vision-mode.light-mode .vision-header h1 {
+  animation: none;
+  text-shadow: 0 0 3px #ffffff, 0 0 6px #ffffff;
+}
+
+body.vision-mode.light-mode .vision-tag {
+  animation: none;
+  opacity: 0.7;
+}
+
+body.vision-mode.light-mode .vision-section h2 {
+  animation: none;
+  opacity: 1;
+}
+
+body.vision-mode.light-mode .vision-card {
+  background: rgba(15, 15, 15, 0.9);
+  border-color: rgba(255, 255, 255, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+body.vision-mode.light-mode .vision-card::before {
+  animation: none;
+}
+
+body.vision-mode.light-mode .vision-card:hover {
+  transform: none;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+body.vision-mode.light-mode .vision-card p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+body.vision-mode.light-mode .vision-contact-form label {
+  animation: none;
+  opacity: 1;
+}
+
+body.vision-mode.light-mode .glitch-line {
+  display: none;
+}
+
+/* Contact form in vision mode */
+body.vision-mode .vision-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+body.vision-mode .vision-contact-form form {
 /* Tab Navigation */
 .tab-nav {
   position: fixed;
