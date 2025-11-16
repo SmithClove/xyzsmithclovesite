@@ -65,16 +65,17 @@ body::before {
 @keyframes scanlines { 0% { transform: translateY(0); } 100% { transform: translateY(4px); } }
 
 header {
-  height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative;
+  height: 88; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative;
+  z-index: 1000;
 }
 
 h1 {
   font-size: clamp(3rem, 10vw, 8rem); 
-  font-weight: 700; 
+  font-weight: 666; 
   text-transform: uppercase; 
   letter-spacing: 0.08em;
   font-family: 'Doto', 'Inter', sans-serif; 
-  animation: nightmare-glitch 3s infinite;
+  animation: nightmare-glitch 5s infinite;
   text-shadow: 0 0 3px #00ff00, 0 0 6px #00ff00, 0 0 9px #00ff00, 0 0 12px #ff0040;
   color: #00ff00;
   text-shadow: 0 0 5px var(--fg), 0 0 10px var(--fg), 0 0 15px var(--fg), 0 0 20px var(--accent);
@@ -86,7 +87,9 @@ h1 {
   transform: translateZ(0);
   backface-visibility: hidden;
   will-change: transform;
-}
+
+  z-index: 1001;
+  position: relative;}
 
 /* Light mode: pause glitch animation, remove text shadow */
 .light-mode h1 {
@@ -94,7 +97,9 @@ h1 {
   text-shadow: none;
   color: var(--fg);
   font-family: 'Doto', sans-serif;
-}
+
+  z-index: 1001;
+  position: relative;}
 
 @keyframes nightmare-glitch {
   0%, 90%, 100% { transform: translate(0); filter: hue-rotate(0deg); }
@@ -154,8 +159,7 @@ section h2 {
   margin-bottom: 2rem; 
   color: var(--accent); 
   font-family: 'Inter', sans-serif; 
-  font-weight: 700;
-  text-transform: uppercase; 
+  font-weight: 666  text-transform: uppercase; 
   letter-spacing: 0.05em; 
   animation: pulse-glow 2s ease-in-out infinite alternate; 
   text-align: center;
@@ -180,7 +184,7 @@ section h2 {
   position: relative; 
   overflow: hidden; 
 }
-.card::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: linear-gradient(45deg, var(--accent), var(--accent2), var(--error), var(--accent)); background-size: 400% 400%; animation: gradient-border 3s ease infinite; z-index: -1; opacity: 0; transition: opacity 0.3s ease; }
+.card::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: linear-gradient(45deg, var(--accent), var(--accent2), var(--error), var(--accent)); background-size: 400% 400%; animation: gradient-border 4s ease infinite; z-index: -1; opacity: 0; transition: opacity 0.3s ease; }
 .card:hover::before { opacity: 1; }
 
 /* Light mode: pause gradient-border animation and simplify card hover */
@@ -203,7 +207,7 @@ section h2 {
   margin-bottom: 1rem; 
   color: var(--fg); 
   font-family: 'Inter', sans-serif; 
-  font-weight: 600;
+  font-weight: 666;
   text-transform: uppercase; 
   letter-spacing: 0.05em;
   -webkit-font-smoothing: subpixel-antialiased;
@@ -278,7 +282,7 @@ a:focus-visible {
   letter-spacing: 0.1em; 
   font-size: 0.9rem; 
   font-weight: bold;
-  animation: pulse-glow 3s ease-in-out infinite alternate;
+  animation: pulse-glow 4s ease-in-out infinite alternate;
 }
 
 /* Light mode: pause label animation */
@@ -466,7 +470,7 @@ a:focus-visible {
 .phone-scrambled .scrambled {
   font-family: 'DotGothic16', 'Space Mono', monospace;
   letter-spacing: 0.05em;
-  animation: scramble-idle 3s infinite;
+  animation: scramble-idle 4s infinite;
 }
 
 /* Light mode: pause scramble-idle animation */
@@ -815,6 +819,7 @@ header {
   flex-direction: column;
   text-align: center;
   position: relative;
+  z-index: 1000;
 }
 
 /* Mobile responsive tabs */
@@ -848,7 +853,9 @@ header {
 
   header h1 {
     font-size: clamp(2rem, 8vw, 4rem);
-  }
+  
+  z-index: 1001;
+  position: relative;}
 }
 
 /* Professional list styling */
