@@ -20,14 +20,14 @@
 }
 
 :root.light-mode {
-  --bg: #0a0a0a;
-  --fg: #ffffff;
-  --accent: #00ffff;
-  --accent2: #ff0040;
-  --glass: rgba(255, 255, 255, 0.02);
-  --error: #ff6b6b;
-  --card-bg: rgba(15, 15, 15, 0.9);
-  --border-color: rgba(255, 255, 255, 0.1);
+  --bg: linear-gradient(135deg, #e8eaf0 0%, #d4d7e0 25%, #c5c9d6 50%, #d4d7e0 75%, #e8eaf0 100%);
+  --fg: #2d3748;
+  --accent: #5a67d8;
+  --accent2: #667eea;
+  --glass: rgba(255, 255, 255, 0.6);
+  --error: #ef4444;
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --border-color: rgba(99, 102, 241, 0.15);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -44,11 +44,22 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* Light mode: replace with subtle grey gradient background */
+.light-mode body {
+  background: linear-gradient(135deg, #e8eaf0 0%, #d4d7e0 25%, #c5c9d6 50%, #d4d7e0 75%, #e8eaf0 100%);
+  background-attachment: fixed;
+}
+
 body::before {
   content: '';
   position: fixed; top: 0; left: 0; width: 100%; height: 100%;
   background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 0, 0.03) 2px, rgba(0, 255, 0, 0.03) 4px);
   pointer-events: none; z-index: 1000; animation: scanlines 0.1s linear infinite;
+}
+
+/* Light mode: remove scanlines effect */
+.light-mode body::before {
+  display: none;
 }
 
 @keyframes scanlines { 0% { transform: translateY(0); } 100% { transform: translateY(4px); } }
@@ -77,6 +88,13 @@ h1 {
   will-change: transform;
 }
 
+/* Light mode: pause glitch animation and remove text shadow */
+.light-mode h1 {
+  animation: none;
+  text-shadow: none;
+  color: var(--fg);
+}
+
 @keyframes nightmare-glitch {
   0%, 90%, 100% { transform: translate(0); filter: hue-rotate(0deg); }
   10% { transform: translate(-2px, 2px); text-shadow: 2px 0 var(--accent), -2px 0 var(--accent2); }
@@ -90,6 +108,13 @@ h1 {
 }
 
 .tag { margin-top: 2rem; font-size: 1.2rem; opacity: 0.7; font-family: 'Courier Prime', monospace; animation: flicker 2s infinite alternate; color: var(--accent); }
+
+/* Light mode: pause flicker animation */
+.light-mode .tag {
+  animation: none;
+  opacity: 0.8;
+}
+
 @keyframes flicker { 0%, 50% { opacity: 0.7; } 51%, 100% { opacity: 0.3; } }
 
 .cta-button {
@@ -100,8 +125,29 @@ h1 {
 .cta-button:hover::before { left: 0; }
 .cta-button:hover { color: var(--bg); box-shadow: 0 0 20px var(--accent); }
 
+/* Light mode: adjust button for minimal style */
+.light-mode .cta-button {
+  color: var(--fg);
+  border-color: var(--accent);
+}
+.light-mode .cta-button:hover {
+  box-shadow: 0 2px 8px rgba(90, 103, 216, 0.3);
+}
+
 section { padding: 6rem 8vw; background: var(--glass); backdrop-filter: blur(2px); border-top: 1px solid rgba(0, 255, 0, 0.1); border-bottom: 1px solid rgba(0, 255, 0, 0.1); position: relative; }
 section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(90deg, transparent, transparent 100px, rgba(255, 0, 64, 0.03) 100px, rgba(255, 0, 64, 0.03) 102px); pointer-events: none; }
+
+/* Light mode: remove section overlay effects */
+.light-mode section {
+  background: var(--glass);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+.light-mode section::before {
+  display: none;
+}
+
 section h2 { 
   font-size: 2.5rem; 
   margin-bottom: 2rem; 
@@ -118,6 +164,11 @@ section h2 {
   backface-visibility: hidden;
 }
 
+/* Light mode: pause pulse-glow animation */
+.light-mode section h2 {
+  animation: none;
+}
+
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; }
 .card { 
   padding: 2.5rem; 
@@ -130,6 +181,20 @@ section h2 {
 }
 .card::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: linear-gradient(45deg, var(--accent), var(--accent2), var(--error), var(--accent)); background-size: 400% 400%; animation: gradient-border 3s ease infinite; z-index: -1; opacity: 0; transition: opacity 0.3s ease; }
 .card:hover::before { opacity: 1; }
+
+/* Light mode: pause gradient-border animation and simplify card hover */
+.light-mode .card::before {
+  animation: none;
+}
+.light-mode .card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.light-mode .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(90, 103, 216, 0.15);
+}
+
 @keyframes gradient-border { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 .card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 10px 30px rgba(255, 0, 64, 0.3), 0 0 50px rgba(0, 255, 255, 0.1); }
 .card h3 { 
@@ -144,23 +209,46 @@ section h2 {
   text-rendering: geometricPrecision;
 }
 .card p { color: rgba(0, 255, 0, 0.8); line-height: 1.6; }
-.light-mode .card p { color: rgba(255, 255, 255, 0.7); }
+.light-mode .card p { color: rgba(45, 55, 72, 0.85); }
 
 /* Ensure Direct Links text is left-aligned */
 #contact .card p { text-align: left; }
 
 footer { padding: 3rem 8vw; text-align: center; font-size: 0.9rem; color: rgba(0, 255, 0, 0.5); border-top: 1px solid rgba(0, 255, 0, 0.1); font-family: 'Courier Prime', monospace; }
 
+/* Light mode: adjust footer */
+.light-mode footer {
+  color: rgba(45, 55, 72, 0.6);
+  border-top: 1px solid var(--border-color);
+}
+
 a { color: var(--accent); text-decoration: none; transition: all 0.3s ease; }
 a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
+
+/* Light mode: remove text-shadow on links */
+.light-mode a:hover {
+  text-shadow: none;
+}
 
 /* FIXED: Contact section uses consistent card grid */
 #contact .cards { margin-top: 0; }
 
 .error-text { color: var(--error); animation: error-pulse 1s ease-in-out infinite alternate; }
+
+/* Light mode: pause error-pulse animation */
+.light-mode .error-text {
+  animation: none;
+}
+
 @keyframes error-pulse { from { opacity: 0.5; } to { opacity: 1; } }
 
 .glitch-line { position: absolute; left: 0; right: 0; height: 2px; background: var(--accent); animation: glitch-sweep 4s linear infinite; opacity: 0; }
+
+/* Light mode: hide glitch lines */
+.light-mode .glitch-line {
+  display: none;
+}
+
 @keyframes glitch-sweep { 0%, 95%, 100% { opacity: 0; } 2%, 8% { opacity: 0.8; transform: translateX(0); } 3%, 7% { opacity: 0.8; transform: translateX(100px); } 4%, 6% { opacity: 0.8; transform: translateX(-50px); } }
 
 /* FIXED: Form styling with consistent theming */
@@ -174,6 +262,12 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
   font-weight: bold;
   animation: pulse-glow 3s ease-in-out infinite alternate;
 }
+
+/* Light mode: pause label animation */
+.light-mode .email-capture label {
+  animation: none;
+}
+
 @keyframes pulse-glow { from { opacity: 0.7; } to { opacity: 1; } }
 
 .email-capture input[type="email"],
@@ -188,8 +282,9 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 }
 .light-mode .email-capture input[type="email"],
 .light-mode .email-capture textarea { 
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  background: rgba(10, 10, 10, 0.7);
+  border: 2px solid var(--border-color);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
 }
 .email-capture textarea { resize: vertical; min-height: 100px; }
 .email-capture input[type="email"]:focus,
@@ -199,6 +294,15 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
   border-color: var(--accent2); 
   background: rgba(0, 0, 0, 0.8);
 }
+
+/* Light mode: simplify focus effects */
+.light-mode .email-capture input[type="email"]:focus,
+.light-mode .email-capture textarea:focus {
+  box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.2);
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 1);
+}
+
 .email-capture button { 
   padding: 0.8rem 1.5rem; 
   border: 2px solid var(--accent); 
@@ -229,21 +333,53 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
   color: var(--bg); 
   box-shadow: 0 0 15px var(--accent); 
 }
+
+/* Light mode: simplify button */
+.light-mode .email-capture button {
+  border-radius: 6px;
+}
+.light-mode .email-capture button:hover {
+  box-shadow: 0 4px 12px rgba(90, 103, 216, 0.3);
+  color: #ffffff;
+}
+
 .smallprint { font-size: .9rem; opacity: .7; }
 
 .email-capture textarea::placeholder,
 .email-capture input::placeholder { color: rgba(0,255,0,0.3); font-style: italic; }
 .light-mode .email-capture textarea::placeholder,
-.light-mode .email-capture input::placeholder { color: rgba(255,255,255,0.3); }
+.light-mode .email-capture input::placeholder { color: rgba(45, 55, 72, 0.4); }
 
 #form-status { opacity: 0; transition: opacity .25s ease; }
 #form-status.show { opacity: 1; animation: status-glitch 1s steps(8, end) 1; }
+
+/* Light mode: pause status-glitch animation */
+.light-mode #form-status.show {
+  animation: none;
+}
+
 @keyframes status-glitch { 0% { text-shadow: 2px 0 var(--accent), -2px 0 var(--accent2); transform: translate(0); } 20% { transform: translate(1px, -1px); } 40% { transform: translate(-1px, 1px); } 60% { text-shadow: -2px 0 var(--error), 2px 0 var(--accent2); } 80% { transform: translate(1px, 0); } 100% { text-shadow: none; transform: translate(0); } }
 #form-status.shake { animation: shake 300ms linear 1, status-glitch 1s steps(8, end) 1; }
+
+/* Light mode: simplify shake animation */
+.light-mode #form-status.shake {
+  animation: shake 300ms linear 1;
+}
+
 @keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-6px); } 40% { transform: translateX(6px); } 60% { transform: translateX(-4px); } 80% { transform: translateX(4px); } }
 
 .video-wrapper { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; background: rgba(0, 0, 0, 0.5); }
 .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 1px solid var(--border-color); }
+
+/* Light mode: adjust video wrapper */
+.light-mode .video-wrapper {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.light-mode .video-wrapper iframe {
+  border: none;
+}
 
 /* For YouTube Shorts (vertical videos) on smaller screens */
 @media (max-width: 768px) {
@@ -285,10 +421,20 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
   white-space: nowrap;
 }
 
+/* Light mode: remove text-shadow from revealed phone */
+.light-mode .phone-scrambled .revealed {
+  text-shadow: none;
+}
+
 .phone-scrambled .scrambled {
   font-family: 'Courier Prime', monospace;
   letter-spacing: 0.05em;
   animation: scramble-idle 3s infinite;
+}
+
+/* Light mode: pause scramble-idle animation */
+.light-mode .phone-scrambled .scrambled {
+  animation: none;
 }
 
 @keyframes scramble-idle {
@@ -302,6 +448,23 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 
 .phone-scrambled:hover .revealed {
   animation: reveal-in 0.5s forwards;
+}
+
+/* Light mode: simplify phone reveal animations */
+.light-mode .phone-scrambled:hover .scrambled {
+  animation: simple-fade-out 0.3s forwards;
+}
+
+.light-mode .phone-scrambled:hover .revealed {
+  animation: simple-fade-in 0.3s forwards;
+}
+
+@keyframes simple-fade-out {
+  to { opacity: 0; }
+}
+
+@keyframes simple-fade-in {
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes scramble-out {
@@ -368,6 +531,11 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
   animation: intense-glitch 0.3s steps(4, end) infinite;
 }
 
+/* Light mode: disable intense-glitch */
+.light-mode .phone-scrambled.glitching .scrambled {
+  animation: none;
+}
+
 @keyframes intense-glitch {
   0%, 100% { 
     transform: translateX(0); 
@@ -403,6 +571,12 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
   transition: all 0.3s ease;
 }
 
+/* Light mode: adjust toggle style */
+.light-mode .theme-toggle {
+  border-radius: 15px;
+  border-color: var(--accent);
+}
+
 .theme-toggle::before {
   content: '';
   position: absolute;
@@ -415,10 +589,20 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
   box-shadow: 0 0 10px var(--accent);
 }
 
+/* Light mode: adjust toggle indicator */
+.light-mode .theme-toggle::before {
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(90, 103, 216, 0.3);
+}
+
 .theme-toggle.active::before {
   transform: translateX(28px);
   background: var(--accent2);
   box-shadow: 0 0 10px var(--accent2);
+}
+
+.light-mode .theme-toggle.active::before {
+  box-shadow: 0 2px 6px rgba(102, 126, 234, 0.3);
 }
 
 .theme-toggle .icon {
@@ -453,9 +637,9 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
   transform: scale(1.05);
 }
 
-/* Adjust scanlines for light mode */
-.light-mode body::before {
-  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.02) 2px, rgba(255, 255, 255, 0.02) 4px);
+/* Light mode: simplify toggle hover */
+.light-mode .theme-toggle:hover {
+  box-shadow: 0 4px 12px rgba(90, 103, 216, 0.2);
 }
 
 /* Tab Navigation */
@@ -471,6 +655,14 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
   border: 2px solid var(--border-color);
   backdrop-filter: blur(10px);
   padding: 0;
+}
+
+/* Light mode: adjust tab navigation */
+.light-mode .tab-nav {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  border-color: var(--border-color);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .tab-button {
@@ -515,9 +707,21 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
   box-shadow: inset 0 0 20px rgba(255, 0, 64, 0.1);
 }
 
+/* Light mode: adjust active tab */
+.light-mode .tab-button.active {
+  background: rgba(90, 103, 216, 0.1);
+  box-shadow: none;
+}
+
 .tab-button:hover {
   background: rgba(0, 255, 0, 0.05);
   box-shadow: 0 0 10px var(--accent);
+}
+
+/* Light mode: simplify tab hover */
+.light-mode .tab-button:hover {
+  background: rgba(90, 103, 216, 0.05);
+  box-shadow: none;
 }
 
 /* Tab Content */
@@ -533,6 +737,16 @@ a:hover { color: var(--accent2); text-shadow: 0 0 5px currentColor; }
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Light mode: simplify fade in */
+.light-mode .tab-content {
+  animation: simpleFadeIn 0.3s ease-in-out;
+}
+
+@keyframes simpleFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* Adjust header for tabs */
@@ -597,7 +811,7 @@ header {
 }
 
 .light-mode .info-list li {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(45, 55, 72, 0.85);
 }
 
 .info-list li::before {
@@ -626,6 +840,11 @@ header {
   overflow: hidden;
 }
 
+/* Light mode: adjust achievement link */
+.light-mode .achievement-link {
+  border-radius: 6px;
+}
+
 .achievement-link::before {
   content: '';
   position: absolute;
@@ -648,12 +867,25 @@ header {
   transform: translateY(-2px);
 }
 
+/* Light mode: simplify link hover */
+.light-mode .achievement-link:hover {
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
 .highlight-box {
   background: rgba(0, 255, 255, 0.05);
   border-left: 3px solid var(--accent2);
   padding: 1.5rem;
   margin: 2rem 0;
   position: relative;
+}
+
+/* Light mode: adjust highlight box */
+.light-mode .highlight-box {
+  background: rgba(102, 126, 234, 0.08);
+  border-left: 3px solid var(--accent2);
+  border-radius: 0 6px 6px 0;
 }
 
 .highlight-box::before {
@@ -665,6 +897,11 @@ header {
   bottom: 0;
   background: repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(0, 255, 255, 0.03) 10px, rgba(0, 255, 255, 0.03) 11px);
   pointer-events: none;
+}
+
+/* Light mode: remove highlight box overlay */
+.light-mode .highlight-box::before {
+  display: none;
 }
 </style>
 </head>
@@ -713,8 +950,6 @@ header {
 
         <p style="margin-top: 1.5rem; color: rgba(0, 255, 255, 0.9);">Our technology bridges the gap between satellite data and actionable intelligence, making advanced Earth observation accessible to researchers without extensive computational resources.</p>
       </div>
-    </div>
-  </section>
     </div>
   </section>
 </div>
@@ -886,11 +1121,13 @@ function switchTab(tabName) {
     selectedButton.classList.add('active');
     selectedContent.classList.add('active');
 
-    // Add glitch effect on tab switch
-    document.body.style.animation = 'theme-glitch 0.2s steps(3, end) 1';
-    setTimeout(() => {
-      document.body.style.animation = '';
-    }, 200);
+    // Add glitch effect on tab switch ONLY in dark mode
+    if (!document.documentElement.classList.contains('light-mode')) {
+      document.body.style.animation = 'theme-glitch 0.2s steps(3, end) 1';
+      setTimeout(() => {
+        document.body.style.animation = '';
+      }, 200);
+    }
   }
 }
 
@@ -924,11 +1161,13 @@ themeToggle.addEventListener('click', () => {
   const currentTheme = root.classList.contains('light-mode') ? 'light' : 'dark';
   localStorage.setItem('theme', currentTheme);
   
-  // Add a glitch effect on toggle
-  document.body.style.animation = 'theme-glitch 0.3s steps(4, end) 1';
-  setTimeout(() => {
-    document.body.style.animation = '';
-  }, 300);
+  // Add glitch effect ONLY when switching to dark mode
+  if (!root.classList.contains('light-mode')) {
+    document.body.style.animation = 'theme-glitch 0.3s steps(4, end) 1';
+    setTimeout(() => {
+      document.body.style.animation = '';
+    }, 300);
+  }
 });
 
 // Add theme glitch animation
@@ -943,18 +1182,18 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Glitch effect on random intervals
+// Glitch effect on random intervals - ONLY in dark mode
 setInterval(() => {
-  if (Math.random() > 0.95) {
+  if (!document.documentElement.classList.contains('light-mode') && Math.random() > 0.95) {
     document.body.style.filter = 'hue-rotate(' + Math.random() * 360 + 'deg)';
     setTimeout(() => { document.body.style.filter = 'none'; }, 100);
   }
 }, 500);
 
-// Text corruption effect
+// Text corruption effect - ONLY in dark mode
 const corruptableElements = document.querySelectorAll('p, h3');
 setInterval(() => {
-  if (Math.random() > 0.98) {
+  if (!document.documentElement.classList.contains('light-mode') && Math.random() > 0.98) {
     const el = corruptableElements[Math.floor(Math.random() * corruptableElements.length)];
     const originalText = el.textContent;
     const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
@@ -1026,21 +1265,28 @@ function generateScrambled() {
   return scrambled;
 }
 
-// Scramble effect on hover
+// Scramble effect on hover - ONLY in dark mode
 phoneLink.addEventListener('mouseenter', function() {
+  const isDarkMode = !document.documentElement.classList.contains('light-mode');
+  
   if (!isRevealed) {
-    phoneLink.classList.add('glitching');
-    scrambleInterval = setInterval(() => {
-      scrambledSpan.textContent = generateScrambled();
-    }, 50);
-    
-    setTimeout(() => {
-      clearInterval(scrambleInterval);
-      phoneLink.classList.remove('glitching');
+    if (isDarkMode) {
+      phoneLink.classList.add('glitching');
+      scrambleInterval = setInterval(() => {
+        scrambledSpan.textContent = generateScrambled();
+      }, 50);
+      
+      setTimeout(() => {
+        clearInterval(scrambleInterval);
+        phoneLink.classList.remove('glitching');
+        isRevealed = true;
+        revealedSpan.textContent = realPhone;
+      }, 500);
+    } else {
+      // In light mode, just reveal immediately
       isRevealed = true;
-      // Update the revealed span with actual number
       revealedSpan.textContent = realPhone;
-    }, 500);
+    }
   }
 });
 
@@ -1058,7 +1304,7 @@ phoneLink.addEventListener('click', function(e) {
   }
 });
 
-// Reset on mouse leave (optional - remove if you want it to stay revealed)
+// Reset on mouse leave
 phoneLink.addEventListener('mouseleave', function() {
   setTimeout(() => {
     if (isRevealed) {
