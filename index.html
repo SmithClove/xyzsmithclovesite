@@ -6,7 +6,7 @@
 <title>Smith Clove ⚒ | Vision Lab</title>
 <meta name="description" content="Smith Clove - Analytics and Vision Lab">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Space+Mono:wght@400;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Doto:wght@400..900&family=DotGothic16&family=Space+Mono:wght@400;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #000000;
@@ -825,10 +825,14 @@ header {
 /* Mobile responsive tabs */
 @media (max-width: 768px) {
   .tab-nav {
-    top: 5rem;
-    flex-wrap: wrap;
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 1rem auto 0;
     width: 90%;
     max-width: 600px;
+    flex-wrap: wrap;
   }
 
   .tab-button {
@@ -848,15 +852,14 @@ header {
   }
 
   header {
-    padding: 10rem 5vw 4rem;
+    padding: 3rem 5vw 4rem;
   }
 
   header h1 {
     font-size: clamp(2rem, 8vw, 4rem);
-  
-  z-index: 1001;
-  position: relative;}
+  }
 }
+
 
 /* Professional list styling */
 .info-list {
