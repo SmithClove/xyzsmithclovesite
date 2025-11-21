@@ -65,11 +65,18 @@ body::before {
 @keyframes scanlines { 0% { transform: translateY(0); } 100% { transform: translateY(4px); } }
 
 header {
-  height: 88; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; position: relative;
+  padding: 3.5rem 5vw 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
   z-index: 1000;
 }
 
 h1 {
+  margin: 0 0 0.4rem;
   font-size: clamp(3rem, 10vw, 8rem); 
   font-weight: 666; 
   text-transform: uppercase; 
@@ -113,7 +120,16 @@ h1 {
   80% { transform: translate(-1px, -1px); text-shadow: -2px 0 var(--accent), 2px 0 var(--error); }
 }
 
-.tag { margin-top: 2rem; font-size: 1.2rem; opacity: 0.7; font-family: 'Space Mono', monospace; animation: flicker 2s infinite alternate; color: var(--accent); }
+.tag {
+  margin-top: 0.4rem;
+  margin-bottom: 0;
+  font-size: 1.2rem;
+  opacity: 0.7;
+  font-family: 'Space Mono', monospace;
+  animation: flicker 2s infinite alternate;
+  color: var(--accent);
+}
+
 
 /* Light mode: pause flicker animation */
 .light-mode .tag {
@@ -694,18 +710,18 @@ a:focus-visible {
 
 /* Tab Navigation */
 .tab-nav {
-  position: fixed;
-  top: 6rem;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 9999;
+  position: static;
+  margin: 1.5rem auto 0;
+  z-index: 10;
   display: flex;
   gap: 0;
   background: rgba(0, 0, 0, 0.9);
   border: 2px solid var(--border-color);
   backdrop-filter: blur(10px);
   padding: 0;
+  width: fit-content;
 }
+
 
 /* Light mode: adjust tab navigation */
 .light-mode .tab-nav {
