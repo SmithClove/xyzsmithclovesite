@@ -1366,4 +1366,13 @@ phoneLink.addEventListener('click', function(e) {
   }
 });
 
-phoneLink.addEventL
+phoneLink.addEventListener('mouseleave', function() {
+  clearInterval(scrambleInterval);
+  phoneLink.classList.remove('glitching');
+});
+</script>
+
+<script src="js/mindmap.js"></script>
+
+</body>
+</html>
