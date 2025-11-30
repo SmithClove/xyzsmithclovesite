@@ -1,0 +1,358 @@
+/* Mind Map Styles - matches smithclove.xyz theme */
+
+.mindmap-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.mindmap-btn {
+  background: transparent;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  padding: 0.8rem 1.5rem;
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.mindmap-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.mindmap-btn:hover::before {
+  left: 0;
+}
+
+.mindmap-btn:hover {
+  color: var(--bg);
+  box-shadow: 0 0 15px var(--accent);
+}
+
+.light-mode .mindmap-btn {
+  border-radius: 6px;
+}
+
+.light-mode .mindmap-btn:hover {
+  box-shadow: 0 4px 12px rgba(90, 103, 216, 0.3);
+}
+
+.mindmap-search-container {
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  position: relative;
+}
+
+.mindmap-search {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: 2px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--fg);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.mindmap-search::placeholder {
+  color: rgba(0, 255, 0, 0.3);
+}
+
+.mindmap-search:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 20px rgba(255, 0, 64, 0.2);
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.light-mode .mindmap-search {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 6px;
+}
+
+.light-mode .mindmap-search::placeholder {
+  color: rgba(45, 55, 72, 0.4);
+}
+
+.light-mode .mindmap-search:focus {
+  box-shadow: 0 0 0 3px rgba(90, 103, 216, 0.2);
+  background: #fff;
+}
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.95);
+  border: 1px solid var(--border-color);
+  border-top: none;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 100;
+  display: none;
+}
+
+.light-mode .search-results {
+  background: rgba(255, 255, 255, 0.98);
+  border-radius: 0 0 6px 6px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.search-result {
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-color);
+  transition: background 0.2s ease;
+}
+
+.search-result:hover {
+  background: rgba(255, 0, 64, 0.2);
+}
+
+.light-mode .search-result:hover {
+  background: rgba(90, 103, 216, 0.1);
+}
+
+.search-result-name {
+  font-size: 0.9rem;
+  color: var(--fg);
+  margin-bottom: 0.25rem;
+}
+
+.search-result-path {
+  font-size: 0.7rem;
+  color: rgba(0, 255, 0, 0.4);
+}
+
+.light-mode .search-result-path {
+  color: rgba(45, 55, 72, 0.5);
+}
+
+/* Tree structure */
+.mindmap-tree {
+  display: flex;
+  justify-content: center;
+}
+
+.mindmap-node-container {
+  position: relative;
+}
+
+.mindmap-node-container.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mindmap-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--border-color);
+  margin: 0.25rem 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  animation: nodeEnter 0.3s ease forwards;
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+@keyframes nodeEnter {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.mindmap-node:hover {
+  border-color: var(--accent);
+  transform: translateX(4px);
+  box-shadow: -4px 0 0 var(--accent), 0 4px 20px rgba(255, 0, 64, 0.2);
+}
+
+.mindmap-node.expanded {
+  border-color: rgba(255, 0, 64, 0.5);
+}
+
+.mindmap-node.has-link:hover {
+  background: rgba(255, 0, 64, 0.2);
+}
+
+.light-mode .mindmap-node {
+  background: var(--card-bg);
+  border-radius: 6px;
+}
+
+.light-mode .mindmap-node:hover {
+  box-shadow: 0 4px 12px rgba(90, 103, 216, 0.15);
+  transform: translateX(4px);
+}
+
+.node-text {
+  font-size: 0.85rem;
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: 'Space Mono', monospace;
+}
+
+.node-meta {
+  font-size: 0.7rem;
+  color: rgba(0, 255, 0, 0.4);
+  font-style: italic;
+}
+
+.light-mode .node-meta {
+  color: rgba(45, 55, 72, 0.5);
+}
+
+.toggle-icon {
+  font-size: 1.1rem;
+  color: var(--accent);
+  font-weight: bold;
+  min-width: 16px;
+  text-align: center;
+}
+
+.link-icon {
+  font-size: 0.75rem;
+  color: var(--accent2);
+  opacity: 0.8;
+}
+
+.children-container {
+  margin-left: 1.5rem;
+  padding-left: 1.5rem;
+  border-left: 1px dashed var(--accent);
+  position: relative;
+}
+
+.children-container::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 0;
+  width: 1px;
+  height: 20px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
+.light-mode .children-container {
+  border-left-color: var(--accent);
+  opacity: 0.6;
+}
+
+/* Root node special styling */
+.root > .mindmap-node {
+  font-size: 1.2rem;
+  padding: 1.25rem 2rem;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(20, 20, 20, 0.9) 100%);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 30px rgba(255, 0, 64, 0.3);
+}
+
+.root > .mindmap-node .node-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  max-width: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.light-mode .root > .mindmap-node {
+  background: var(--card-bg);
+  box-shadow: 0 8px 32px rgba(90, 103, 216, 0.2);
+}
+
+.root > .children-container {
+  margin-left: 0;
+  padding-left: 0;
+  border-left: none;
+  margin-top: 1.5rem;
+}
+
+.root > .children-container::before {
+  display: none;
+}
+
+/* Legend */
+.mindmap-legend {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid var(--border-color);
+  padding: 1rem 1.5rem;
+  font-size: 0.75rem;
+  backdrop-filter: blur(10px);
+  z-index: 100;
+}
+
+.light-mode .mindmap-legend {
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+  color: rgba(0, 255, 0, 0.6);
+  font-family: 'Space Mono', monospace;
+}
+
+.light-mode .legend-item {
+  color: rgba(45, 55, 72, 0.7);
+}
+
+.legend-item:last-child {
+  margin-bottom: 0;
+}
+
+.legend-icon {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .node-text {
+    max-width: 200px;
+    font-size: 0.8rem;
+  }
+
+  .mindmap-legend {
+    display: none;
+  }
+
+  .children-container {
+    margin-left: 1rem;
+    padding-left: 1rem;
+  }
+
+  .root > .mindmap-node .node-text {
+    font-size: 1.2rem;
+  }
+}
