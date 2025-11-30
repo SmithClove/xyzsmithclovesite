@@ -7,6 +7,7 @@
 <meta name="description" content="Smith Clove - Analytics and Vision Lab">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400..900&family=DotGothic16&family=Space+Mono:wght@400;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/mindmap.css">
 <style>
 :root {
   --bg: #000000;
@@ -94,9 +95,9 @@ h1 {
   transform: translateZ(0);
   backface-visibility: hidden;
   will-change: transform;
-
   z-index: 1001;
-  position: relative;}
+  position: relative;
+}
 
 /* Light mode: pause glitch animation, remove text shadow */
 .light-mode h1 {
@@ -104,9 +105,9 @@ h1 {
   text-shadow: none;
   color: var(--fg);
   font-family: 'Doto', sans-serif;
-
   z-index: 1001;
-  position: relative;}
+  position: relative;
+}
 
 @keyframes nightmare-glitch {
   0%, 90%, 100% { transform: translate(0); filter: hue-rotate(0deg); }
@@ -129,7 +130,6 @@ h1 {
   animation: flicker 2s infinite alternate;
   color: var(--accent);
 }
-
 
 /* Light mode: pause flicker animation */
 .light-mode .tag {
@@ -175,7 +175,8 @@ section h2 {
   margin-bottom: 2rem; 
   color: var(--accent); 
   font-family: 'Inter', sans-serif; 
-  font-weight: 666  text-transform: uppercase; 
+  font-weight: 666;
+  text-transform: uppercase; 
   letter-spacing: 0.05em; 
   animation: pulse-glow 2s ease-in-out infinite alternate; 
   text-align: center;
@@ -237,7 +238,7 @@ section h2 {
   color: rgba(0, 255, 255, 0.9) !important;
 }
 .light-mode .tech-highlight {
-  color: #2563eb !important; /* Accessible blue for light mode */
+  color: #2563eb !important;
   font-weight: 500;
 }
 
@@ -722,7 +723,6 @@ a:focus-visible {
   width: fit-content;
 }
 
-
 /* Light mode: adjust tab navigation */
 .light-mode .tab-nav {
   background: rgba(255, 255, 255, 0.95);
@@ -876,7 +876,6 @@ header {
   }
 }
 
-
 /* Professional list styling */
 .info-list {
   list-style: none;
@@ -1008,9 +1007,8 @@ header {
   <button class="tab-button" data-tab="vision">[VISION]</button>
   <button class="tab-button" data-tab="research">[RESEARCH]</button>
   <button class="tab-button" data-tab="contact">[CONTACT]</button>
+  <button class="tab-button" data-tab="archive">[ARCHIVE]</button>
 </nav>
-
-
 
 <!-- ABOUT TAB -->
 <div id="about-tab" class="tab-content active">
@@ -1020,7 +1018,6 @@ header {
       <div class="card">
         <h3>The Company</h3>
         <p style="margin-bottom: 1.5rem;">Founded in 2021, Smith Clove is pioneering computer vision analytics.</p>
-
         <p style="margin-top: 1.5rem;">Our open science library enables researchers and organizations worldwide to analyze remote sensing data that was previously inaccessible or too complex to process effectively on edge devices.</p>
       </div>
 
@@ -1031,7 +1028,6 @@ header {
           <li><strong>NASA FireSense</strong> — Remote fire detection and edge monitoring system integration driven by Machine Learning</li>
           <li><strong>Global Research Community</strong> — Open source community tools for accessible vision analysis</li>
         </ul>
-
         <p style="margin-top: 1.5rem; color: rgba(0, 255, 255, 0.9);" class="tech-highlight">Our technology bridges the gap between satellite data and actionable intelligence, making advanced Earth observation accessible to researchers without extensive computational resources.</p>
       </div>
     </div>
@@ -1084,9 +1080,7 @@ header {
           <p style="font-size: 1.1rem; margin-bottom: 1rem;"><strong>🛰️ Modelling and Advanced Earth Observation Technologies</strong></p>
           <p>Smith Clove's research on remote sensing analysis for geographically challenging environments has been cited in Springer's volume on the latest Earth observation methodologies.</p>
         </div>
-
         <p style="margin-top: 1.5rem; margin-bottom: 1rem;">This work represents a significant contribution to developing accessible frameworks for analyzing remote time series data.</p>
-
         <a href="https://link.springer.com/book/10.1007/978-3-031-78768-3" target="_blank" rel="noopener" class="achievement-link">
           <span>📖 View Publication</span>
         </a>
@@ -1130,7 +1124,6 @@ header {
   <section>
     <h2>Establish Connection</h2>
     <div class="cards">
-      <!-- Form column as a card -->
       <div class="card">
         <div class="email-capture">
           <form id="contact-form" action="https://formspree.io/f/mwpngrlw" method="POST" novalidate target="_self">
@@ -1145,7 +1138,6 @@ header {
         </div>
       </div>
 
-      <!-- Info column as a matching card -->
       <div class="card">
         <h3>Direct Links</h3>
         <p>
@@ -1181,6 +1173,17 @@ header {
   </section>
 </div>
 
+<!-- ARCHIVE TAB -->
+<div id="archive-tab" class="tab-content">
+  <section>
+    <h2>Paulina Borsook Archive</h2>
+    <p style="text-align: center; margin-bottom: 2rem;" class="tech-highlight">
+      Interactive map of writings, interviews, and archives from the tech critic who saw it coming.
+    </p>
+    <div id="mindmap-container"></div>
+  </section>
+</div>
+
 <footer>
   &copy; <span id="year"></span> Smith Clove ⚒
 </footer>
@@ -1193,19 +1196,16 @@ const tabButtons = document.querySelectorAll('.tab-button');
 const tabContents = document.querySelectorAll('.tab-content');
 
 function switchTab(tabName) {
-  // Remove active class from all buttons and contents
   tabButtons.forEach(btn => btn.classList.remove('active'));
   tabContents.forEach(content => content.classList.remove('active'));
 
-  // Add active class to selected tab
-  const selectedButton = document.querySelector(`[data-tab="${tabName}"]`);
-  const selectedContent = document.getElementById(`${tabName}-tab`);
+  const selectedButton = document.querySelector(\`[data-tab="\${tabName}"]\`);
+  const selectedContent = document.getElementById(\`\${tabName}-tab\`);
 
   if (selectedButton && selectedContent) {
     selectedButton.classList.add('active');
     selectedContent.classList.add('active');
 
-    // Add glitch effect on tab switch ONLY in dark mode
     if (!document.documentElement.classList.contains('light-mode')) {
       document.body.style.animation = 'theme-glitch 0.2s steps(3, end) 1';
       setTimeout(() => {
@@ -1215,13 +1215,10 @@ function switchTab(tabName) {
   }
 }
 
-// Add click listeners to tab buttons
 tabButtons.forEach(button => {
   button.addEventListener('click', () => {
     const tabName = button.getAttribute('data-tab');
     switchTab(tabName);
-
-    // Scroll to top smoothly
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 });
@@ -1230,7 +1227,6 @@ tabButtons.forEach(button => {
 const themeToggle = document.getElementById('themeToggle');
 const root = document.documentElement;
 
-// Check for saved theme preference or default to dark
 const savedTheme = localStorage.getItem('theme') || 'dark';
 if (savedTheme === 'light') {
   root.classList.add('light-mode');
@@ -1241,11 +1237,9 @@ themeToggle.addEventListener('click', () => {
   root.classList.toggle('light-mode');
   themeToggle.classList.toggle('active');
   
-  // Save preference
   const currentTheme = root.classList.contains('light-mode') ? 'light' : 'dark';
   localStorage.setItem('theme', currentTheme);
   
-  // Add glitch effect ONLY when switching to dark mode
   if (!root.classList.contains('light-mode')) {
     document.body.style.animation = 'theme-glitch 0.3s steps(4, end) 1';
     setTimeout(() => {
@@ -1254,19 +1248,17 @@ themeToggle.addEventListener('click', () => {
   }
 });
 
-// Add theme glitch animation
 const style = document.createElement('style');
-style.textContent = `
+style.textContent = \`
   @keyframes theme-glitch {
     0%, 100% { filter: hue-rotate(0deg) brightness(1); }
     25% { filter: hue-rotate(90deg) brightness(1.2); }
     50% { filter: hue-rotate(180deg) brightness(0.8); }
     75% { filter: hue-rotate(270deg) brightness(1.1); }
   }
-`;
+\`;
 document.head.appendChild(style);
 
-// Glitch effect on random intervals - ONLY in dark mode
 setInterval(() => {
   if (!document.documentElement.classList.contains('light-mode') && Math.random() > 0.95) {
     document.body.style.filter = 'hue-rotate(' + Math.random() * 360 + 'deg)';
@@ -1274,13 +1266,12 @@ setInterval(() => {
   }
 }, 500);
 
-// Text corruption effect - ONLY in dark mode
 const corruptableElements = document.querySelectorAll('p, h3');
 setInterval(() => {
   if (!document.documentElement.classList.contains('light-mode') && Math.random() > 0.98) {
     const el = corruptableElements[Math.floor(Math.random() * corruptableElements.length)];
     const originalText = el.textContent;
-    const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
+    const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~\`';
     let corrupted = '';
     for (let i = 0; i < originalText.length; i++) {
       corrupted += Math.random() > 0.7 ? chars[Math.floor(Math.random() * chars.length)] : originalText[i];
@@ -1325,14 +1316,12 @@ const revealedSpan = phoneLink.querySelector('.revealed');
 let isRevealed = false;
 let scrambleInterval;
 
-// Decode the phone number from data attributes (base64 obfuscation)
-const part1 = atob(phoneLink.dataset.p); // 541
-const part2 = atob(phoneLink.dataset.m); // 210
-const part3 = atob(phoneLink.dataset.l); // 3100
-const realPhone = `+1-${part1}-${part2}-${part3}`;
-const telLink = `tel:+1${part1}${part2}${part3}`;
+const part1 = atob(phoneLink.dataset.p);
+const part2 = atob(phoneLink.dataset.m);
+const part3 = atob(phoneLink.dataset.l);
+const realPhone = \`+1-\${part1}-\${part2}-\${part3}\`;
+const telLink = \`tel:+1\${part1}\${part2}\${part3}\`;
 
-// Generate random scrambled characters
 const scrambleChars = '0123456789ABCDEF#*@$%';
 function generateScrambled() {
   let scrambled = '+1 ';
@@ -1349,7 +1338,6 @@ function generateScrambled() {
   return scrambled;
 }
 
-// Scramble effect on hover - ONLY in dark mode
 phoneLink.addEventListener('mouseenter', function() {
   const isDarkMode = !document.documentElement.classList.contains('light-mode');
   
@@ -1367,20 +1355,17 @@ phoneLink.addEventListener('mouseenter', function() {
         revealedSpan.textContent = realPhone;
       }, 500);
     } else {
-      // In light mode, just reveal immediately
       isRevealed = true;
       revealedSpan.textContent = realPhone;
     }
   }
 });
 
-// Make clickable after reveal
 phoneLink.addEventListener('click', function(e) {
   e.preventDefault();
   if (isRevealed) {
     window.location.href = telLink;
   } else {
-    // Trigger reveal if clicked without hovering
     phoneLink.dispatchEvent(new MouseEvent('mouseenter'));
     setTimeout(() => {
       window.location.href = telLink;
@@ -1388,15 +1373,15 @@ phoneLink.addEventListener('click', function(e) {
   }
 });
 
-// Reset on mouse leave
 phoneLink.addEventListener('mouseleave', function() {
   setTimeout(() => {
     if (isRevealed) {
       isRevealed = false;
       scrambledSpan.textContent = '+1 XXX-XXX-XXXX';
     }
-  }, 3000); // Reset after 3 seconds
+  }, 3000);
 });
 </script>
+<script src="js/mindmap.js"></script>
 </body>
 </html>
