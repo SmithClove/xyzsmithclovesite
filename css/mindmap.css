@@ -85,7 +85,7 @@
 }
 
 .light-mode .mindmap-search::placeholder {
-  color: rgba(45, 55, 72, 0.4);
+  color: rgba(45, 55, 72, 0.6);
 }
 
 .light-mode .mindmap-search:focus {
@@ -140,7 +140,7 @@
 }
 
 .light-mode .search-result-path {
-  color: rgba(45, 55, 72, 0.5);
+  color: rgba(45, 55, 72, 0.75);
 }
 
 /* Tree structure */
@@ -222,7 +222,7 @@
 }
 
 .light-mode .node-meta {
-  color: rgba(45, 55, 72, 0.5);
+  color: rgba(45, 55, 72, 0.75);
 }
 
 .toggle-icon {
@@ -258,7 +258,7 @@
 
 .light-mode .children-container {
   border-left-color: var(--accent);
-  opacity: 0.6;
+  opacity: 0.85;
 }
 
 /* Root node special styling */
@@ -324,7 +324,7 @@
 }
 
 .light-mode .legend-item {
-  color: rgba(45, 55, 72, 0.7);
+  color: rgba(45, 55, 72, 0.85);
 }
 
 .legend-item:last-child {
