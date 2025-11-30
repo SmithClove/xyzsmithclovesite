@@ -1141,7 +1141,7 @@ header {
       <div class="card">
         <h3>Direct Links</h3>
         <p>
-          📧 <a href="mailto:info@smithclove.xyz">info@smithclove.xyz</a><br>
+          📧 <a href="/cdn-cgi/l/email-protection#deb7b0b8b19eadb3b7aab6bdb2b1a8bbf0a6a7a4"><span class="__cf_email__" data-cfemail="d1b8bfb7be91a2bcb8a5b9b2bdbea7b4ffa9a8ab">[email&#160;protected]</span></a><br>
           🔗 <a href="https://linkedin.com/in/-david">Social Protocol</a><br>
           📞 <a href="#" class="phone-scrambled" data-p="NTQx" data-m="MjEw" data-l="MzEwMA==" onclick="return false;">
             <span class="scrambled">+1 XXX-XXX-XXXX</span>
@@ -1188,7 +1188,7 @@ header {
   &copy; <span id="year"></span> Smith Clove ⚒
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 document.getElementById('year').textContent = new Date().getFullYear();
 
 // Tab switching functionality
@@ -1199,8 +1199,8 @@ function switchTab(tabName) {
   tabButtons.forEach(btn => btn.classList.remove('active'));
   tabContents.forEach(content => content.classList.remove('active'));
 
-  const selectedButton = document.querySelector(\`[data-tab="\${tabName}"]\`);
-  const selectedContent = document.getElementById(\`\${tabName}-tab\`);
+  const selectedButton = document.querySelector('[data-tab="' + tabName + '"]');
+  const selectedContent = document.getElementById(tabName + '-tab');
 
   if (selectedButton && selectedContent) {
     selectedButton.classList.add('active');
@@ -1249,14 +1249,7 @@ themeToggle.addEventListener('click', () => {
 });
 
 const style = document.createElement('style');
-style.textContent = \`
-  @keyframes theme-glitch {
-    0%, 100% { filter: hue-rotate(0deg) brightness(1); }
-    25% { filter: hue-rotate(90deg) brightness(1.2); }
-    50% { filter: hue-rotate(180deg) brightness(0.8); }
-    75% { filter: hue-rotate(270deg) brightness(1.1); }
-  }
-\`;
+style.textContent = '@keyframes theme-glitch { 0%, 100% { filter: hue-rotate(0deg) brightness(1); } 25% { filter: hue-rotate(90deg) brightness(1.2); } 50% { filter: hue-rotate(180deg) brightness(0.8); } 75% { filter: hue-rotate(270deg) brightness(1.1); } }';
 document.head.appendChild(style);
 
 setInterval(() => {
@@ -1271,7 +1264,7 @@ setInterval(() => {
   if (!document.documentElement.classList.contains('light-mode') && Math.random() > 0.98) {
     const el = corruptableElements[Math.floor(Math.random() * corruptableElements.length)];
     const originalText = el.textContent;
-    const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~\`';
+    const chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`';
     let corrupted = '';
     for (let i = 0; i < originalText.length; i++) {
       corrupted += Math.random() > 0.7 ? chars[Math.floor(Math.random() * chars.length)] : originalText[i];
@@ -1319,8 +1312,8 @@ let scrambleInterval;
 const part1 = atob(phoneLink.dataset.p);
 const part2 = atob(phoneLink.dataset.m);
 const part3 = atob(phoneLink.dataset.l);
-const realPhone = \`+1-\${part1}-\${part2}-\${part3}\`;
-const telLink = \`tel:+1\${part1}\${part2}\${part3}\`;
+const realPhone = '+1-' + part1 + '-' + part2 + '-' + part3;
+const telLink = 'tel:+1' + part1 + part2 + part3;
 
 const scrambleChars = '0123456789ABCDEF#*@$%';
 function generateScrambled() {
@@ -1373,15 +1366,4 @@ phoneLink.addEventListener('click', function(e) {
   }
 });
 
-phoneLink.addEventListener('mouseleave', function() {
-  setTimeout(() => {
-    if (isRevealed) {
-      isRevealed = false;
-      scrambledSpan.textContent = '+1 XXX-XXX-XXXX';
-    }
-  }, 3000);
-});
-</script>
-<script src="js/mindmap.js"></script>
-</body>
-</html>
+phoneLink.addEventL
