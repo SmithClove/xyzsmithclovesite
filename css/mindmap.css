@@ -213,6 +213,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
   font-family: 'Space Mono', monospace;
+  color: var(--fg);
+  /* Font weight decreases with depth: 700 - (depth * 100), min 300 */
+  font-weight: clamp(300, calc(700 - (var(--depth) * 100)), 700);
 }
 
 .node-meta {
@@ -258,7 +261,6 @@
 
 .light-mode .children-container {
   border-left-color: var(--accent);
-  opacity: 0.85;
 }
 
 /* Root node special styling */
