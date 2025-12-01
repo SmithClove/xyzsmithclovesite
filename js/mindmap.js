@@ -1,9 +1,13 @@
-// Paulina Borsook Interactive Mind Map
+// Archive Collection Interactive Mind Map
 // Vanilla JS implementation for GitHub Pages
 
 const mindmapData = {
-  name: "Paulina Borsook",
+  name: "Archive Collection",
   children: [
+    {
+      name: "Paulina Borsook",
+      description: "Tech critic who saw it coming",
+      children: [
     {
       name: "paulinaborsook.com",
       children: [
@@ -129,13 +133,16 @@ const mindmapData = {
         }
       ]
     }
+      ]
+    }
+    // Additional archives can be added here as siblings to Paulina Borsook
   ]
 };
 
 class MindMap {
   constructor(containerId) {
     this.container = document.getElementById(containerId);
-    this.expanded = { "Paulina Borsook": true };
+    this.expanded = { "Archive Collection": true };
     this.searchTerm = '';
     this.init();
   }
@@ -162,7 +169,7 @@ class MindMap {
   }
 
   collapseAll() {
-    this.expanded = { "Paulina Borsook": true };
+    this.expanded = { "Archive Collection": true };
     this.render();
   }
 
